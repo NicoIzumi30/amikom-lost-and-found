@@ -83,6 +83,8 @@
                 <li><a href="{{route('administrator.itemFound')}}"><i class="fa fa-joget"></i> Item Found</a></li>
                 <li><a href="{{route('administrator.announcement')}}"><i class="fa fa-bullhorn"></i> Announcement</a></li>
                 <li><a href="{{route('administrator.getStarted')}}"><i class="fa fa-circle-play"></i> Get started</a></li>
+                <li><a href="{{route('administrator.profile')}}"><i class="fa fa-user-edit"></i> Profile</a></li>
+                <li><a href="{{route('administrator.login')}}"><i class="fa fa-power-off"></i> Logout</a></li>
               </ul>
             </div>
           </div>

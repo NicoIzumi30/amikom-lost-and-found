@@ -1,6 +1,6 @@
 <x-app-layout>
     <div class="right_col" role="main">
-    <div class="page-title">
+        <div class="page-title">
             <div class="title_left">
                 <h3>Get Started</h3>
             </div>
@@ -8,7 +8,7 @@
         <div class="clearfix"></div>
         <div class="row">
             <div class="col-md-6">
-            <div class="card mb-3 pb-3">
+                <div class="card mb-3 pb-3">
                     <div class="card-header">
                         <h5>Slide 1</h5>
                     </div>
@@ -27,8 +27,12 @@
                                         <label for="">Description</label>
                                         <textarea name="description" class="form-control"></textarea>
                                     </div>
+                                    <div class="custom-file mb-3">
+                                        <input type="file" class="custom-file-input" id="customFile">
+                                        <label class="custom-file-label" for="customFile">Choose file</label>
+                                    </div>
                                     <div class="modal-footer">
-                                        <button class="btn btn-primary" type="submit">Save</button>
+                                        <button class="btn btn-primary" type="submit">Update</button>
                                     </div>
                                 </form>
                             </div>
@@ -37,7 +41,7 @@
                 </div>
             </div>
             <div class="col-md-6">
-            <div class="card mb-3 pb-3">
+                <div class="card mb-3 pb-3">
                     <div class="card-header">
                         <h5>Slide 2</h5>
                     </div>
@@ -56,8 +60,12 @@
                                         <label for="">Description</label>
                                         <textarea name="description" class="form-control"></textarea>
                                     </div>
+                                    <div class="custom-file mb-3">
+                                        <input type="file" class="custom-file-input" id="customFile">
+                                        <label class="custom-file-label" for="customFile">Choose file</label>
+                                    </div>
                                     <div class="modal-footer">
-                                        <button class="btn btn-primary" type="submit">Save</button>
+                                        <button class="btn btn-primary" type="submit">Update</button>
                                     </div>
                                 </form>
                             </div>
@@ -66,7 +74,7 @@
                 </div>
             </div>
             <div class="col-md-6">
-            <div class="card mb-3 pb-3">
+                <div class="card mb-3 pb-3">
                     <div class="card-header">
                         <h5>Slide 3</h5>
                     </div>
@@ -85,8 +93,12 @@
                                         <label for="">Description</label>
                                         <textarea name="description" class="form-control"></textarea>
                                     </div>
+                                    <div class="custom-file mb-3">
+                                        <input type="file" class="custom-file-input" id="customFile">
+                                        <label class="custom-file-label" for="customFile">Choose file</label>
+                                    </div>
                                     <div class="modal-footer">
-                                        <button class="btn btn-primary" type="submit">Save</button>
+                                        <button class="btn btn-primary" type="submit">Update</button>
                                     </div>
                                 </form>
                             </div>
@@ -94,6 +106,6 @@
                     </div>
                 </div>
             </div>
-        </div>  
+        </div>
     </div>
 </x-app-layout>
