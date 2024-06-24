@@ -37,6 +37,12 @@
   <link href="{{asset('vendors')}}/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
   <!-- Custom Theme Style -->
   <link href="{{asset('build')}}/css/custom.css" rel="stylesheet">
+  <style>
+    .dataTables_paginate {
+      margin-top: 15px !important;
+      margin-bottom: 10px !important;
+    }
+  </style>
 </head>
 
 <body class="nav-md">
@@ -45,7 +51,8 @@
       <div class="col-md-3 left_col">
         <div class="left_col scroll-view">
           <div class="navbar nav_title" style="border: 0;">
-            <a href="#" class="site_title"><img src="{{asset('images')}}/logo.png" width="50" alt=""> <span>Lost and Found</span></a>
+            <a href="#" class="site_title"><img src="{{asset('images')}}/logo.png" width="50" alt=""> <span>Lost and
+                Found</span></a>
           </div>
           <div class="clearfix"></div>
 
@@ -68,13 +75,14 @@
             <div class="menu_section">
               <h3>Main</h3>
               <ul class="nav side-menu">
-                <li><a href="index.html"><i class="fa fa-home"></i> Dashboard</a></li>
-                <li><a href="karyawan.html"><i class="fa fa-users"></i> Employees</a></li>
-                <li><a href="mahasiswa.html"><i class="fa fa-user-graduate"></i> Students</a></li>
-                <li><a href="baranghilang.html"><i class="fa fa-person-circle-question"></i> Lost Items</a></li>
-                <li><a href="barangditemukan.html"><i class="fa fa-joget"></i> Item Found</a></li>
-                <li><a href="banner.html"><i class="fa fa-bullhorn"></i> Announcement</a></li>
-                <li><a href="getstarted.html"><i class="fa fa-circle-play"></i> Get started</a></li>
+                <li><a href="{{route('administrator.dashboard')}}"><i class="fa fa-home"></i> Dashboard</a></li>
+                <li><a href="{{route('administrator.employees')}}"><i class="fa fa-users"></i> Employees</a></li>
+                <li><a href="{{route('administrator.students')}}"><i class="fa fa-user-graduate"></i> Students</a></li>
+                <li><a href="{{route('administrator.lostItems')}}"><i class="fa fa-person-circle-question"></i> Lost
+                    Items</a></li>
+                <li><a href="{{route('administrator.itemFound')}}"><i class="fa fa-joget"></i> Item Found</a></li>
+                <li><a href="{{route('administrator.announcement')}}"><i class="fa fa-bullhorn"></i> Announcement</a></li>
+                <li><a href="{{route('administrator.getStarted')}}"><i class="fa fa-circle-play"></i> Get started</a></li>
               </ul>
             </div>
           </div>
@@ -101,7 +109,7 @@
       <!-- /top navigation -->
 
       <!-- page content -->
-     {{$slot}}
+      {{$slot}}
       <!-- /page content -->
 
       <!-- footer content -->
@@ -133,6 +141,8 @@
   <script src="{{asset('vendors')}}/iCheck/icheck.min.js"></script>
   <!-- Skycons -->
   <script src="{{asset('vendors')}}/skycons/skycons.js"></script>
+
+
   <!-- Flot -->
   <script src="{{asset('vendors')}}/Flot/jquery.flot.js"></script>
   <script src="{{asset('vendors')}}/Flot/jquery.flot.pie.js"></script>
@@ -154,19 +164,20 @@
   <script src="{{asset('vendors')}}/bootstrap-daterangepicker/daterangepicker.js"></script>
 
   <!-- Datatable -->
-    <!-- Datatables -->
-    <script src="{{asset('vendors')}}/datatables.net/js/jquery.dataTables.min.js"></script>
-    <script src="{{asset('vendors')}}/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-    <script src="{{asset('vendors')}}/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-    <script src="{{asset('vendors')}}/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
-    <script src="{{asset('vendors')}}/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
-    <script src="{{asset('vendors')}}/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
-    <script src="{{asset('vendors')}}/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-    <script src="{{asset('vendors')}}/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
-    <script src="{{asset('vendors')}}/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+  <!-- Datatables -->
+  <script src="{{asset('vendors')}}/datatables.net/js/jquery.dataTables.min.js"></script>
+  <script src="{{asset('vendors')}}/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+  <script src="{{asset('vendors')}}/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+  <script src="{{asset('vendors')}}/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+  <script src="{{asset('vendors')}}/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+  <script src="{{asset('vendors')}}/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+  <script src="{{asset('vendors')}}/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+  <script src="{{asset('vendors')}}/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+  <script src="{{asset('vendors')}}/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
 
   <!-- Custom Theme Scripts -->
   <script src="{{asset('build')}}/js/custom.min.js"></script>
+  
   <script>
     if ($('#lostItems').length) {
 
@@ -238,7 +249,7 @@
           datasets: [{
             label: 'Visitor',
             backgroundColor: "#6DC5D1",
-            data: [51, 30, 40, 28, 92, 50, 45,90,100,80,70,60]
+            data: [51, 30, 40, 28, 92, 50, 45, 90, 100, 80, 70, 60]
           }]
         },
 
