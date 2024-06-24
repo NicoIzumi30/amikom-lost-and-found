@@ -14,5 +14,10 @@ use App\Http\Controllers;
 |
 */
 
-Route::get('/',Controllers\DashboardController::class)->name('dashboard');
-Route::get('/administrator/employee',[Controllers\EmployeeController::class,'index'])->name('employee');
+Route::get('/',Controllers\DashboardController::class)->name('administrator.dashboard');
+Route::get('/administrator/employees',[Controllers\Administrator\EmployeeController::class,'index'])->name('administrator.employees');
+Route::get('/administrator/students',[Controllers\Administrator\StudentController::class,'index'])->name('administrator.students');
+Route::get('/administrator/lost-items',[Controllers\Administrator\LostItemController::class,'index'])->name('administrator.lostItems');
+Route::get('/administrator/item-found',[Controllers\Administrator\ItemFoundController::class,'index'])->name('administrator.itemFound');
+Route::get('/administrator/announcement',[Controllers\Administrator\AnnouncementController::class,'index'])->name('administrator.announcement');
+Route::get('/administrator/get-started',[Controllers\Administrator\GetStartedController::class,'index'])->name('administrator.getStarted');
