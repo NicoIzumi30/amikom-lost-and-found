@@ -11,15 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('lost_items', function (Blueprint $table) {
             $table->id();
-            $table->string('google_id');
-            $table->string("name");
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->enum('role',['admin','user']);
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('category_id')->constrained()->cascadeOnDelete();
+            $table->string("title");
+            $table->text("description");
             $table->string("image");
-            $table->rememberToken();
+            $table->enum('status',['ditemukam','belum']);
+            $table->string("no_tlp");
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('lost_items');
     }
 };
