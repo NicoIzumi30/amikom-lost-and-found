@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('category_id')->constrained()->cascadeOnDelete();
             $table->string("title");
             $table->text("description");
-            $table->string("image");
+            $table->string("image")->nullable();
             $table->enum('status',['ditemukam','belum']);
             $table->string("no_tlp");
             $table->timestamps();
