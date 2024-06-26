@@ -70,7 +70,7 @@
                                 <span>Image</span>
                                 <div class="custom-file mb-3">
                                     <input type="file" class="custom-file-input" id="customFile" name="image">
-                                    <label class="custom-file-label" for="customFile}">Choose file</label>
+                                    <label class="custom-file-label" for="customFile">Choose file</label>
                                 </div>
                             </div>
                             <div class="modal-footer">

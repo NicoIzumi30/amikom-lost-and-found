@@ -33,6 +33,9 @@ Route::prefix('administrator')->name('administrator.')->group(function () {
         Route::group(['prefix' => 'announcement'], function () {
             Route::get('/', [Controllers\Administrator\AnnouncementController::class, 'index'])->name('announcement');
             Route::post('/store', [Controllers\Administrator\AnnouncementController::class, 'store'])->name('announcement.store');
+            Route::post('/update/{id}', [Controllers\Administrator\AnnouncementController::class, 'update'])->name('announcement.update');
+            Route::get('/destroy/{id}', [Controllers\Administrator\AnnouncementController::class, 'destroy'])->name('announcement.destroy');
+
         });
 
         Route::group(['prefix' => 'get-started'], function () {
