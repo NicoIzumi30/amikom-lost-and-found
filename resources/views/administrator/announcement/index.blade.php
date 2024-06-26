@@ -107,7 +107,7 @@
                                             <td>{{ $banner->title }}</td>
                                             <td>{{ $banner->description }}</td>
                                             <td class="text-center">
-                                                <img src="{{ asset('announcement/' . $banner->image) }}"
+                                                <img src="{{ asset('storage/announcement/' . $banner->image) }}"
                                                     alt="" width="60">
                                             </td>
                                             <td>
