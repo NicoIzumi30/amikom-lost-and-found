@@ -25,7 +25,7 @@ class AnnouncementController extends Controller
 
         $imageName = time() . '.' . $request->image->extension();
 
-        $request->image->move(public_path('announcement'), $imageName);
+        $request->image->storeAs('announcement', $imageName, 'public');
 
         $banner = new Banner();
         $banner->title = $request->title;
