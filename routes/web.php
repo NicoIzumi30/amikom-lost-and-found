@@ -14,8 +14,9 @@ use App\Http\Controllers;
 |
 */
 
-Route::get('/',Controllers\DashboardController::class)->name('administrator.dashboard');
+Route::get('/', Controllers\DashboardController::class)->name('administrator.dashboard');
 Route::prefix('administrator')->name('administrator.')->group(function () {
+<<<<<<< HEAD
     Route::middleware('guest')->group(function () {
     Route::get('login',[Controllers\Administrator\LoginController::class,'loginForm'])->name('login');
     Route::post('login',[Controllers\Administrator\LoginController::class,'authenticate']);
@@ -34,4 +35,17 @@ Route::prefix('administrator')->name('administrator.')->group(function () {
     Route::get('logout',Controllers\Administrator\LogoutController::class)->name('logout');
     });
 });
+=======
+    Route::get('login', [Controllers\Administrator\LoginController::class, 'index'])->name('login');
+    Route::get('employees', [Controllers\Administrator\EmployeeController::class, 'index'])->name('employees');
+    Route::get('students', [Controllers\Administrator\StudentController::class, 'index'])->name('students');
+    Route::get('lost-items', [Controllers\Administrator\LostItemController::class, 'index'])->name('lostItems');
+    Route::get('item-found', [Controllers\Administrator\ItemFoundController::class, 'index'])->name('itemFound');
+    Route::get('announcement', [Controllers\Administrator\AnnouncementController::class, 'index'])->name('announcement');
+>>>>>>> refs/remotes/origin/backend
 
+    Route::post('add', [Controllers\Administrator\AnnouncementController::class, 'store'])->name('store');
+
+    Route::get('get-started', [Controllers\Administrator\GetStartedController::class, 'index'])->name('getStarted');
+    Route::get('profile', [Controllers\Administrator\ProfileController::class, 'index'])->name('profile');
+});
