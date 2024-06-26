@@ -99,6 +99,7 @@
                 <li><a href="{{route('administrator.employees.index')}}"><i class="fa fa-users"></i> Employees</a></li>
                 <li><a href="{{route('administrator.students.index')}}"><i class="fa fa-user-graduate"></i> Students</a>
                 </li>
+                <li><a href="{{route('administrator.category.index')}}"><i class="fa fa-layer-group"></i>Category</a></li>
                 <li><a href="{{route('administrator.lostItems.index')}}"><i class="fa fa-person-circle-question"></i>
                     Lost
                     Items</a></li>

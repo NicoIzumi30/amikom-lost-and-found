@@ -33,7 +33,7 @@ class AnnouncementController extends Controller
         $banner->description = $request->description;
         $banner->save();
 
-        return redirect()->route('administrator.announcement');
+        return redirect()->route('administrator.announcement.index');
     }
 
     public function update(Request $request, $id)
@@ -66,12 +66,12 @@ class AnnouncementController extends Controller
 
         $banner->save();
 
-        return redirect()->route('administrator.announcement');
+        return redirect()->route('administrator.announcement.index');
     }
 
     public function destroy($id)
     {
         Banner::find($id)->delete();
-        return redirect()->route('administrator.announcement');
+        return redirect()->route('administrator.announcement.index');
     }
 }
