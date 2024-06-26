@@ -54,17 +54,17 @@
                         <div class="modal-body">
                             <div class="col-md-12 mb-3 form-group has-feedback">
                                 <input type="text" class="form-control has-feedback-left" id="inputSuccess2"
-                                    placeholder="Full Name" name="name">
+                                    placeholder="Full Name" name="name" required>
                                 <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
                             </div>
 
                             <div class="col-md-12 mb-3  form-group has-feedback">
-                                <input type="number" class="form-control has-feedback-left" name="nik" id="inputSuccess3" placeholder="NIK">
+                                <input type="number" class="form-control has-feedback-left" name="nik" id="inputSuccess3"  required placeholder="NIK">
                                 <span class="fa fa-address-card form-control-feedback left" aria-hidden="true"></span>
                             </div>
 
                             <div class="col-md-12 mb-3  form-group has-feedback">
-                                <input type="tel" class="form-control has-feedback-left" id="inputSuccess5" name="phone" placeholder="Phone">
+                                <input type="tel" class="form-control has-feedback-left" id="inputSuccess5" name="phone_number" required placeholder="Phone">
                                 <span class="fa fa-phone form-control-feedback left" aria-hidden="true" ></span>
                             </div>
                         </div>
