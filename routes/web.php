@@ -45,7 +45,7 @@ Route::prefix('administrator')->name('administrator.')->group(function () {
             Route::post('/update/{id}', [Controllers\Administrator\GetStartedController::class, 'update'])->name('getStarted.update');
             Route::get('/destroy/{id}', [Controllers\Administrator\GetStartedController::class, 'destroy'])->name('getStarted.destroy');
         });
-        Route::get('profile', [Controllers\Administrator\ProfileController::class, 'index'])->name('profile');
+        Route::get('profile', [Controllers\Administrator\ProfileController::class, 'index'])->name('profile.index');
         Route::get('logout', Controllers\Administrator\LogoutController::class)->name('logout');
     });
 });
