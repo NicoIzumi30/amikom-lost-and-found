@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
     <title>Login</title>
 </head>
@@ -40,35 +39,37 @@
             <!-------------------- ------ Right Box ---------------------------->
 
             <div class="col-md-6 right-box">
-                <form action="login.php" method="post">
-                <div class="row align-items-center">
-                    <div class="header-text mb-3">
-                        <h2>Hello,Again</h2>
-                        <p>We are happy to have you back.</p>
-                    </div>
-                    <div class="input-group mb-3">
-                        <input type="text" name="username" class="form-control form-control-lg bg-light fs-6"
-                            placeholder="Email address">
-                    </div>
-                    <div class="input-group mb-3">
-                        <input type="password" name="password" class="form-control form-control-lg bg-light fs-6"
-                            placeholder="Password">
-                    </div>
-                    <div class="mb-3">
-                        <div class="g-recaptcha" data-sitekey="6LfbKvgpAAAAAHio-sg7U-JeOpfcgo7DdrROIWVK"></div>
-                    </div>
-                    <div class="input-group mb-4 d-flex justify-content-between">
-                        <div class="form-check">
-                            <input type="checkbox" name="remember" class="form-check-input" id="formCheck">
-                            <label for="formCheck" class="form-check-label text-secondary"><small>Remember
-                                    Me</small></label>
+                <form action="{{route('administrator.login')}}" method="post">
+                    @csrf
+                    <div class="row align-items-center">
+                        <div class="header-text mb-3">
+                            <h2>Hello,Again</h2>
+                            <p>We are happy to have you back.</p>
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    {{ $errors->first() }}
+                                </div>
+                            @endif
+                            @if (session('success'))
+                                <div class="alert alert-success">
+                                    {{ session('success') }}
+                                </div>
+                            @endif
+                        </div>
+                        <div class="input-group mb-3">
+                            <input type="email" name="email" class="form-control form-control-lg bg-light fs-6"
+                                placeholder="Email address">
+                        </div>
+                        <div class="input-group mb-3">
+                            <input type="password" name="password" class="form-control form-control-lg bg-light fs-6"
+                                placeholder="Password">
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <!-- <button class="btn btn-lg btn-primary w-100 fs-6" type="submit">Login</button> -->
+                            <button class="btn btn-lg btn-primary w-100 fs-6" type="submit">Login</button>
                         </div>
                     </div>
-                    <div class="input-group mb-3">
-                        <!-- <button class="btn btn-lg btn-primary w-100 fs-6" type="submit">Login</button> -->
-                        <a class="btn btn-lg btn-primary w-100 fs-6"href="{{route('administrator.dashboard')}}">Login</a>
-                    </div>
-                </div>
                 </form>
             </div>
 

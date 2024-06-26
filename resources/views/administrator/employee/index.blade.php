@@ -49,7 +49,8 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form action="" method="post" enctype="multipart/form-data">
+                    <form action="{{route('administrator.employees.store')}}" method="post">
+                        @csrf
                         <div class="modal-body">
                             <div class="col-md-12 mb-3 form-group has-feedback">
                                 <input type="text" class="form-control has-feedback-left" id="inputSuccess2"
@@ -88,6 +89,7 @@
                         </button>
                     </div>
                     <form action="" method="post" enctype="multipart/form-data">
+
                         <div class="modal-body">
                             <div class="col-md-12 mb-3 form-group has-feedback">
                                 <input type="text" class="form-control has-feedback-left" value="Heru Kristanto" id="inputSuccess2"
@@ -132,16 +134,17 @@
                                         <td width="4%">No</td>
                                         <td>Name</td>
                                         <td>NIK</td>
-                                        <td>Image</td>
+                                        <td class="text-center">Image</td>
                                         <td>Action</td>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach ($employees as $employee)
                                     <tr>
-                                        <td>1</td>
-                                        <td>Heru Kristanto</td>
-                                        <td>3402051205010001</td>
-                                        <td><img src="{{asset('images/img.jpg')}}" width="60" alt=""></td>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{$employee->name}}</td>
+                                        <td>{{$employee->nik}}</td>
+                                        <td class="text-center"><img src="{{$employee->image ? asset('storage/images/users/'.$employee->image) : asset('storage/images/users/user.png')}}" width="60" alt=""></td>
                                         <td>
                                             <a href="#" class="btn btn-danger m-1">
                                                 <i class="fas fa-trash"></i>
@@ -154,6 +157,7 @@
                                             </a>
                                         </td>
                                     </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
