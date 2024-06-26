@@ -14,7 +14,7 @@ use App\Http\Controllers;
 |
 */
 
-Route::get('/', Controllers\DashboardController::class)->name('administrator.dashboard');
+Route::get('/', Controllers\DashboardController::class)->middleware('auth')->name('administrator.dashboard.index');
 Route::prefix('administrator')->name('administrator.')->group(function () {
 
     Route::middleware('guest')->group(function () {
@@ -23,20 +23,20 @@ Route::prefix('administrator')->name('administrator.')->group(function () {
     });
     Route::middleware(['auth', 'admin'])->group(function () {
         // Employees
-        Route::get('employees', [Controllers\Administrator\EmployeeController::class, 'index'])->name('employees');
-        Route::get('employees/store', [Controllers\Administrator\EmployeeController::class, 'store'])->name('employees.store');
+        Route::get('employees', [Controllers\Administrator\EmployeeController::class, 'index'])->name('employees.index');
+        Route::post('employees/store', [Controllers\Administrator\EmployeeController::class, 'store'])->name('employees.store');
 
-        Route::get('students', [Controllers\Administrator\StudentController::class, 'index'])->name('students');
-        Route::get('lost-items', [Controllers\Administrator\LostItemController::class, 'index'])->name('lostItems');
-        Route::get('item-found', [Controllers\Administrator\ItemFoundController::class, 'index'])->name('itemFound');
+        Route::get('students', [Controllers\Administrator\StudentController::class, 'index'])->name('students.index');
+        Route::get('lost-items', [Controllers\Administrator\LostItemController::class, 'index'])->name('lostItems.index');
+        Route::get('item-found', [Controllers\Administrator\ItemFoundController::class, 'index'])->name('itemFound.index');
 
         Route::group(['prefix' => 'announcement'], function () {
-            Route::get('/', [Controllers\Administrator\AnnouncementController::class, 'index'])->name('announcement');
+            Route::get('/', [Controllers\Administrator\AnnouncementController::class, 'index'])->name('announcement.index');
             Route::post('/add', [Controllers\Administrator\AnnouncementController::class, 'store'])->name('announcement.store');
         });
 
-        Route::get('get-started', [Controllers\Administrator\GetStartedController::class, 'index'])->name('getStarted');
-        Route::get('profile', [Controllers\Administrator\ProfileController::class, 'index'])->name('profile');
+        Route::get('get-started', [Controllers\Administrator\GetStartedController::class, 'index'])->name('getStarted.index');
+        Route::get('profile', [Controllers\Administrator\ProfileController::class, 'index'])->name('profile.index');
         Route::get('logout', Controllers\Administrator\LogoutController::class)->name('logout');
     });
 });

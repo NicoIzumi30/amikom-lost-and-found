@@ -22,7 +22,7 @@
   <link href="{{asset('vendors')}}/nprogress/nprogress.css" rel="stylesheet">
   <!-- iCheck -->
   <link href="{{asset('vendors')}}/iCheck/skins/flat/green.css" rel="stylesheet">
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
   <!-- bootstrap-progressbar -->
   <link href="{{asset('vendors')}}/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
   <!-- JQVMap -->
@@ -46,6 +46,26 @@
 </head>
 
 <body class="nav-md">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+  @include('sweetalert::alert')
+  @if ($errors->any())
+  <script>
+            swal({
+                title: 'Failed',
+                text: '{{  $errors->first() }}',
+                type: 'error'
+            });
+        </script>
+    @endif
+    @if (session('success'))
+        <script>
+            swal({
+                title: 'Success',
+                text: '{{ session('success') }}',
+                type: 'success'
+            });
+        </script>
+    @endif
   <div class="container body">
     <div class="main_container">
       <div class="col-md-3 left_col">
@@ -75,15 +95,19 @@
             <div class="menu_section">
               <h3>Main</h3>
               <ul class="nav side-menu">
-                <li><a href="{{route('administrator.dashboard')}}"><i class="fa fa-home"></i> Dashboard</a></li>
-                <li><a href="{{route('administrator.employees')}}"><i class="fa fa-users"></i> Employees</a></li>
-                <li><a href="{{route('administrator.students')}}"><i class="fa fa-user-graduate"></i> Students</a></li>
-                <li><a href="{{route('administrator.lostItems')}}"><i class="fa fa-person-circle-question"></i> Lost
+                <li><a href="{{route('administrator.dashboard.index')}}"><i class="fa fa-home"></i> Dashboard</a></li>
+                <li><a href="{{route('administrator.employees.index')}}"><i class="fa fa-users"></i> Employees</a></li>
+                <li><a href="{{route('administrator.students.index')}}"><i class="fa fa-user-graduate"></i> Students</a>
+                </li>
+                <li><a href="{{route('administrator.lostItems.index')}}"><i class="fa fa-person-circle-question"></i>
+                    Lost
                     Items</a></li>
-                <li><a href="{{route('administrator.itemFound')}}"><i class="fa fa-joget"></i> Item Found</a></li>
-                <li><a href="{{route('administrator.announcement')}}"><i class="fa fa-bullhorn"></i> Announcement</a></li>
-                <li><a href="{{route('administrator.getStarted')}}"><i class="fa fa-circle-play"></i> Get started</a></li>
-                <li><a href="{{route('administrator.profile')}}"><i class="fa fa-user-edit"></i> Profile</a></li>
+                <li><a href="{{route('administrator.itemFound.index')}}"><i class="fa fa-joget"></i> Item Found</a></li>
+                <li><a href="{{route('administrator.announcement.index')}}"><i class="fa fa-bullhorn"></i>
+                    Announcement</a></li>
+                <li><a href="{{route('administrator.getStarted.index')}}"><i class="fa fa-circle-play"></i> Get
+                    started</a></li>
+                <li><a href="{{route('administrator.profile.index')}}"><i class="fa fa-user-edit"></i> Profile</a></li>
                 <li><a href="{{route('administrator.logout')}}"><i class="fa fa-power-off"></i> Logout</a></li>
               </ul>
             </div>
