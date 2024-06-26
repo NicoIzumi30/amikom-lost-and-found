@@ -32,12 +32,16 @@ Route::prefix('administrator')->name('administrator.')->group(function () {
 
         Route::group(['prefix' => 'announcement'], function () {
             Route::get('/', [Controllers\Administrator\AnnouncementController::class, 'index'])->name('announcement');
-            Route::post('/add', [Controllers\Administrator\AnnouncementController::class, 'store'])->name('announcement.store');
+            Route::post('/store', [Controllers\Administrator\AnnouncementController::class, 'store'])->name('announcement.store');
         });
 
-        Route::get('get-started', [Controllers\Administrator\GetStartedController::class, 'index'])->name('getStarted');
+        Route::group(['prefix' => 'get-started'], function () {
+            Route::get('/', [Controllers\Administrator\GetStartedController::class, 'index'])->name('getStarted');
+            Route::post('/store', [Controllers\Administrator\GetStartedController::class, 'store'])->name('getStarted.store');
+            Route::post('/update/{id}', [Controllers\Administrator\GetStartedController::class, 'update'])->name('getStarted.update');
+            Route::get('/destroy/{id}', [Controllers\Administrator\GetStartedController::class, 'destroy'])->name('getStarted.destroy');
+        });
         Route::get('profile', [Controllers\Administrator\ProfileController::class, 'index'])->name('profile');
         Route::get('logout', Controllers\Administrator\LogoutController::class)->name('logout');
     });
 });
-
