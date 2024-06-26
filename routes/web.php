@@ -15,8 +15,10 @@ use App\Http\Controllers;
 */
 
 Route::get('/', Controllers\DashboardController::class)->name('administrator.dashboard');
+
 Route::prefix('administrator')->name('administrator.')->group(function () {
 
+    
     Route::middleware('guest')->group(function () {
         Route::get('login', [Controllers\Administrator\LoginController::class, 'loginForm'])->name('login');
         Route::post('login', [Controllers\Administrator\LoginController::class, 'authenticate']);
