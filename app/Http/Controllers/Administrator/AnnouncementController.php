@@ -19,7 +19,7 @@ class AnnouncementController extends Controller
     {
         $request->validate(rules: [
             'title' => ['required'],
-            'image' => ['required', 'mimes:jpg,jpeg,png,svg', 'max:2048'],
+            'image' => ['required', 'mimes:jpg,jpeg,png,svg'],
             'description' => ['required']
         ]);
 
@@ -33,6 +33,45 @@ class AnnouncementController extends Controller
         $banner->description = $request->description;
         $banner->save();
 
+        return redirect()->route('administrator.announcement');
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'title' => ['required'],
+            'image' => ['nullable', 'mimes:jpg,jpeg,svg,png'],
+            'description' => ['required']
+        ]);
+
+        $banner = Banner::findOrFail($id);
+
+        $banner->title = $request->title;
+        $banner->description = $request->description;
+
+        if ($request->hasFile('image')) {
+            $request->validate([
+                'image' => ['mimes:jpg,jpeg,svg,png'],
+            ]);
+
+            $oldImagePath = public_path('storage/announcement/' . $banner->image);
+            if (file_exists($oldImagePath)) {
+                unlink($oldImagePath);
+            }
+
+            $imageName = time() . '.' . $request->image->extension();
+            $request->image->storeAs('announcement', $imageName, 'public');
+            $banner->image = $imageName;
+        }
+
+        $banner->save();
+
+        return redirect()->route('administrator.announcement');
+    }
+
+    public function destroy($id)
+    {
+        Banner::find($id)->delete();
         return redirect()->route('administrator.announcement');
     }
 }

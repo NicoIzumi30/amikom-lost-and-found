@@ -31,13 +31,29 @@ Route::prefix('administrator')->name('administrator.')->group(function () {
         Route::get('item-found', [Controllers\Administrator\ItemFoundController::class, 'index'])->name('itemFound.index');
 
         Route::group(['prefix' => 'announcement'], function () {
+<<<<<<< HEAD
             Route::get('/', [Controllers\Administrator\AnnouncementController::class, 'index'])->name('announcement.index');
             Route::post('/add', [Controllers\Administrator\AnnouncementController::class, 'store'])->name('announcement.store');
         });
 
         Route::get('get-started', [Controllers\Administrator\GetStartedController::class, 'index'])->name('getStarted.index');
         Route::get('profile', [Controllers\Administrator\ProfileController::class, 'index'])->name('profile.index');
+=======
+            Route::get('/', [Controllers\Administrator\AnnouncementController::class, 'index'])->name('announcement');
+            Route::post('/store', [Controllers\Administrator\AnnouncementController::class, 'store'])->name('announcement.store');
+            Route::post('/update/{id}', [Controllers\Administrator\AnnouncementController::class, 'update'])->name('announcement.update');
+            Route::get('/destroy/{id}', [Controllers\Administrator\AnnouncementController::class, 'destroy'])->name('announcement.destroy');
+
+        });
+
+        Route::group(['prefix' => 'get-started'], function () {
+            Route::get('/', [Controllers\Administrator\GetStartedController::class, 'index'])->name('getStarted');
+            Route::post('/store', [Controllers\Administrator\GetStartedController::class, 'store'])->name('getStarted.store');
+            Route::post('/update/{id}', [Controllers\Administrator\GetStartedController::class, 'update'])->name('getStarted.update');
+            Route::get('/destroy/{id}', [Controllers\Administrator\GetStartedController::class, 'destroy'])->name('getStarted.destroy');
+        });
+        Route::get('profile', [Controllers\Administrator\ProfileController::class, 'index'])->name('profile');
+>>>>>>> 65f46f9128966b13375409617b35ffe73cc01f75
         Route::get('logout', Controllers\Administrator\LogoutController::class)->name('logout');
     });
 });
-
