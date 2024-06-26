@@ -21,15 +21,15 @@
                                 <form action="">
                                     <div class="mb-3">
                                         <label for="">Full Name</label>
-                                        <input type="text" class="form-control" value="Heru Kristanto" name="name">
+                                        <input type="text" class="form-control" value="{{$data->name}}" name="name">
                                     </div>
                                     <div class="mb-3">
                                         <label for="">Email</label>
-                                        <input type="email" class="form-control" value="rWQ9B@example.com" name="email">
+                                        <input type="email" class="form-control" value="{{$data->email}}" name="email">
                                     </div>
                                     <div class="mb-3">
                                         <label for="">Phone Number</label>
-                                        <input type="tel" class="form-control" value="081234567890" name="phone">
+                                        <input type="tel" class="form-control" value="{{$data->no_tlp}}" name="phone">
                                     </div>
                                     <div class="custom-file mb-3">
                                         <input type="file" class="custom-file-input" id="customFile">
