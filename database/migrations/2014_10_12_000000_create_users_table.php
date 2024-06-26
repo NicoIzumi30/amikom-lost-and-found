@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('email')->unique()->nullable();
             $table->string('nik')->unique()->nullable();
             $table->string('password');
-            $table->enum('role',['admin','user']);
-            $table->string("image");
+            $table->enum('role',['admin','employee','student']);
+            $table->string("image")->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
