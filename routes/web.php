@@ -29,6 +29,7 @@ Route::prefix('administrator')->name('administrator.')->group(function () {
         Route::get('students', [Controllers\Administrator\StudentController::class, 'index'])->name('students.index');
         Route::get('lost-items', [Controllers\Administrator\LostItemController::class, 'index'])->name('lostItems.index');
         Route::get('item-found', [Controllers\Administrator\ItemFoundController::class, 'index'])->name('itemFound.index');
+        Route::get('category', [Controllers\Administrator\CategoryController::class, 'index'])->name('category.index');
 
         Route::group(['prefix' => 'announcement'], function () {
 

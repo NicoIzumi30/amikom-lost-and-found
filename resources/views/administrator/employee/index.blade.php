@@ -144,7 +144,7 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{$employee->name}}</td>
                                         <td>{{$employee->nik}}</td>
-                                        <td class="text-center"><img src="{{$employee->image ? asset('storage/images/users/'.$employee->image) : asset('storage/images/users/user.png')}}" width="60" alt=""></td>
+                                        <td class="text-center"><img src="{{$employee->image ? asset('storage/users/'.$employee->image) : asset('storage/users/user.png')}}" width="60" alt=""></td>
                                         <td>
                                             <a href="#" class="btn btn-danger m-1">
                                                 <i class="fas fa-trash"></i>
