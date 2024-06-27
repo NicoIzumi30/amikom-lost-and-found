@@ -135,6 +135,10 @@
 
                     <!-- /menu footer buttons -->
                 </div>
+          <!-- menu profile quick info -->
+          <div class="profile clearfix my-2">
+            <div class="profile_pic">
+              <img src="{{auth()->user()->image ? asset('storage/users/'.auth()->user()->image) : asset('storage/users/user.png')}}" alt="..." class="img-circle profile_img">
             </div>
 
             <!-- top navigation -->
