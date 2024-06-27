@@ -35,7 +35,7 @@ class GetStartedController extends Controller
             'description' => $request->description
         ]);
 
-        return redirect()->route('administrator.getStarted.index')->withSuccess('Get Started has been created');
+        return to_route('administrator.getStarted.index')->withSuccess('Get Started has been created');
     }
 
     public function update(Request $request, $id)
@@ -70,13 +70,13 @@ class GetStartedController extends Controller
 
         $getStarted->save();
 
-        return redirect()->route('administrator.getStarted.index')->withSuccess('Get Started has been updated');;
+        return to_route('administrator.getStarted.index')->withSuccess('Get Started has been updated');;
     }
 
     public function destroy($id)
     {
         GetStarted::find($id)->delete();
 
-        return redirect()->route('administrator.getStarted.index')->withSuccess('Get Started has been deleted');;
+        return to_route('administrator.getStarted.index')->withSuccess('Get Started has been deleted');;
     }
 }

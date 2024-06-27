@@ -50,7 +50,7 @@ class ProfileController extends Controller
         }
 
         $user->save();
-        return redirect()->route('administrator.profile.index')->withSuccess('Profile has been updated');
+        return to_route('administrator.profile.index')->withSuccess('Profile has been updated');
         ;
     }
 }

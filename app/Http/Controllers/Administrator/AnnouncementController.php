@@ -35,7 +35,7 @@ class AnnouncementController extends Controller
             'description' => $request->description
         ]);
 
-        return redirect()->route('administrator.announcement.index')->withSuccess('Announcement has been created');
+        return to_route('administrator.announcement.index')->withSuccess('Announcement has been created');
     }
 
     public function update(Request $request, $id)
@@ -70,12 +70,12 @@ class AnnouncementController extends Controller
 
         $banner->save();
 
-        return redirect()->route('administrator.announcement.index')->withSuccess('Announcement has been updated');;
+        return to_route('administrator.announcement.index')->withSuccess('Announcement has been updated');;
     }
 
     public function destroy($id)
     {
         Banner::find($id)->delete();
-        return redirect()->route('administrator.announcement.index')->withSuccess('Announcement has been deleted');;
+        return to_route('administrator.announcement.index')->withSuccess('Announcement has been deleted');;
     }
 }
