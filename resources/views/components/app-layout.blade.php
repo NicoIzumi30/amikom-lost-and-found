@@ -67,7 +67,7 @@
     @endif
     <div class="container body">
         <div class="main_container">
-            <div class="col-md-3 left_col">
+            < class="col-md-3 left_col">
                 <div class="left_col scroll-view">
                     <div class="navbar nav_title" style="border: 0;">
                         <a href="#" class="site_title"><img src="{{ asset('images') }}/logo.png" width="50"
@@ -136,11 +136,7 @@
                     <!-- /menu footer buttons -->
                 </div>
           <!-- menu profile quick info -->
-          <div class="profile clearfix my-2">
-            <div class="profile_pic">
-              <img src="{{auth()->user()->image ? asset('storage/users/'.auth()->user()->image) : asset('storage/users/user.png')}}" alt="..." class="img-circle profile_img">
-            </div>
-
+       </
             <!-- top navigation -->
             <div class="top_nav">
                 <div class="nav_menu pb-3">
