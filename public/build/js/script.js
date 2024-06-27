@@ -12,7 +12,7 @@ $('.tombol-hapus').on('click', function (e) {
 		showCancelButton: true,
 		confirmButtonColor: '#e74c3c',
 		cancelButtonColor: '#3085d6',
-		cancelButtonText: 'Cance',
+		cancelButtonText: 'Cancel',
 		confirmButtonText: 'Delete'
 	}).then((result) => {
 		if (result.value) {
