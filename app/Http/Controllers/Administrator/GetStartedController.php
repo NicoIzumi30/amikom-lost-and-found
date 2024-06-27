@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Administrator;
 use App\Http\Controllers\Controller;
 use App\Models\GetStarted;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class GetStartedController extends Controller
 {
@@ -16,12 +17,14 @@ class GetStartedController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate(rules: [
+        $validator = Validator::make($request->all(), [
             'title' => ['required'],
             'image' => ['required', 'mimes:jpg,jpeg,svg,png'],
             'description' => ['required']
         ]);
-
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors('Failed to create Get Started');
+        }
         $imageName = time() . '.' . $request->image->extension();
 
         $request->image->storeAs('get-started', $imageName, 'public');
@@ -32,17 +35,19 @@ class GetStartedController extends Controller
         $getStarted->description = $request->description;
         $getStarted->save();
 
-        return redirect()->route('administrator.getStarted');
+        return redirect()->route('administrator.getStarted.index')->withSuccess('Get Started has been created');
     }
 
     public function update(Request $request, $id)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'title' => ['required'],
             'image' => ['nullable', 'mimes:jpg,jpeg,svg,png'],
             'description' => ['required']
         ]);
-
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors('Failed to update Get Started');
+        }
         $getStarted = GetStarted::findOrFail($id);
 
         $getStarted->title = $request->title;
@@ -65,14 +70,14 @@ class GetStartedController extends Controller
 
         $getStarted->save();
 
-        return redirect()->route('administrator.getStarted');
+        return redirect()->route('administrator.getStarted.index')->withSuccess('Get Started has been updated');;
     }
 
     public function destroy($id)
     {
         GetStarted::find($id)->delete();
 
-        return redirect()->route('administrator.getStarted');
+        return redirect()->route('administrator.getStarted.index')->withSuccess('Get Started has been deleted');;
     }
 
 }
