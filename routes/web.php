@@ -40,9 +40,17 @@ Route::prefix('administrator')->name('administrator.')->group(function () {
             Route::get('/destroy/{id}', [Controllers\Administrator\StudentController::class, 'destroy'])->name('students.destroy');
         });
 
-        Route::get('lost-items', [Controllers\Administrator\LostItemController::class, 'index'])->name('lostItems.index');
+        Route::group(['prefix' => 'lost-item'], function () {
+            Route::get('/', [Controllers\Administrator\LostItemController::class, 'index'])->name('lostItems.index');
+            Route::get('/destroy/{id}', [Controllers\Administrator\LostItemController::class, 'destroy'])->name('lostItems.destroy');
+        });
 
-        Route::get('item-found', [Controllers\Administrator\ItemFoundController::class, 'index'])->name('itemFound.index');
+
+        Route::group(['prefix' => 'item-found'], function () {
+            Route::get('/', [Controllers\Administrator\ItemFoundController::class, 'index'])->name('itemFound.index');
+            Route::get('/destroy/{id}', [Controllers\Administrator\ItemFoundController::class, 'destroy'])->name('itemFound.destroy');
+        });
+
 
         Route::get('category', [Controllers\Administrator\CategoryController::class, 'index'])->name('category.index');
 
@@ -52,7 +60,6 @@ Route::prefix('administrator')->name('administrator.')->group(function () {
             Route::post('/store', [Controllers\Administrator\AnnouncementController::class, 'store'])->name('announcement.store');
             Route::post('/update/{id}', [Controllers\Administrator\AnnouncementController::class, 'update'])->name('announcement.update');
             Route::get('/destroy/{id}', [Controllers\Administrator\AnnouncementController::class, 'destroy'])->name('announcement.destroy');
-
         });
 
         Route::group(['prefix' => 'get-started'], function () {
@@ -64,7 +71,6 @@ Route::prefix('administrator')->name('administrator.')->group(function () {
         Route::group(['prefix' => 'profile'], function () {
             Route::get('/', [Controllers\Administrator\ProfileController::class, 'index'])->name('profile.index');
             Route::put('/update', [Controllers\Administrator\ProfileController::class, 'update'])->name('profile.update');
-
         });
         Route::get('logout', Controllers\Administrator\LogoutController::class)->name('logout');
     });

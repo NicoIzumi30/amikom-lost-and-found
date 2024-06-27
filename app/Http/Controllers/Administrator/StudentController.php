@@ -32,6 +32,6 @@ class StudentController extends Controller
     public function destroy($id)
     {
         User::find($id)->delete();
-        return redirect()->route('administrator.students.index')->withSuccess('Student has been deleted');
+        return to_route('administrator.students.index')->withSuccess('Student has been deleted');
     }
 }
