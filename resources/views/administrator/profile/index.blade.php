@@ -15,24 +15,26 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-3">
-                                <img src="{{ asset('images/logo.png') }}" class="w-100" alt="">
+                                <img src="{{auth()->user()->image ? asset('storage/users/'.auth()->user()->image) : asset('storage/users/user.png')}}" class="w-100" alt="">
                             </div>
                             <div class="col-md-9">
-                                <form action="">
+                                <form action="{{route('administrator.profile.update')}}" method="post" enctype="multipart/form-data">
+                                    @csrf
+                                    @method('PUT')
                                     <div class="mb-3">
                                         <label for="">Full Name</label>
-                                        <input type="text" class="form-control" value="{{$data->name}}" name="name">
+                                        <input type="text" class="form-control" value="{{$data->name}}" name="name" required>
                                     </div>
                                     <div class="mb-3">
                                         <label for="">Email</label>
-                                        <input type="email" class="form-control" value="{{$data->email}}" name="email">
+                                        <input type="email" class="form-control" value="{{$data->email}}" name="email" required>
                                     </div>
                                     <div class="mb-3">
                                         <label for="">Phone Number</label>
-                                        <input type="tel" class="form-control" value="{{$data->no_tlp}}" name="phone">
+                                        <input type="tel" class="form-control" value="{{$data->phone_number}}" name="phone_number" required>
                                     </div>
                                     <div class="custom-file mb-3">
-                                        <input type="file" class="custom-file-input" id="customFile">
+                                        <input type="file" class="custom-file-input" name="image" id="customFile">
                                         <label class="custom-file-label" for="customFile">Choose file</label>
                                     </div>
                                     <div class="modal-footer">

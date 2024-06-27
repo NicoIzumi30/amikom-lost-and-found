@@ -36,8 +36,11 @@ Route::prefix('administrator')->name('administrator.')->group(function () {
             Route::put('/update/{id}', [Controllers\Administrator\StudentController::class, 'update'])->name('students.update');
             Route::get('/destroy/{id}', [Controllers\Administrator\StudentController::class, 'destroy'])->name('students.destroy');
         });
+
         Route::get('lost-items', [Controllers\Administrator\LostItemController::class, 'index'])->name('lostItems.index');
+
         Route::get('item-found', [Controllers\Administrator\ItemFoundController::class, 'index'])->name('itemFound.index');
+
         Route::get('category', [Controllers\Administrator\CategoryController::class, 'index'])->name('category.index');
 
         Route::group(['prefix' => 'announcement'], function () {
@@ -55,7 +58,11 @@ Route::prefix('administrator')->name('administrator.')->group(function () {
             Route::post('/update/{id}', [Controllers\Administrator\GetStartedController::class, 'update'])->name('getStarted.update');
             Route::get('/destroy/{id}', [Controllers\Administrator\GetStartedController::class, 'destroy'])->name('getStarted.destroy');
         });
-        Route::get('profile', [Controllers\Administrator\ProfileController::class, 'index'])->name('profile.index');
+        Route::group(['prefix' => 'profile'], function () {
+            Route::get('/', [Controllers\Administrator\ProfileController::class, 'index'])->name('profile.index');
+            Route::put('/update', [Controllers\Administrator\ProfileController::class, 'update'])->name('profile.update');
+
+        });
         Route::get('logout', Controllers\Administrator\LogoutController::class)->name('logout');
     });
 });
