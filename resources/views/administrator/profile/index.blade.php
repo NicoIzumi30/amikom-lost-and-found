@@ -29,7 +29,7 @@
                                     </div>
                                     <div class="mb-3">
                                         <label for="">Phone Number</label>
-                                        <input type="tel" class="form-control" value="{{$data->no_tlp}}" name="phone">
+                                        <input type="tel" class="form-control" value="{{$data->phone_number}}" name="phone">
                                     </div>
                                     <div class="custom-file mb-3">
                                         <input type="file" class="custom-file-input" id="customFile">
