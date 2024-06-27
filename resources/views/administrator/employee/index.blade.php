@@ -78,8 +78,9 @@
             </div>
         </div>
 
+        @foreach ($employees as $employee)
          <!-- Modal Edit Data-->
-         <div class="modal fade" id="editData" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+         <div class="modal fade" id="editData{{$employee->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -88,22 +89,23 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form action="" method="post" enctype="multipart/form-data">
-
+                    <form action="{{route('administrator.employees.update', $employee->id)}}" method="post" >
+                        @csrf
+                        @method("PUT")
                         <div class="modal-body">
                             <div class="col-md-12 mb-3 form-group has-feedback">
-                                <input type="text" class="form-control has-feedback-left" value="Heru Kristanto" id="inputSuccess2"
-                                    placeholder="Full Name" name="name">
+                                <input type="text" class="form-control has-feedback-left" value="{{$employee->name}}" id="inputSuccess2"
+                                    placeholder="Full Name" name="name" required>
                                 <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
                             </div>
 
                             <div class="col-md-12 mb-3  form-group has-feedback">
-                                <input type="number" class="form-control has-feedback-left" value="3402052829810001" name="nik" id="inputSuccess3" placeholder="NIK">
+                                <input type="number" class="form-control has-feedback-left" value="{{$employee->nik}}" name="nik" required id="inputSuccess3" placeholder="NIK">
                                 <span class="fa fa-address-card form-control-feedback left" aria-hidden="true"></span>
                             </div>
 
                             <div class="col-md-12 mb-3  form-group has-feedback">
-                                <input type="tel" class="form-control has-feedback-left" value="085123456789" id="inputSuccess5" name="phone" placeholder="Phone">
+                                <input type="tel" class="form-control has-feedback-left" value="{{$employee->phone_number}}" required id="inputSuccess5" name="phone_number" placeholder="Phone">
                                 <span class="fa fa-phone form-control-feedback left" aria-hidden="true" ></span>
                             </div>
                         </div>
@@ -116,6 +118,7 @@
 
             </div>
         </div>
+        @endforeach
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
@@ -134,6 +137,7 @@
                                         <td width="4%">No</td>
                                         <td>Name</td>
                                         <td>NIK</td>
+                                        <td>Phone Number</td>
                                         <td class="text-center">Image</td>
                                         <td>Action</td>
                                     </tr>
@@ -144,15 +148,16 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{$employee->name}}</td>
                                         <td>{{$employee->nik}}</td>
+                                        <td>{{$employee->phone_number}}</td>
                                         <td class="text-center"><img src="{{$employee->image ? asset('storage/users/'.$employee->image) : asset('storage/users/user.png')}}" width="60" alt=""></td>
                                         <td>
-                                            <a href="#" class="btn btn-danger m-1">
-                                                <i class="fas fa-trash"></i>
-                                            </a>
-                                            <a href="#" data-toggle="modal" data-target="#editData" class="btn btn-info m-1">
+                                        <a href="{{route('administrator.employees.destroy', ['id' => $employee->id])}}" class="btn tombol-hapus btn-danger m-1">
+                                                    <i class="fas fa-trash"></i>
+                                                </a>
+                                            <a href="#" data-toggle="modal" data-target="#editData{{$employee->id}}" class="btn btn-info m-1">
                                                 <i class="fas fa-pen"></i>
                                             </a>
-                                            <a href="#" onclick="return confirm('Are you sure you reset this account password?')" class="btn btn-warning m-1">
+                                            <a href="{{route('administrator.employees.reset_password', ['id' => $employee->id])}}" class="btn reset btn-warning m-1">
                                                 <i class="fas fa-rotate-right"></i>
                                             </a>
                                         </td>

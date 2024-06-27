@@ -48,7 +48,7 @@
                                         <td>2024-06-25 01:00</td>
                                         <td>085123456789</td>
                                         <td>
-                                            <a href="#" class="btn btn-danger m-1">
+                                            <a href="#" class="btn btn-danger tombol-hapus m-1">
                                                 <i class="fas fa-trash"></i>
                                             </a>
                                             <a href="#" data-toggle="modal" data-target="#info" class="btn btn-info m-1">

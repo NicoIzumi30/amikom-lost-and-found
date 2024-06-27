@@ -32,4 +32,31 @@ class EmployeeController extends Controller
         return to_route('administrator.employees.index')->withSuccess('Employee has been created');
 
     }
+    public function update(Request $request, $id) {
+        $validator = Validator::make($request->all(), [
+            'name' => ['required', 'string', 'max:255'],
+            'nik' => ['required', 'string', Rule::unique('users', 'nik')->ignore($id), 'max:32'],
+            'phone_number' => ['required','min:8','max:16'],
+        ]);
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors('Failed to update employee');
+        }
+        $user = User::findOrFail($id);
+        $user->name = $request->name;
+        $user->nik = $request->nik;
+        $user->phone_number = $request->phone_number;
+        $user->save();
+        return to_route('administrator.employees.index')->withSuccess('Employee has been updated');
+    }
+    public function reset_password($id){
+        $user = User::findOrFail($id);
+        $user->password = bcrypt($user->nik);
+        $user->save();
+        return to_route('administrator.employees.index')->withSuccess('Employee password has been reset');
+    } 
+    public function destroy($id)
+    {
+        User::find($id)->delete();
+        return redirect()->route('administrator.employees.index')->withSuccess('Employee has been deleted');
+    }
 }

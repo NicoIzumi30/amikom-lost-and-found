@@ -84,7 +84,7 @@
                                         <td>1</td>
                                         <td>Elektronik</td>
                                         <td>
-                                            <a href="#" class="btn btn-danger m-1">
+                                            <a href="#" class="btn btn-danger tombol-hapus m-1">
                                                 <i class="fas fa-trash"></i>
                                             </a>
                                             <a href="#" data-toggle="modal" data-target="#editData" class="btn btn-info m-1">

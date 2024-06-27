@@ -18,16 +18,20 @@ Route::get('/', Controllers\DashboardController::class)->middleware('auth')->nam
 
 Route::prefix('administrator')->name('administrator.')->group(function () {
 
-    
+
     Route::middleware('guest')->group(function () {
         Route::get('login', [Controllers\Administrator\LoginController::class, 'loginForm'])->name('login');
         Route::post('login', [Controllers\Administrator\LoginController::class, 'authenticate']);
     });
     Route::middleware(['auth', 'admin'])->group(function () {
         // Employees
-        Route::get('employees', [Controllers\Administrator\EmployeeController::class, 'index'])->name('employees.index');
-        Route::post('employees/store', [Controllers\Administrator\EmployeeController::class, 'store'])->name('employees.store');
-
+        Route::group(['prefix' => 'employees'], function () {
+            Route::get('/', [Controllers\Administrator\EmployeeController::class, 'index'])->name('employees.index');
+            Route::post('/store', [Controllers\Administrator\EmployeeController::class, 'store'])->name('employees.store');
+            Route::put('/update/{id}', [Controllers\Administrator\EmployeeController::class, 'update'])->name('employees.update');
+            Route::get('/destroy/{id}', [Controllers\Administrator\EmployeeController::class, 'destroy'])->name('employees.destroy');
+            Route::get('/reset-password/{id}', [Controllers\Administrator\EmployeeController::class, 'reset_password'])->name('employees.reset_password');
+        });
         Route::get('students', [Controllers\Administrator\StudentController::class, 'index'])->name('students.index');
         Route::get('lost-items', [Controllers\Administrator\LostItemController::class, 'index'])->name('lostItems.index');
         Route::get('item-found', [Controllers\Administrator\ItemFoundController::class, 'index'])->name('itemFound.index');
