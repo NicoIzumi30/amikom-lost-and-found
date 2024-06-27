@@ -75,11 +75,11 @@
                                 Found</span></a>
                     </div>
                     <div class="clearfix"></div>
-
                     <!-- menu profile quick info -->
                     <div class="profile clearfix my-2">
                         <div class="profile_pic">
-                            <img src="{{ asset('images') }}/img.jpg" alt="..." class="img-circle profile_img">
+                             <img src="{{ auth()->user()->image ? asset('storage/users/' . auth()->user()->image) : asset('storage/users/user.png') }}"
+                                alt="..." class="img-circle profile_img">
                         </div>
                         <div class="profile_info">
                             <span>Welcome,</span>
@@ -135,8 +135,10 @@
 
                     <!-- /menu footer buttons -->
                 </div>
-          <!-- menu profile quick info -->
-       </
+
+
+                <!-- menu profile quick info -->
+            </div>
             <!-- top navigation -->
             <div class="top_nav">
                 <div class="nav_menu pb-3">

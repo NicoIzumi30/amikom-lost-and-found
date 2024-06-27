@@ -29,12 +29,11 @@ class AnnouncementController extends Controller
         $imageName = time() . '.' . $request->image->extension();
 
         $request->image->storeAs('announcement', $imageName, 'public');
-
-        $banner = new Banner();
-        $banner->title = $request->title;
-        $banner->image = $imageName;
-        $banner->description = $request->description;
-        $banner->save();
+        Banner::create([
+            'title' => $request->title,
+            'image' => $imageName,
+            'description' => $request->description
+        ]);
 
         return redirect()->route('administrator.announcement.index')->withSuccess('Announcement has been created');
     }
