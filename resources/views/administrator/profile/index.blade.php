@@ -31,6 +31,7 @@
                                     </div>
                                     <div class="mb-3">
                                         <label for="">Phone Number</label>
+
                                         <input type="tel" class="form-control" value="{{$data->phone_number}}" name="phone_number" required>
                                     </div>
                                     <div class="custom-file mb-3">
