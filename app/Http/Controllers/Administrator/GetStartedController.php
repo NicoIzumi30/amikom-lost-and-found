@@ -12,7 +12,7 @@ class GetStartedController extends Controller
     public function index()
     {
         $data = GetStarted::all();
-        return view("administrator.getStarted.index",compact('data'));
+        return view("administrator.getStarted.index", compact('data'));
     }
 
     public function store(Request $request)
@@ -29,11 +29,11 @@ class GetStartedController extends Controller
 
         $request->image->storeAs('get-started', $imageName, 'public');
 
-        $getStarted = new GetStarted();
-        $getStarted->title = $request->title;
-        $getStarted->image = $imageName;
-        $getStarted->description = $request->description;
-        $getStarted->save();
+        GetStarted::create([
+            'title' => $request->title,
+            'image' => $imageName,
+            'description' => $request->description
+        ]);
 
         return redirect()->route('administrator.getStarted.index')->withSuccess('Get Started has been created');
     }
@@ -79,5 +79,4 @@ class GetStartedController extends Controller
 
         return redirect()->route('administrator.getStarted.index')->withSuccess('Get Started has been deleted');;
     }
-
 }
