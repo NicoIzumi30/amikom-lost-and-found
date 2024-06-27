@@ -14,12 +14,8 @@ use App\Http\Controllers;
 |
 */
 
-<<<<<<< HEAD
 Route::get('/', Controllers\DashboardController::class)->middleware('auth')->name('administrator.dashboard.index');
-=======
-Route::get('/', Controllers\DashboardController::class)->name('administrator.dashboard');
 
->>>>>>> a928092ae53c8be0eeba9b0679ace960837dd864
 Route::prefix('administrator')->name('administrator.')->group(function () {
 
     
