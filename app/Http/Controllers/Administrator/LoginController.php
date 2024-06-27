@@ -9,14 +9,14 @@ class LoginController extends Controller
 {
     public function loginForm(){
         return view('administrator.login.index');
-    } 
+    }
     public function authenticate(Request $request)
     {
         $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
- 
+
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
             if (Auth::user()->role != 'admin') {
@@ -26,8 +26,8 @@ class LoginController extends Controller
 
             return redirect()->intended('/');
         }
- 
+
         return back()->withErrors('Email atau Password Salah ');
     }
-  
+
 }
