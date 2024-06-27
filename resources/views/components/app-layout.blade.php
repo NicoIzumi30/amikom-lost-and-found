@@ -10,8 +10,6 @@
     <link rel="icon" href="{{ asset('images') }}/logo.png" type="image/ico" />
 
     <title>Amikom Lost and Found</title>
-
-<<<<<<< HEAD
   <!-- Bootstrap -->
   <link href="{{asset('vendors')}}/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- Font Awesome -->
@@ -76,54 +74,6 @@
                 Found</span></a>
           </div>
           <div class="clearfix"></div>
-=======
-    <!-- Bootstrap -->
-    <link href="{{ asset('vendors') }}/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
-    <!-- <link href="{{ asset('vendors') }}/font-awesome/css/font-awesome.min.css" rel="stylesheet"> -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- NProgress -->
-    <link href="{{ asset('vendors') }}/nprogress/nprogress.css" rel="stylesheet">
-    <!-- iCheck -->
-    <link href="{{ asset('vendors') }}/iCheck/skins/flat/green.css" rel="stylesheet">
-
-    <!-- bootstrap-progressbar -->
-    <link href="{{ asset('vendors') }}/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
-    <!-- JQVMap -->
-    <link href="{{ asset('vendors') }}/jqvmap/dist/jqvmap.min.css" rel="stylesheet" />
-    <!-- bootstrap-daterangepicker -->
-    <link href="{{ asset('vendors') }}/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
-    <!-- Datatables -->
-    <link href="{{ asset('vendors') }}/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
-    <link href="{{ asset('vendors') }}/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
-    <link href="{{ asset('vendors') }}/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css"
-        rel="stylesheet">
-    <link href="{{ asset('vendors') }}/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
-    <link href="{{ asset('vendors') }}/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
-    <!-- Custom Theme Style -->
-    <link href="{{ asset('build') }}/css/custom.css" rel="stylesheet">
-    <style>
-        .dataTables_paginate {
-            margin-top: 15px !important;
-            margin-bottom: 10px !important;
-        }
-    </style>
-</head>
-
-<body class="nav-md">
-    <div class="container body">
-        <div class="main_container">
-            <div class="col-md-3 left_col">
-                <div class="left_col scroll-view">
-                    <div class="navbar nav_title" style="border: 0;">
-                        <a href="#" class="site_title"><img src="{{ asset('images') }}/logo.png" width="50"
-                                alt=""> <span>Lost and
-                                Found</span></a>
-                    </div>
-                    <div class="clearfix"></div>
->>>>>>> a928092ae53c8be0eeba9b0679ace960837dd864
 
                     <!-- menu profile quick info -->
                     <div class="profile clearfix my-2">
@@ -147,22 +97,22 @@
                         <div class="menu_section">
                             <h3>Main</h3>
                             <ul class="nav side-menu">
-                                <li><a href="{{ route('administrator.dashboard') }}"><i class="fa fa-home"></i>
+                                <li><a href="{{ route('administrator.dashboard.index') }}"><i class="fa fa-home"></i>
                                         Dashboard</a></li>
-                                <li><a href="{{ route('administrator.employees') }}"><i class="fa fa-users"></i>
+                                <li><a href="{{ route('administrator.employees.index') }}"><i class="fa fa-users"></i>
                                         Employees</a></li>
-                                <li><a href="{{ route('administrator.students') }}"><i class="fa fa-user-graduate"></i>
+                                <li><a href="{{ route('administrator.students.index') }}"><i class="fa fa-user-graduate"></i>
                                         Students</a></li>
-                                <li><a href="{{ route('administrator.lostItems') }}"><i
+                                <li><a href="{{ route('administrator.lostItems.index') }}"><i
                                             class="fa fa-person-circle-question"></i> Lost
                                         Items</a></li>
-                                <li><a href="{{ route('administrator.itemFound') }}"><i class="fa fa-joget"></i> Item
+                                <li><a href="{{ route('administrator.itemFound.index') }}"><i class="fa fa-joget"></i> Item
                                         Found</a></li>
-                                <li><a href="{{ route('administrator.announcement') }}"><i class="fa fa-bullhorn"></i>
+                                <li><a href="{{ route('administrator.announcement.index') }}"><i class="fa fa-bullhorn"></i>
                                         Announcement</a></li>
-                                <li><a href="{{ route('administrator.getStarted') }}"><i class="fa fa-circle-play"></i>
+                                <li><a href="{{ route('administrator.getStarted.index') }}"><i class="fa fa-circle-play"></i>
                                         Get started</a></li>
-                                <li><a href="{{ route('administrator.profile') }}"><i class="fa fa-user-edit"></i>
+                                <li><a href="{{ route('administrator.profile.index') }}"><i class="fa fa-user-edit"></i>
                                         Profile</a></li>
                                 <li><a href="{{ route('administrator.logout') }}"><i class="fa fa-power-off"></i>
                                         Logout</a></li>
