@@ -30,6 +30,7 @@ Route::prefix('administrator')->name('administrator.')->group(function () {
         Route::group(['prefix' => 'employees'], function () {
             Route::get('/', [Controllers\Administrator\EmployeeController::class, 'index'])->name('employees.index');
             Route::post('/store', [Controllers\Administrator\EmployeeController::class, 'store'])->name('employees.store');
+            Route::post('/import', [Controllers\Administrator\EmployeeController::class, 'import'])->name('employees.import');
             Route::put('/update/{id}', [Controllers\Administrator\EmployeeController::class, 'update'])->name('employees.update');
             Route::get('/destroy/{id}', [Controllers\Administrator\EmployeeController::class, 'destroy'])->name('employees.destroy');
             Route::get('/reset-password/{id}', [Controllers\Administrator\EmployeeController::class, 'reset_password'])->name('employees.reset_password');
@@ -64,8 +65,10 @@ Route::prefix('administrator')->name('administrator.')->group(function () {
         Route::group(['prefix' => 'profile'], function () {
             Route::get('/', [Controllers\Administrator\ProfileController::class, 'index'])->name('profile.index');
             Route::put('/update', [Controllers\Administrator\ProfileController::class, 'update'])->name('profile.update');
+            Route::put('/change-password', [Controllers\Administrator\ProfileController::class, 'change_password'])->name('profile.changePassword');
 
         });
+        Route::get('/download-template', [Controllers\Administrator\FileController::class, 'downloadTemplate'])->name('download.template');
         Route::get('logout', Controllers\Administrator\LogoutController::class)->name('logout');
     });
 });

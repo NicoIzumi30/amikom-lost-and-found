@@ -53,18 +53,20 @@
                         <h5>Change Password</h5>
                     </div>
                     <div class="card-body">
-                            <form action="">
+                            <form action="{{route('administrator.profile.changePassword')}}" method="post">
+                                @csrf
+                                @method('PUT')
                                 <div class="mb-3">
                                     <label for="">Current Password</label>
-                                    <input type="password" class="form-control" name="current_password">
+                                    <input type="password" class="form-control" name="current_password" required>
                                 </div>
                                 <div class="mb-3">
                                     <label for="">New Password</label>
-                                    <input type="password" class="form-control" name="new_password">
+                                    <input type="password" class="form-control" name="new_password" required>
                                 </div>
                                 <div class="mb-3">
                                     <label for="">Confirm Password</label>
-                                    <input type="password" class="form-control" name="confirm_password">
+                                    <input type="password" class="form-control" name="new_password_confirmation" required>
                                 </div>
                                 <div class="modal-footer">
                                     <button class="btn btn-primary" type="submit">Update</button>
