@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Administrator;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
 class LoginController extends Controller
 {
-    public function loginForm(){
+    public function loginForm()
+    {
         return view('administrator.login.index');
     }
     public function authenticate(Request $request)
@@ -29,5 +31,6 @@ class LoginController extends Controller
 
         return back()->withErrors('Email atau Password Salah ');
     }
+
 
 }
