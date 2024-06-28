@@ -57,7 +57,7 @@
                                     @foreach ($datalog as $key => $log)
                                         <tr>
                                             <td>{{$key +1}}</td>
-                                            <td>{{$log->user->email ?: $log->user->nik}}</td>
+                                            <td>{{$log->user->email ?? $log->user->nik}}</td>
                                             <td>{{$log->created_at}}</td>
                                             <td>{{$log->ip_address}}</td>
                                         </tr>
