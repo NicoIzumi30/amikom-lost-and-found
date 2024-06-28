@@ -7,7 +7,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
-
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 class ProfileController extends Controller
 {
     public function index()
@@ -33,7 +34,7 @@ class ProfileController extends Controller
         $user->email = $request->email;
         $user->phone_number = $request->phone_number;
 
-        if ($request->hasFile('image')) {
+    if ($request->hasFile('image')) {
             $request->validate([
                 'image' => ['mimes:jpg,jpeg,svg,png'],
             ]);
@@ -50,7 +51,23 @@ class ProfileController extends Controller
         }
 
         $user->save();
-        return to_route('administrator.profile.index')->withSuccess('Profile has been updated');
+        return redirect()->route('administrator.profile.index')->withSuccess('Profile has been updated');
         ;
+    }
+    public function change_password(Request $request)
+    {
+        $request->validate([
+            'current_password' => 'required',
+            'new_password' => 'required|string|min:8|confirmed',
+        ]);
+
+        if (!Hash::check($request->current_password, Auth::user()->password)) {
+            return back()->withErrors('The current password is incorrect');
+        }
+        Auth::user()->update([
+            'password' => Hash::make($request->new_password),
+        ]);
+
+        return redirect()->route('administrator.profile.index')->with('success', 'Password changed successfully');
     }
 }
