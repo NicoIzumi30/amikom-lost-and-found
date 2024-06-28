@@ -5,7 +5,7 @@
                 <div class="card rounded bg-warning text-white">
                     <div class="card-body tile_stats_count text-center">
                         <h3 class="count_top"><i class="fa fa-user"></i> Total Users</h3>
-                        <h3 class="count">1200</h3>
+                        <h3 class="count">{{ $usercount }}</h3>
                     </div>
                 </div>
             </div>
@@ -13,7 +13,7 @@
                 <div class="card rounded bg-red text-white">
                     <div class="card-body tile_stats_count text-center">
                         <h3 class="count_top"><i class="fa fa-user"></i> Total Items Lost</h3>
-                        <h3 class="count">700</h3>
+                        <h3 class="count">{{ $lostcount }}</h3>
                     </div>
                 </div>
             </div>
@@ -21,7 +21,7 @@
                 <div class="card rounded bg-primary text-white">
                     <div class="card-body tile_stats_count text-center">
                         <h3 class="count_top"><i class="fa fa-user"></i> Total Items Found</h3>
-                        <h3 class="count">500</h3>
+                        <h3 class="count">{{ $foundcount }}</h3>
                     </div>
                 </div>
             </div>
@@ -54,36 +54,14 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>herukristanto@students.amikom.ac.id</td>
-                                        <td>2024-06-25 01:00</td>
-                                        <td>192.168.0.1</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>3402052829810001</td>
-                                        <td>2024-06-25 01:02</td>
-                                        <td>192.168.0.1</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>herukristanto@students.amikom.ac.id</td>
-                                        <td>2024-06-25 01:00</td>
-                                        <td>192.168.0.1</td>
-                                    </tr>
-                                    <tr>
-                                        <td>4</td>
-                                        <td>3402052829810001</td>
-                                        <td>2024-06-25 01:02</td>
-                                        <td>192.168.0.1</td>
-                                    </tr>
-                                    <tr>
-                                        <td>5</td>
-                                        <td>herukristanto@students.amikom.ac.id</td>
-                                        <td>2024-06-25 01:00</td>
-                                        <td>192.168.0.1</td>
-                                    </tr>
+                                    @foreach ($datalog as $key => $log)
+                                        <tr>
+                                            <td>{{$key +1}}</td>
+                                            <td>{{$log->user->email ?? $log->user->nik}}</td>
+                                            <td>{{$log->created_at}}</td>
+                                            <td>{{$log->ip_address}}</td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

@@ -11,7 +11,7 @@ class AnnouncementController extends Controller
 {
     public function index()
     {
-        $data = Banner::all();
+        $data = Banner::latest()->get();
 
         return view("administrator.announcement.index", compact('data'));
     }
