@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Validator;
+use PhpOffice\PhpSpreadsheet\IOFactory;
+use Illuminate\Support\Facades\Hash;
 
 class EmployeeController extends Controller
 {
@@ -16,6 +18,34 @@ class EmployeeController extends Controller
         return view("administrator.employee.index", [
             "employees" => $employees
         ]);
+    }
+    public function import(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|mimes:xlsx,xls',
+        ]);
+
+        $file = $request->file('file');
+        $spreadsheet = IOFactory::load($file->getPathName());
+        $sheetData = $spreadsheet->getActiveSheet()->toArray(null, true, true, true);
+
+        foreach ($sheetData as $index => $row) {
+            // Skip the header row
+            if ($index == 1) {
+                continue;
+            }
+
+            User::create([
+                'name'         => $row['A'],
+                'nik'          => $row['B'],
+                'phone_number' => $row['C'],
+                'email'        => null,
+                'role'         => "employee",
+                'password'     => Hash::make($row['B']),
+            ]);
+        }
+
+        return back()->with('success', 'Users Imported Successfully');
     }
     public function store(Request $request)
     {

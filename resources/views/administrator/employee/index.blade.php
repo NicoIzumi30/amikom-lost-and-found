@@ -16,16 +16,17 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form action="" method="post" enctype="multipart/form-data">
+                    <form action="{{route('administrator.employees.import')}}" method="post" enctype="multipart/form-data">
+                        @csrf
                         <div class="modal-body">
                             <ul>
                                 <li style="font-size:15px;">Maximum file size 10 MB</li>
                                 <li style="font-size:15px;">File extension must be xlxs</li>
-                                <li style="font-size:15px;">Use this <a href="#" style="text-decoration:underline">excel
+                                <li style="font-size:15px;">Use this <a href="{{route('administrator.download.template')}}" style="text-decoration:underline">excel
                                         template</a> to import data</li>
                             </ul>
                             <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="customFile">
+                                <input type="file" class="custom-file-input" name="file" id="customFile">
                                 <label class="custom-file-label" for="customFile">Choose file</label>
                             </div>
                         </div>
