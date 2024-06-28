@@ -12,7 +12,7 @@ class LostItemController extends Controller
 {
     public function index()
     {
-        $data = LostItem::all();
+        $data = LostItem::latest()->get();
         return view("administrator.lostItem.index", compact('data'));
     }
 

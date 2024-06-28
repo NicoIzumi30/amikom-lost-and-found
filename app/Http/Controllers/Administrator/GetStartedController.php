@@ -11,7 +11,7 @@ class GetStartedController extends Controller
 {
     public function index()
     {
-        $data = GetStarted::all();
+        $data = GetStarted::latest()->get();
         return view("administrator.getStarted.index", compact('data'));
     }
 

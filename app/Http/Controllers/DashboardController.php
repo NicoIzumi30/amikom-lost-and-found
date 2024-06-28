@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ItemFound;
+use App\Models\LoginLog;
+use App\Models\LostItem;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -11,6 +15,10 @@ class DashboardController extends Controller
      */
     public function __invoke(Request $request)
     {
-        return view("administrator.dashboard.index");
+        $usercount = User::all()->count();
+        $lostcount = LostItem::all()->count();
+        $foundcount = ItemFound::all()->count();
+        $datalog = LoginLog::latest()->get();
+        return view("administrator.dashboard.index",compact('usercount','lostcount','foundcount','datalog'));
     }
 }
