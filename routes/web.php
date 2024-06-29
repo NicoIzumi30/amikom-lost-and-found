@@ -20,12 +20,27 @@ Route::get('/welcome', function () {
 
 Route::middleware(['authCheck'])->group(function () {
     Route::get('/', [Controllers\HomeController::class, 'index'])->name('home');
+
     Route::get('/profile', [Controllers\ProfileController::class, 'index'])->name('profile');
-    Route::get('/lost-items', [Controllers\LostItemController::class, 'index'])->name('lostItems');
-    Route::get('/item-found', [Controllers\ItemFoundController::class, 'index'])->name('itemFound');
+
+
+    Route::group(['prefix'=> 'lost-items'],function(){
+        Route::get('/', [Controllers\LostItemController::class, 'index'])->name('lostItems');
+        Route::get('/store', [Controllers\LostItemController::class, 'store'])->name('lostItems.store');
+        Route::get('/update/{id}', [Controllers\LostItemController::class, 'update'])->name('lostItems.update');
+        Route::get('/destroy/{id}', [Controllers\LostItemController::class, 'destory'])->name('lostItems.destroy');
+    });
+
+    Route::group(['prefix' => 'item-found'], function () {
+        Route::get('/', [Controllers\ItemFoundController::class, 'index'])->name('itemFound');
+        Route::get('/store', [Controllers\ItemFoundController::class, 'store'])->name('itemFound.store');
+        Route::get('/update/{id}', [Controllers\ItemFoundController::class, 'update'])->name('itemFound.update');
+        Route::get('/destroy/{id}', [Controllers\ItemFoundController::class, 'destroy'])->name('itemFound.destroy');
+    });
+
     Route::get('/logout', Controllers\LogoutController::class)->name('logout');
 });
-Route::get('/login', [Controllers\LoginController::class,'index'])->name('login');
+Route::get('/login', [Controllers\LoginController::class, 'index'])->name('login');
 
 
 Route::prefix('administrator')->name('administrator.')->group(function () {
@@ -81,7 +96,6 @@ Route::prefix('administrator')->name('administrator.')->group(function () {
             Route::get('/', [Controllers\Administrator\ProfileController::class, 'index'])->name('profile.index');
             Route::put('/update', [Controllers\Administrator\ProfileController::class, 'update'])->name('profile.update');
             Route::put('/change-password', [Controllers\Administrator\ProfileController::class, 'change_password'])->name('profile.changePassword');
-
         });
         Route::get('/download-template', [Controllers\Administrator\FileController::class, 'downloadTemplate'])->name('download.template');
         Route::get('logout', Controllers\Administrator\LogoutController::class)->name('logout');
