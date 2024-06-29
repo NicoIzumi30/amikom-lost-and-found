@@ -32,13 +32,7 @@ class CategoryController extends Controller
 
         return to_route('administrator.category.index')->withSuccess('Category has been created');
     }
-
-    public function edit($id)
-    {
-        $category = Category::findOrFail($id);
-        return view('administrator.category.edit', compact('category'));
-    }
-
+    
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(),[
