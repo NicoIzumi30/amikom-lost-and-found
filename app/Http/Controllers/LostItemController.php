@@ -11,7 +11,7 @@ class LostItemController extends Controller
 {
     public function index()
     {
-        return view('home');
+        return view('main/itemFound/index');
     }
 
     public function store(Request $request)

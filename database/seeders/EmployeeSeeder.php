@@ -6,6 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 
+
 class EmployeeSeeder extends Seeder
 {
     /**
@@ -18,7 +19,10 @@ class EmployeeSeeder extends Seeder
             'email' => null,
             'nik' => '1234567890',
             'password' => bcrypt('finalproject'),
+            'image'=> public_path('/images/user.png'),
             'role' => 'employee'
         ]);
     }
+
+
 }

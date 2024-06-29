@@ -19,7 +19,7 @@ Route::get('/welcome', function () {
 });
 
 Route::get('/', [Controllers\HomeController::class, 'index'])->name('home');
-Route::middleware(['authCheck'])->group(function () {
+// Route::middleware(['authCheck'])->group(function () {
     Route::get('/profile', [Controllers\ProfileController::class, 'index'])->name('profile');
 
     Route::prefix('lost-items')->group(function () {
@@ -32,14 +32,14 @@ Route::middleware(['authCheck'])->group(function () {
     Route::prefix('item-found')->group(function () {
         Route::get('/', [Controllers\ItemFoundController::class, 'index'])->name('itemFound');
         Route::get('/create', [Controllers\ItemFoundController::class, 'create'])->name('itemFound.create');
-        Route::get('/detail', [Controllers\ItemFoundController::class, 'detail'])->name('itemFound.detail');
+        Route::get('/detail/{id}', [Controllers\ItemFoundController::class, 'detail'])->name('itemFound.detail');
         Route::post('/store', [Controllers\ItemFoundController::class, 'store'])->name('itemFound.store'); // Perubahan di sini
         Route::get('/update/{id}', [Controllers\ItemFoundController::class, 'update'])->name('itemFound.update');
         Route::get('/destroy/{id}', [Controllers\ItemFoundController::class, 'destroy'])->name('itemFound.destroy');
     });
-    
+
     Route::get('/logout', Controllers\LogoutController::class)->name('logout');
-});
+// });
 
 Route::get('/login', [Controllers\LoginController::class, 'index'])->name('login');
 

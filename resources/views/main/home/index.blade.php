@@ -66,66 +66,24 @@
             <div class="container mt-3">
                 <h2>Barang Ditemukan</h2>
                 <div class="row">
-                    <div class="col-6 mb-2">
-                        <a href="#">
-                        <div class="card w-100">
-                            <div class="card-body">
-                                <div class="text-center">
-                                    <img src="{{asset('images')}}/prod-1.jpg" class="w-75" height="150px" alt="...">
+                      @foreach ($itemfound as $key => $found)
+                        <div class="col-6 mb-2">
+                            <a href="{{ route('itemFound.detail',['id'=>$found->id]) }}">
+                                <div class="card w-100">
+                                    <div class="card-body">
+                                        <div class="text-center">
+                                            <img src="{{ asset('storage/item-found/' . $found->image) }}" class="w-75"
+                                                height="150px" alt="...">
+                                        </div>
+                                        <h5 class="card-title mt-2">{{ $found->title }}</h5>
+                                        <div class="text-right">
+                                            <small class="text-dark">3 Jam Yang Lalu</small>
+                                        </div>
+                                    </div>
                                 </div>
-                                <h5 class="card-title mt-2">Ditemukan sepatu Casual di gedung 5</h5>
-                                <div class="text-right">
-                                    <small class="text-dark">3 Jam Yang Lalu</small>
-                                </div>
-                            </div>
+                            </a>
                         </div>
-                        </a>
-                    </div>
-                    <div class="col-6 mb-2">
-                        <a href="#">
-                        <div class="card w-100">
-                            <div class="card-body">
-                                <div class="text-center">
-                                    <img src="{{asset('images')}}/prod-1.jpg" class="w-75" height="150px" alt="...">
-                                </div>
-                                <h5 class="card-title mt-2">Ditemukan sepatu Casual di gedung 5 Ditemukan sepatu Casual di gedung 5</h5>
-                                <div class="text-right">
-                                    <small class="text-dark">3 Jam Yang Lalu</small>
-                                </div>
-                            </div>
-                        </div>
-                        </a>
-                    </div>
-                    <div class="col-6 mb-2">
-                        <a href="#">
-                        <div class="card w-100">
-                            <div class="card-body">
-                                <div class="text-center">
-                                    <img src="{{asset('images')}}/prod-1.jpg" class="w-75" height="150px" alt="...">
-                                </div>
-                                <h5 class="card-title mt-2">Ditemukan sepatu Casual di gedung 5</h5>
-                                <div class="text-right">
-                                    <small class="text-dark">3 Jam Yang Lalu</small>
-                                </div>
-                            </div>
-                        </div>
-                        </a>
-                    </div>
-                    <div class="col-6 mb-2">
-                        <a href="#">
-                        <div class="card w-100">
-                            <div class="card-body">
-                                <div class="text-center">
-                                    <img src="{{asset('images')}}/prod-1.jpg" class="w-75" height="150px" alt="...">
-                                </div>
-                                <h5 class="card-title mt-2">Ditemukan sepatu Casual di gedung 5</h5>
-                                <div class="text-right">
-                                    <small class="text-dark">3 Jam Yang Lalu</small>
-                                </div>
-                            </div>
-                        </div>
-                        </a>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>

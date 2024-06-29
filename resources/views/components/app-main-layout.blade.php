@@ -53,7 +53,7 @@
         </div>
         <div class="right">
             <div class="headerButton" data-toggle="dropdown" id="dropdownMenuLink" aria-haspopup="true">
-                <img src="{{auth()->user()->image ? asset('storage/users/' . auth()->user()->image) : asset('storage/users/user.png')}}"
+                <img src="{{auth()->user()->image ? asset('storage/users/' . auth()->user()->image) : asset('image/user.png')}}"
                     alt="image" style="aspect-ratio: 1;border-radius: 50%" class="imaged w32">
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                     <a class="dropdown-item" onclick="location.href='{{route('profile')}}'" href="#"><ion-icon
