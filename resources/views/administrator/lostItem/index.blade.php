@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-app-admin-layout>
     <div class="right_col" role="main">
         <div class="page-title">
             <div class="title_left">
@@ -95,4 +95,4 @@
             </div>
         </div>
     </div>
-</x-app-layout>
+</x-app-admin-layout>

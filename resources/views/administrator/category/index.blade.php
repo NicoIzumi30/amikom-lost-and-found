@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-app-admin-layout>
     <div class="right_col" role="main">
         <div class="page-title">
             <div class="title_left">
@@ -115,6 +115,7 @@
             </div>
         </div>
     </div>
+<<<<<<< HEAD
 </x-app-layout>
 
 <script>
@@ -127,3 +128,6 @@
         });
     });
 </script>
+=======
+</x-app-admin-layout>
+>>>>>>> 7782ead805e26143ec71dcfa311a4772544ce372
