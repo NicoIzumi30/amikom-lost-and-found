@@ -12,6 +12,7 @@
                         </div>
                     </div>
                 <div class="row my-3" id="itemKategori">
+                    
                     <div class="col-3 mb-1">
                         <div class="card">
                             <div class="card-body" style="text-align: center;padding:8px">
@@ -43,7 +44,7 @@
                     <div class="col-3 mb-1">
                         <div class="card">
                             <div class="card-body" style="text-align: center;padding:8px">
-                                <h4 class="mb-0">Elekronik</h4>
+                                <h4 class="mb-0">Elekronik</h4> 
                             </div>
                         </div>
                     </div>

@@ -119,6 +119,9 @@
             $('.createItemFound').click(function () {
                 window.location.href = "{{route('itemFound.create')}}";
             });
+            $('.createLostItems').click(function () {
+                window.location.href = "{{route('lostItems.create')}}";
+            });
         });
     </script>
 </body>
