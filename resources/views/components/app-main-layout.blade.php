@@ -15,16 +15,27 @@
     <script src="{{asset('main')}}/js/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
     <style>
-        .card-title{
+        .card-title {
             display: -webkit-box;
             -webkit-box-orient: vertical;
             -webkit-line-clamp: 2;
             overflow: hidden;
             text-overflow: ellipsis;
-            max-height: 3em; /* 2 baris, 1.5em per baris */
+            max-height: 3em;
+            /* 2 baris, 1.5em per baris */
         }
-        #itemKategori .card:hover{
+
+        #itemKategori .card:hover {
             transform: scale(1.05);
+        }
+
+        .form-custom {
+            height: 45px;
+            border-radius: 10px;
+        }
+        .form-control[readonly] {
+            background-color: #fff;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -42,7 +53,8 @@
         </div>
         <div class="right">
             <div class="headerButton" data-toggle="dropdown" id="dropdownMenuLink" aria-haspopup="true">
-                <img src="{{auth()->user()->image ? asset('storage/users/'.auth()->user()->image) : asset('storage/users/user.png')}}" alt="image" class="imaged w32">
+                <img src="{{auth()->user()->image ? asset('storage/users/' . auth()->user()->image) : asset('storage/users/user.png')}}"
+                    alt="image" style="aspect-ratio: 1;border-radius: 50%" class="imaged w32">
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                     <a class="dropdown-item" onclick="location.href='{{route('profile')}}'" href="#"><ion-icon
                             size="small" name="person-outline"></ion-icon>Profil</a>
@@ -64,21 +76,21 @@
     <div class="appBottomMenu">
         <a href="{{route('home')}}" class="item">
             <div class="col text-dark">
-            <i class="fas fa-home fa-2x"></i>
+                <i class="fas fa-home fa-2x"></i>
                 <!-- <ion-icon name="home-outline"></ion-icon> -->
                 <strong>Home</strong>
             </div>
         </a>
         <a href="{{route('itemFound')}}" class="item">
             <div class="col text-dark">
-            <i class="fas fa-hands-bound fa-2x"></i>
+                <i class="fas fa-hands-bound fa-2x"></i>
                 <!-- <ion-icon name="document-text-outline"></ion-icon> -->
                 <strong>Barang Ditemukan</strong>
             </div>
         </a>
         <a href="{{route('lostItems')}}" class="item">
             <div class="col text-dark">
-            <i class="fas fa-person-circle-question fa-2x"></i>
+                <i class="fas fa-person-circle-question fa-2x"></i>
                 <!-- <ion-icon name="chatbubbles-outline"></ion-icon> -->
                 <strong>Barang Hilang</strong>
             </div>
@@ -102,7 +114,13 @@
     <script src="{{asset('main')}}/js/scripta.js"></script>
     <script src="{{asset('main')}}/js/datatables/jquery.dataTables.min.js"></script>
     <script src="{{asset('main')}}/js/datatables/dataTables.bootstrap.min.js"></script>
-
+    <script>
+        $(document).ready(function () {
+            $('.createItemFound').click(function () {
+                window.location.href = "{{route('itemFound.create')}}";
+            });
+        });
+    </script>
 </body>
 
 </html>
