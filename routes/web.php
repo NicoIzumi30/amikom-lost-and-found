@@ -17,11 +17,19 @@ use App\Http\Controllers;
 Route::get('/welcome', function () {
     return view('welcome');
 });
-Route::get('/', Controllers\DashboardController::class)->middleware('auth')->name('administrator.dashboard.index');
+
+Route::middleware(['authCheck'])->group(function () {
+    Route::get('/', [Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/profile', [Controllers\ProfileController::class, 'index'])->name('profile');
+    Route::get('/lost-items', [Controllers\LostItemController::class, 'index'])->name('lostItems');
+    Route::get('/item-found', [Controllers\ItemFoundController::class, 'index'])->name('itemFound');
+    Route::get('/logout', Controllers\LogoutController::class)->name('logout');
+});
+Route::get('/login', [Controllers\LoginController::class,'index'])->name('login');
+
 
 Route::prefix('administrator')->name('administrator.')->group(function () {
-
-
+    Route::get('/', Controllers\Administrator\DashboardController::class)->middleware('auth')->name('dashboard.index');
     Route::middleware('guest')->group(function () {
         Route::get('login', [Controllers\Administrator\LoginController::class, 'loginForm'])->name('login');
         Route::post('login', [Controllers\Administrator\LoginController::class, 'authenticate']);

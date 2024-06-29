@@ -1,7 +1,7 @@
 <?php
 
-namespace App\Http\Controllers;
-
+namespace App\Http\Controllers\Administrator;
+use App\Http\Controllers\Controller;
 use App\Models\ItemFound;
 use App\Models\LoginLog;
 use App\Models\LostItem;
