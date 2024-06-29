@@ -11,9 +11,12 @@ class LostItemController extends Controller
 {
     public function index()
     {
-        return view('home');
+        return view('main/lostItems/index');
     }
-
+    public function create()
+    {
+        return view('main/lostItems/create');
+    }
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
