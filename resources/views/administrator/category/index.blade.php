@@ -17,7 +17,8 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form action="" method="post">
+                    <form action="{{ route('administrator.category.store') }}" method="POST">
+                        @csrf
                         <div class="modal-body">
                             <div class="col-md-12 mb-3 form-group has-feedback">
                                 <input type="text" class="form-control has-feedback-left" id="inputSuccess2"
@@ -27,16 +28,15 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-success">Update</button>
+                            <button type="submit" class="btn btn-success">Save</button>
                         </div>
                     </form>
                 </div>
-
             </div>
         </div>
 
-         <!-- Modal Edit Data-->
-         <div class="modal fade" id="editData" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <!-- Modal Edit Data-->
+        <div class="modal fade" id="editData" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -45,10 +45,12 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form action="" method="post">
+                    <form action="" method="POST" id="editForm">
+                        @csrf
+                        @method('PUT')
                         <div class="modal-body">
                             <div class="col-md-12 mb-3 form-group has-feedback">
-                                <input type="text" class="form-control has-feedback-left" value="Elektronik" id="inputSuccess2"
+                                <input type="text" class="form-control has-feedback-left" id="editCategoryName"
                                     placeholder="Category Name" name="name">
                                 <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
                             </div>
@@ -59,16 +61,17 @@
                         </div>
                     </form>
                 </div>
-
             </div>
         </div>
+
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
                         <div class="modal-footer border-0">
-                        <button class="btn btn-info m-1 rounded" data-toggle="modal" data-target="#addData"><i
-                        class="fas fa-plus"></i> Add New Data</button>
+                            <button class="btn btn-info m-1 rounded" data-toggle="modal" data-target="#addData">
+                                <i class="fas fa-plus"></i> Add New Data
+                            </button>
                         </div>
                         <div class="table-responsive">
                             <table id="datatable" class="table table-bordered">
@@ -80,18 +83,30 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Elektronik</td>
-                                        <td>
-                                            <a href="#" class="btn btn-danger tombol-hapus m-1">
-                                                <i class="fas fa-trash"></i>
-                                            </a>
-                                            <a href="#" data-toggle="modal" data-target="#editData" class="btn btn-info m-1">
-                                                <i class="fas fa-pen"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
+                                    @foreach ($categories as $key => $category)
+                                        <tr>
+                                            <td>{{ $key + 1 }}</td>
+                                            <td>{{ $category->name }}</td>
+                                            <td>
+                                                <form
+                                                    action="{{ route('administrator.category.destroy', $category->id) }}"
+                                                    method="POST" style="display:inline-block;">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger tombol-hapus m-1">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </form>
+                                                <button class="btn btn-info m-1 edit-category" data-toggle="modal"
+                                                    data-target="#editData" data-id="{{ $category->id }}"
+                                                    data-name="{{ $category->name }}">
+                                                    <i class="fas fa-pen"></i>
+                                                </button>
+                                                <a href="{{ route('administrator.category.edit', $category->id) }}"
+                                                    class="btn btn-warning">Edit</a> <!-- Line 96 -->
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -100,4 +115,19 @@
             </div>
         </div>
     </div>
+<<<<<<< HEAD
+</x-app-layout>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        $('.edit-category').on('click', function() {
+            var id = $(this).data('id');
+            var name = $(this).data('name');
+            $('#editCategoryName').val(name);
+            $('#editForm').attr('action', '/administrator/category/' + id);
+        });
+    });
+</script>
+=======
 </x-app-admin-layout>
+>>>>>>> 7782ead805e26143ec71dcfa311a4772544ce372
