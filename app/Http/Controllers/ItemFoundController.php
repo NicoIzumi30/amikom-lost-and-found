@@ -13,7 +13,31 @@ class ItemFoundController extends Controller
     public function index() {
         return view('main/itemFound/index');
     }
+    public function create() {
+        return view('main/itemFound/create');
+    }
+    public function detail() {
+        $currentHour = date('G');
+        $greeting = '';
 
+        if ($currentHour >= 5 && $currentHour < 12) {
+            $greeting = "Selamat pagi";
+        } elseif ($currentHour >= 12 && $currentHour < 18) {
+            $greeting = "Selamat siang";
+        } elseif ($currentHour >= 18 && $currentHour < 22) {
+            $greeting = "Selamat sore";
+        } else {
+            $greeting = "Selamat malam";
+        }
+        $data = [
+            'name' => Auth::user()->name,
+            'penemu' => 'Heru Kristanto',// ganti data yang di ambil di database
+            'barang' => 'botol minum bewarna Biru',
+            'lokasi' => 'basement gedung 5'
+        ];
+        $message = "{$greeting} perkenalkan nama saya {$data['name']}. Mau bertanya kak, apakah benar kak {$data['penemu']} menemukan  {$data['barang']} di {$data['lokasi']}?";
+        return view('main/itemFound/detailItem',['message' => $message]);
+    }
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [

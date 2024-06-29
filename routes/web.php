@@ -22,19 +22,22 @@ Route::get('/', [Controllers\HomeController::class, 'index'])->name('home');
 Route::middleware(['authCheck'])->group(function () {
     Route::get('/profile', [Controllers\ProfileController::class, 'index'])->name('profile');
 
-    Route::group(['prefix' => 'lost-item'], function () {
-        Route::get('/lost-items', [Controllers\LostItemController::class, 'index'])->name('lostItems');
-        Route::get('/store', [Controllers\LostItemController::class, 'store'])->name('lostItems.store');
+    Route::prefix('lost-items')->group(function () {
+        Route::get('/', [Controllers\LostItemController::class, 'index'])->name('lostItems');
+        Route::get('/create', [Controllers\LostItemController::class, 'create'])->name('lostItems.create');
+        Route::post('/store', [Controllers\LostItemController::class, 'store'])->name('lostItems.store');
         Route::get('/update/{id}', [Controllers\LostItemController::class, 'update'])->name('lostItems.update');
         Route::get('/destroy/{id}', [Controllers\LostItemController::class, 'destroy'])->name('lostItems.destroy');
     });
-
-    Route::group(['prefix' => 'item-found'], function () {
-        Route::get('/item-found', [Controllers\ItemFoundController::class, 'index'])->name('itemFound');
-        Route::get('/store', [Controllers\ItemFoundController::class, 'store'])->name('store');
+    Route::prefix('item-found')->group(function () {
+        Route::get('/', [Controllers\ItemFoundController::class, 'index'])->name('itemFound');
+        Route::get('/create', [Controllers\ItemFoundController::class, 'create'])->name('itemFound.create');
+        Route::get('/detail', [Controllers\ItemFoundController::class, 'detail'])->name('itemFound.detail');
+        Route::post('/store', [Controllers\ItemFoundController::class, 'store'])->name('itemFound.store'); // Perubahan di sini
         Route::get('/update/{id}', [Controllers\ItemFoundController::class, 'update'])->name('itemFound.update');
         Route::get('/destroy/{id}', [Controllers\ItemFoundController::class, 'destroy'])->name('itemFound.destroy');
     });
+    
     Route::get('/logout', Controllers\LogoutController::class)->name('logout');
 });
 

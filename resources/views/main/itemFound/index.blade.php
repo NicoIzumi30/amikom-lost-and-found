@@ -8,7 +8,7 @@
                             <img src="{{auth()->user()->image ? asset('storage/users/'.auth()->user()->image) : asset('storage/users/user.png')}}" class="w-75" style="aspect-ratio: 1;border-radius: 50%" alt="">
                         </div>
                         <div class="col-10">
-                        <input type="text" class="form-control" style="height: 45px;margin-top: 1px;margin-left: -20px;border-radius: 50px" placeholder="Apakah Anda Menemukan Barang?">
+                        <input type="text" class="form-control createItemFound" readonly style="height: 45px;margin-top: 1px;margin-left: -20px;border-radius: 50px" placeholder="Apakah Anda Menemukan Barang?">
                         </div>
                     </div>
                 <div class="row my-3" id="itemKategori">
@@ -50,7 +50,7 @@
                 </div>
                 <div class="row">
                     <div class="col-6 mb-2">
-                        <a href="#">
+                        <a href="{{route('itemFound.detail')}}">
                             <div class="card w-100">
                                 <div class="card-body">
                                     <div class="text-center">
