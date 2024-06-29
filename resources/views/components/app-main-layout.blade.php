@@ -14,6 +14,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet">
     <script src="{{asset('main')}}/js/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
+    <style>
+        .card-title{
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-height: 3em; /* 2 baris, 1.5em per baris */
+        }
+        #itemKategori .card:hover{
+            transform: scale(1.05);
+        }
+    </style>
 </head>
 
 <body>
@@ -50,27 +63,29 @@
 
     <div class="appBottomMenu">
         <a href="{{route('home')}}" class="item">
-            <div class="col">
-                <div class="bg-danger"></div>
-                <ion-icon name="home-outline"></ion-icon>
+            <div class="col text-dark">
+            <i class="fas fa-home fa-2x"></i>
+                <!-- <ion-icon name="home-outline"></ion-icon> -->
                 <strong>Home</strong>
             </div>
         </a>
         <a href="{{route('itemFound')}}" class="item">
-            <div class="col">
-                <ion-icon name="document-text-outline"></ion-icon>
+            <div class="col text-dark">
+            <i class="fas fa-hands-bound fa-2x"></i>
+                <!-- <ion-icon name="document-text-outline"></ion-icon> -->
                 <strong>Barang Ditemukan</strong>
             </div>
         </a>
         <a href="{{route('lostItems')}}" class="item">
-            <div class="col">
-                <ion-icon name="chatbubbles-outline"></ion-icon>
+            <div class="col text-dark">
+            <i class="fas fa-person-circle-question fa-2x"></i>
+                <!-- <ion-icon name="chatbubbles-outline"></ion-icon> -->
                 <strong>Barang Hilang</strong>
             </div>
         </a>
         <a href="{{route('profile')}}>" class="item">
-            <div class="col">
-                <ion-icon name="person-outline"></ion-icon>
+            <div class="col text-dark">
+                <i class="fas fa-user fa-2x"></i>
                 <strong>Profil</strong>
             </div>
         </a>

@@ -17,7 +17,7 @@
                     <div class="item">
                         <a href="{{route('home')}}">
                             <div class="icon-wrapper bg-warning">
-                                <ion-icon name="home-outline"></ion-icon>
+                            <i class="fas fa-home"></i>
                             </div>
                             <strong>Home</strong>
                         </a>
@@ -26,7 +26,7 @@
                     <div class="item">
                         <a href="{{route('itemFound')}}">
                             <div class="icon-wrapper bg-primary">
-                                <ion-icon name="document-text-outline"></ion-icon>
+                            <i class="fas fa-hands-bound"></i>
                             </div>
                             <strong>Barang Ditemukan</strong>
                         </a>
@@ -35,7 +35,7 @@
                     <div class="item">
                         <a href="{{route('lostItems')}}">
                             <div class="icon-wrapper bg-success">
-                                <ion-icon name="refresh-outline"></ion-icon>
+                            <i class="fas fa-person-circle-question"></i>
                             </div>
                             <strong>Barang Hilang</strong>
                         </a>
@@ -44,7 +44,7 @@
                     <div class="item">
                         <a href="{{route('profile')}}">
                             <div class="icon-wrapper bg-warning">
-                                <ion-icon name="person-outline"></ion-icon>
+                            <i class="fas fa-user"></i>
                             </div>
                             <strong>Profil</strong>
                         </a>
@@ -71,9 +71,9 @@
                         <div class="card w-100">
                             <div class="card-body">
                                 <div class="text-center">
-                                    <img src="{{asset('images')}}/prod-1.jpg" class="w-75" alt="...">
+                                    <img src="{{asset('images')}}/prod-1.jpg" class="w-75" height="150px" alt="...">
                                 </div>
-                                <h5 class="card-title">Ditemukan sepatu Casual di gedung 5</h5>
+                                <h5 class="card-title mt-2">Ditemukan sepatu Casual di gedung 5</h5>
                                 <div class="text-right">
                                     <small class="text-dark">3 Jam Yang Lalu</small>
                                 </div>
@@ -86,9 +86,9 @@
                         <div class="card w-100">
                             <div class="card-body">
                                 <div class="text-center">
-                                    <img src="{{asset('images')}}/prod-1.jpg" class="w-75" alt="...">
+                                    <img src="{{asset('images')}}/prod-1.jpg" class="w-75" height="150px" alt="...">
                                 </div>
-                                <h5 class="card-title">Ditemukan sepatu Casual di gedung 5</h5>
+                                <h5 class="card-title mt-2">Ditemukan sepatu Casual di gedung 5 Ditemukan sepatu Casual di gedung 5</h5>
                                 <div class="text-right">
                                     <small class="text-dark">3 Jam Yang Lalu</small>
                                 </div>
@@ -101,9 +101,9 @@
                         <div class="card w-100">
                             <div class="card-body">
                                 <div class="text-center">
-                                    <img src="{{asset('images')}}/prod-1.jpg" class="w-75" alt="...">
+                                    <img src="{{asset('images')}}/prod-1.jpg" class="w-75" height="150px" alt="...">
                                 </div>
-                                <h5 class="card-title">Ditemukan sepatu Casual di gedung 5</h5>
+                                <h5 class="card-title mt-2">Ditemukan sepatu Casual di gedung 5</h5>
                                 <div class="text-right">
                                     <small class="text-dark">3 Jam Yang Lalu</small>
                                 </div>
@@ -116,9 +116,9 @@
                         <div class="card w-100">
                             <div class="card-body">
                                 <div class="text-center">
-                                    <img src="{{asset('images')}}/prod-1.jpg" class="w-75" alt="...">
+                                    <img src="{{asset('images')}}/prod-1.jpg" class="w-75" height="150px" alt="...">
                                 </div>
-                                <h5 class="card-title">Ditemukan sepatu Casual di gedung 5</h5>
+                                <h5 class="card-title mt-2">Ditemukan sepatu Casual di gedung 5</h5>
                                 <div class="text-right">
                                     <small class="text-dark">3 Jam Yang Lalu</small>
                                 </div>

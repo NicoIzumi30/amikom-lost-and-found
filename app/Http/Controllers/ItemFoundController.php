@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 class ItemFoundController extends Controller
 {
     public function index() {
-        return view('home');
+        return view('main/itemFound/index');
     }
 
     public function store(Request $request)
