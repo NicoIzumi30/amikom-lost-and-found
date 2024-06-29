@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-app-admin-layout>
     <div class="right_col" role="main">
         <div class="row">
             <div class="col-md-3 mb-3">
@@ -119,4 +119,4 @@
         </div>
         <br />
     </div>
-</x-app-layout>
+</x-app-admin-layout>
