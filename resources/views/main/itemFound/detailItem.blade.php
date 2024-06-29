@@ -6,34 +6,34 @@
                 <div class="card w-100">
                     <div class="card-body">
                         <div class="text-center">
-                            <img src="{{asset('images')}}/prod-1.jpg" class="w-75 mt-5" height="200px" alt="...">
+                            <img src="{{asset('/storage/item-found'.$data->image)}}" class="w-75 mt-5" height="200px" alt="...">
                         </div>
                         <div class="table-responsive mt-5">
                             <table class="table">
                                 <tr>
                                     <td width="30%">Nama Barang</td>
                                     <td width="5%"> : </td>
-                                    <td>Sepatu Kuda</td>
+                                    <td>{{$data->title}}</td>
                                 </tr>
                                 <tr>
                                     <td width="37%">Yang Menemukan</td>
                                     <td width="5%"> : </td>
-                                    <td>Heru Kristanto</td>
+                                    <td>{{$data->user->name}}</td>
                                 </tr>
                                 <tr>
                                     <td width="30%">Lokasi DItemukan</td>
                                     <td width="5%"> : </td>
-                                    <td>Basement Gedung 5</td>
+                                    <td>{{$data->location}}</td>
                                 </tr>
                                 <tr>
                                     <td width="30%">Kategori</td>
                                     <td width="5%"> : </td>
-                                    <td>Sepatu</td>
+                                    <td>{{$data->category->category_name}}</td>
                                 </tr>
                                 <tr>
                                     <td width="30%">Deskripsi</td>
                                     <td width="5%"> : </td>
-                                    <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum, alias expedita nulla modi laborum quaerat animi veritatis, corporis soluta dolores quos provident facere ex consequuntur laudantium quis, perspiciatis est minus.</td>
+                                    <td>{{$data->description}}</td>
                                 </tr>
                             </table>
                         </div>

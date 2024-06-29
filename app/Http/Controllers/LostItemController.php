@@ -11,6 +11,7 @@ class LostItemController extends Controller
 {
     public function index()
     {
+
         return view('main/lostItems/index');
     }
     public function create()
