@@ -8,13 +8,19 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    // Menampilkan form penambahan kategori
+    public function index()
+    {
+        $categories = Category::all();
+        return view("administrator.category.index", [
+            'categories' => $categories,
+        ]);
+    }
+
     public function create()
     {
         return view('administrator.category.create');
     }
 
-    // Menyimpan kategori baru
     public function store(Request $request)
     {
         $request->validate([
@@ -28,14 +34,12 @@ class CategoryController extends Controller
         return redirect()->route('administrator.category.index')->with('success', 'Category created successfully.');
     }
 
-    // Menampilkan form edit kategori
     public function edit($id)
     {
         $category = Category::findOrFail($id);
         return view('administrator.category.edit', compact('category'));
     }
 
-    // Memperbarui kategori
     public function update(Request $request, $id)
     {
         $request->validate([
@@ -50,7 +54,6 @@ class CategoryController extends Controller
         return redirect()->route('administrator.category.index')->with('success', 'Category updated successfully.');
     }
 
-    // Menghapus kategori
     public function destroy($id)
     {
         $category = Category::findOrFail($id);
