@@ -10,13 +10,15 @@ use Illuminate\Support\Facades\Auth;
 
 class ItemFoundController extends Controller
 {
-    public function index() {
-        return view('main/itemFound/index');
+    public function index()
+    {
+        $data = ItemFound::all();
+        return view('main/itemFound/index', compact('data'));
     }
-    public function create() {
-        return view('main/itemFound/create');
-    }
-    public function detail() {
+
+    public function detail($id)
+    {
+        $data = ItemFound::findOrFail($id);
         $currentHour = date('G');
         $greeting = '';
 
@@ -29,15 +31,16 @@ class ItemFoundController extends Controller
         } else {
             $greeting = "Selamat malam";
         }
-        $data = [
-            'name' => Auth::user()->name,
-            'penemu' => 'Heru Kristanto',// ganti data yang di ambil di database
-            'barang' => 'botol minum bewarna Biru',
-            'lokasi' => 'basement gedung 5'
-        ];
+        // $data = [
+        //     'name' => Auth::user()->name,
+        //     'penemu' => 'Heru Kristanto', // ganti data yang di ambil di database
+        //     'barang' => 'botol minum bewarna Biru',
+        //     'lokasi' => 'basement gedung 5'
+        // ];
         $message = "{$greeting} perkenalkan nama saya {$data['name']}. Mau bertanya kak, apakah benar kak {$data['penemu']} menemukan  {$data['barang']} di {$data['lokasi']}?";
-        return view('main/itemFound/detailItem',['message' => $message]);
+        return view('main/itemFound/detailItem', ['message' => $message],compact('data'));
     }
+
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
