@@ -15,7 +15,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-3">
-                                <img src="{{auth()->user()->image ? asset('storage/users/'.auth()->user()->image) : asset('storage/users/user.png')}}" class="w-100" alt="">
+                                <img src="{{auth()->user()->image ? asset('storage/users/'.auth()->user()->image) : asset('storage/users/user.png')}}" class="w-100" style="aspect-ratio: 1" alt="">
                             </div>
                             <div class="col-md-9">
                                 <form action="{{route('administrator.profile.update')}}" method="post" enctype="multipart/form-data">

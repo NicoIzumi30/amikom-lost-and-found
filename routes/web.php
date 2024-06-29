@@ -18,8 +18,8 @@ Route::get('/welcome', function () {
     return view('welcome');
 });
 
+Route::get('/', [Controllers\HomeController::class, 'index'])->name('home');
 Route::middleware(['authCheck'])->group(function () {
-    Route::get('/', [Controllers\HomeController::class, 'index'])->name('home');
     Route::get('/profile', [Controllers\ProfileController::class, 'index'])->name('profile');
     Route::get('/lost-items', [Controllers\LostItemController::class, 'index'])->name('lostItems');
     Route::get('/item-found', [Controllers\ItemFoundController::class, 'index'])->name('itemFound');
