@@ -29,7 +29,7 @@
                             <select name="status" id="" class="form-control form-custom">
                                 <option value="{{$data->status}}" selected>{{$data->status}}</option>
                                 <option value="belum">belum</option>
-                                <option value="ditemukam">ditemukan</option> {{--migration fresh database ada yang typo bagian ditemukan  --}}
+                                <option value="ditemukan">ditemukan</option> 
                             </select>
                     </div>
 

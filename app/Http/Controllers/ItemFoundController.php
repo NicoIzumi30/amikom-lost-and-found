@@ -17,9 +17,9 @@ class ItemFoundController extends Controller
         return view('main/itemFound/index', compact('data'));
     }
 
-    public function detail($id)
+    public function detail($slug)
     {
-        $data = ItemFound::findOrFail($id);
+        $data = ItemFound::where('slug', $slug)->first();
         $currentHour = date('G');
         $greeting = '';
 
@@ -55,7 +55,6 @@ class ItemFoundController extends Controller
             'title' => ['required', 'max:255'],
             'description' => ['required', 'max:255'],
             'location' => ['required', 'max:255'],
-            'slug'=>['required'],
             'image' => ['required', 'mimes:jpg,jpeg,png,svg'],
             'no_tlp' => ['required', 'min:8', 'max:16'],
         ]);
@@ -71,10 +70,10 @@ class ItemFoundController extends Controller
             'user_id' => Auth::user()->id,
             'category_id' => $request->category_id,
             'title' => $request->title,
+            'slug'=>$request->title,
             'description' => $request->description,
             'location' => $request->location,
             'image' => $imageName,
-            '$slug'>"testslug",
             'status' => 'belum',
             'no_tlp' => $request->no_tlp
 
@@ -84,13 +83,13 @@ class ItemFoundController extends Controller
     }
 
 
-    public function edit($id)
+    public function edit($slug)
     {
-        $data = ItemFound::findOrfail($id);
+        $data = ItemFound::where('slug',$slug)->first();
         return view('main/itemFound/edit',compact('data'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $slug)
     {
         $validator = Validator::make($request->all(), [
             'status' => ['required'],
@@ -100,7 +99,7 @@ class ItemFoundController extends Controller
         if ($validator->fails()) {
             return redirect()->back()->withErrors('Failed to update ItemFound');
         }
-        $itemFound = ItemFound::findOrFail($id);
+        $itemFound = ItemFound::where('slug', $slug)->first();
 
         $itemFound->status = $request->status;
         $itemFound->no_tlp = $request->no_tlp;

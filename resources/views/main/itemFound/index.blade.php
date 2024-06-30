@@ -49,7 +49,7 @@
                 <div class="row">
                     @forelse ($data as $key => $itemfound)
                         <div class="col-6 mb-2">
-                            <a href="{{ route('itemFound.detail', ['id' => $itemfound->id]) }}">
+                            <a href="{{ route('itemFound.detail', ['slug' => $itemfound->slug]) }}">
                                 <div class="card w-100">
                                     <div class="card-body">
                                         <div class="text-center">
