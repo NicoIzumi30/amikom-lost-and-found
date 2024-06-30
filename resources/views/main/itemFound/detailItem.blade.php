@@ -6,7 +6,7 @@
                 <div class="card w-100">
                     <div class="card-body">
                         <div class="text-center">
-                            <img src="{{asset('/storage/item-found'.$data->image)}}" class="w-75 mt-5" height="200px" alt="...">
+                            <img src="{{asset('/storage/item-found/'.$data->image)}}" class="w-75 mt-5" height="200px" alt="...">
                         </div>
                         <div class="table-responsive mt-5">
                             <table class="table">

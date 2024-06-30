@@ -75,11 +75,12 @@
                                 </div>
                             @endif
                             @if (session('success'))
-                            <div class="alert alert-danger" role="alert">
+                            <div class="alert alert-success" role="alert">
                                 {{ session('success') }}
                             </div>
                             @endif
-                            <form action="#" method="post">
+                            <form action="{{route('login')}}" method="post">
+                                @csrf
                                 <div class="form-group">
                                     <label class="form-control-label">NIK</label>
                                     <input type="number" name="nik" class="form-control">
@@ -95,7 +96,7 @@
                                     type="submit">Login</button>
                                 <div id="gSignInWrapper" class="mt-3">
                                     <span class="label">Sign in with:</span>
-                                    <a href="#" id="customBtn" class="customGPlusSignIn">
+                                    <a href="{{route('callback')}}" id="customBtn" class="customGPlusSignIn">
                                         <span class="icon"></span>
                                         <span class="buttonText">Google</span>
                                     </a>

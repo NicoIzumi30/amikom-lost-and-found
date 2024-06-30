@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -11,12 +12,13 @@ class LostItemController extends Controller
 {
     public function index()
     {
-
-        return view('main/lostItems/index');
+        $lostitems = LostItem::latest()->get();
+        return view('main/lostItems/index',compact('lostitems'));
     }
     public function create()
     {
-        return view('main/lostItems/create');
+        $categories = Category::all();
+        return view('main/lostItems/create',compact('categories'));
     }
     public function edit()
     {
@@ -50,7 +52,7 @@ class LostItemController extends Controller
             'no_tlp' => $request->no_tlp
         ]);
 
-        return to_route('')->withSuccess('LostItem has been created');
+        return to_route('lostItems')->withSuccess('LostItem has been created');
     }
 
     public function update(Request $request, $id)
