@@ -21,6 +21,7 @@ Route::get('/welcome', function () {
 Route::get('/', [Controllers\HomeController::class, 'index'])->name('home');
 // Route::middleware(['authCheck'])->group(function () {
     Route::get('/profile', [Controllers\ProfileController::class, 'index'])->name('profile');
+    Route::get('/history', [Controllers\HistoryController::class, 'index'])->name('history');
 
     Route::prefix('lost-items')->group(function () {
         Route::get('/', [Controllers\LostItemController::class, 'index'])->name('lostItems');

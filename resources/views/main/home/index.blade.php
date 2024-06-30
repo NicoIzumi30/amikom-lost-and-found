@@ -6,22 +6,13 @@
                 <!-- Balance -->
                 <div class="balance">
                     <div class="left">
-                        <span class="title">Selamat Siang</span>
-                        <h1 class="total">Heru Kristanto</h1>
+                        <span class="title">{{$greeting}}</span>
+                        <h1 class="total">{{auth()->user()->name}}</h1>
                     </div>
                 </div>
                 <!-- * Balance -->
                 <!-- Wallet Footer -->
                 <div class="wallet-footer">
-
-                    <div class="item">
-                        <a href="{{route('home')}}">
-                            <div class="icon-wrapper bg-warning">
-                            <i class="fas fa-home"></i>
-                            </div>
-                            <strong>Home</strong>
-                        </a>
-                    </div>
 
                     <div class="item">
                         <a href="{{route('itemFound')}}">
@@ -40,7 +31,14 @@
                             <strong>Barang Hilang</strong>
                         </a>
                     </div>
-
+                    <div class="item">
+                        <a href="{{route('history')}}">
+                            <div class="icon-wrapper bg-danger">
+                            <i class="fas fa-rotate-right"></i>
+                            </div>
+                            <strong>History</strong>
+                        </a>
+                    </div>
                     <div class="item">
                         <a href="{{route('profile')}}">
                             <div class="icon-wrapper bg-warning">
@@ -49,7 +47,7 @@
                             <strong>Profil</strong>
                         </a>
                     </div>
-
+                    
 
                 </div>
                 <!-- * Wallet Footer -->
