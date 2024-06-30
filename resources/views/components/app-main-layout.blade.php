@@ -74,35 +74,35 @@
     {{$slot}}
 
     <div class="appBottomMenu">
-        <a href="{{route('home')}}" class="item">
+        <a href="{{route('home')}}" class="item {{request()->routeIs('home') ? 'active' : ''}}">
             <div class="col text-dark">
                 <i class="fas fa-home fa-2x"></i>
                 <!-- <ion-icon name="home-outline"></ion-icon> -->
                 <strong>Home</strong>
             </div>
         </a>
-        <a href="{{route('itemFound')}}" class="item">
+        <a href="{{route('itemFound')}}" class="item {{request()->routeIs('itemFound') ? 'active' : ''}}">
             <div class="col text-dark">
                 <i class="fas fa-hands-bound fa-2x"></i>
                 <!-- <ion-icon name="document-text-outline"></ion-icon> -->
                 <strong>Barang Ditemukan</strong>
             </div>
         </a>
-        <a href="{{route('lostItems')}}" class="item">
+        <a href="{{route('lostItems')}}" class="item {{request()->routeIs('lostItems') ? 'active' : ''}}">
             <div class="col text-dark">
                 <i class="fas fa-person-circle-question fa-2x"></i>
                 <!-- <ion-icon name="chatbubbles-outline"></ion-icon> -->
                 <strong>Barang Hilang</strong>
             </div>
         </a>
-        <a href="{{route('history')}}" class="item">
+        <a href="{{route('history')}}" class="item {{request()->routeIs('history') ? 'active' : ''}}">
             <div class="col text-dark">
                 <i class="fas fa-rotate-right fa-2x"></i>
                 <!-- <ion-icon name="chatbubbles-outline"></ion-icon> -->
                 <strong>History</strong>
             </div>
         </a>
-        <a href="{{route('profile')}}" class="item">
+        <a href="{{route('profile')}}" class="item {{request()->routeIs('profile') ? 'active' : ''}}">
             <div class="col text-dark">
                 <i class="fas fa-user fa-2x"></i>
                 <strong>Profil</strong>
