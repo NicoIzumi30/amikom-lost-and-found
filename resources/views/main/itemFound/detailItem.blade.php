@@ -38,16 +38,11 @@
                             </table>
                         </div>
                         <div class="text-center mt-5 mb-3">
-                            <button type="button" onclick="chatWA()" class="btn btn-success py-3"><i class="fa-brands fa-whatsapp fa-2x" style="margin-right: 10px"></i>Chat Ke Penemu</button>
+                            <a href="https://wa.me/{{$data->no_tlp}}" class="btn btn-success py-3"><i class="fa-brands fa-whatsapp fa-2x" style="margin-right: 10px"></i>Chat Ke Penemu</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <script>
-        function chatWA(){
-            window.location.href = "https://wa.me/62859126462972?text=" + encodeURIComponent('{{$message}}');
-        }
-    </script>
 </x-app-main-layout>

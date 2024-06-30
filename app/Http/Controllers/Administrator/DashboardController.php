@@ -18,7 +18,8 @@ class DashboardController extends Controller
         $usercount = User::all()->count();
         $lostcount = LostItem::all()->count();
         $foundcount = ItemFound::all()->count();
+        $takencount = ItemFound::where('status','sudah')->count();
         $datalog = LoginLog::latest()->get();
-        return view("administrator.dashboard.index",compact('usercount','lostcount','foundcount','datalog'));
+        return view("administrator.dashboard.index",compact('usercount','lostcount','foundcount','datalog','takencount'));
     }
 }

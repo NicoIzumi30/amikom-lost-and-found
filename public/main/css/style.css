@@ -347,7 +347,7 @@ hr {
 @media screen and (max-width: 768px) {
   .image-banner{
     width: 100%;
-    max-height: 300px;
+    max-height: 250px;
   }
 }
 .list-unstyled {

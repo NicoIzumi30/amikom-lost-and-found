@@ -4,14 +4,14 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>BrookWood</title>
-	<link rel="icon" href="assets/images/favicon/icon.png">
+	<title>Amikom Lost and Found</title>
+	<link rel="icon" href="{{ asset('images') }}/logo.png" type="image/ico" />
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="assets/css/all.min.css">
-	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
-	<link rel="stylesheet" href="assets/css/style.css">
-	<link rel="stylesheet" href="assets/css/media-query.css">
+	<link rel="stylesheet" href="{{'main/onboarding'}}/css/all.min.css">
+	<link rel="stylesheet" href="{{'main/onboarding'}}/css/bootstrap.min.css">
+	<link rel="stylesheet" href="{{'main/onboarding'}}/css/style.css">
+	<link rel="stylesheet" href="{{'main/onboarding'}}/css/media-query.css">
 </head>
 <body	>
 	<div class="site_content">
@@ -64,7 +64,7 @@
 								<div class="main-header">
 								</div>
 								<div class="skip_btn_3 skip_btn">
-									<a href="sign-in-screen.html">Skip</a>
+									<a href="{{route('login')}}" id="setLocalStorage">Skip</a>
 								</div>
 								<div class="screen-1-content">
 									<h1>Create Real Inspiration</h1>
@@ -78,10 +78,11 @@
 		</div>
 		<!-- Onboarding  Details Section End -->
 	</div>
-	<script src="assets/js/jquery-min-3.6.0.js"></script>
-	<script  src="assets/js/slick.min.js"></script>
-	<script  src="assets/js/bootstrap.bundle.min.js"></script>
-	<script  src="assets/js/custom.js"></script>
+	<script src="{{'main/onboarding'}}/js/jquery-min-3.6.0.js"></script>
+	<script  src="{{'main/onboarding'}}/js/slick.min.js"></script>
+	<script  src="{{'main/onboa	rding'}}/js/bootstrap.bundle.min.js"></script>
+	<script  src="{{'main/onboarding'}}/js/custom.js"></script>
+	
 </body>
 </html>
 

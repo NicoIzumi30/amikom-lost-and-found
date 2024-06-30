@@ -28,7 +28,7 @@
                     <div class="mb-3">
                         <label for="">No yang bisa dihubungi</label>
                         <input type="text" name="no_tlp" id="" placeholder="Gunakan format 62"
-                            class="form-control form-custom">
+                            class="form-control form-custom" value="{{auth()->user()->phone_number ? auth()->user()->phone_number : ''}}">
                     </div>
                     <p class="mb-0">Berikan gambar barang tersebut</p>
                     <div class="custom-file mb-3">

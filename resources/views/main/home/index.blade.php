@@ -54,10 +54,9 @@
             </div>
             <div class="mt-3 text-center">
                 <swiper-container>
-                    <swiper-slide><img src="{{asset('images')}}/cropper.jpg" class="image-banner" alt=""></swiper-slide>
-                    <swiper-slide><img src="{{asset('images')}}/cropper.jpg" class="image-banner" alt=""></swiper-slide>
-                    <swiper-slide><img src="{{asset('images')}}/cropper.jpg" class="image-banner" alt=""></swiper-slide>
-                    <swiper-slide><img src="{{asset('images')}}/cropper.jpg" class="image-banner" alt=""></swiper-slide>
+                    @foreach ($banners as  $banner)
+                    <swiper-slide><a href="{{route('detailBanner', ['id' => $banner->id])}}"><img src="{{asset('storage/announcement')}}/{{$banner->image}}" class="image-banner" alt=""></a></swiper-slide>
+                    @endforeach
                 </swiper-container>
             </div>
 

@@ -14,20 +14,21 @@ use Illuminate\Support\Facades\Route;
 |
  */ 
 
-Route::get('/welcome', function () {
-    return view('welcome');
-});
+
 
 Route::get('/login', [Controllers\LoginController::class, 'index'])->name('login');
 Route::post('/login', [Controllers\LoginController::class, 'authenticate']);
 Route::get('/googleredirect', [Controllers\LoginController::class, 'redirectToGoogle'])->name('callback');
 Route::get('/googlecallback', [Controllers\LoginController::class, 'handleGoogleCallback'])->name('redirect');
+Route::get('/', [Controllers\OnboardingController::class, 'index'])->name('getStarted');
+Route::get('/onboarding', [Controllers\OnboardingController::class, 'onboarding'])->name('onboarding');
 
 
 
 
 Route::middleware(['authCheck'])->group(function () {
-    Route::get('/', [Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/home', [Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/detail-banner/{id}', [Controllers\HomeController::class, 'detail_banner'])->name('detailBanner');
     Route::get('/profile', [Controllers\ProfileController::class, 'index'])->name('profile');
     Route::put('/profile', [Controllers\ProfileController::class, 'update'])->name('profile.update');
     Route::put('/change-password', [Controllers\ProfileController::class, 'change_password'])->name('changePassword');
@@ -38,7 +39,7 @@ Route::middleware(['authCheck'])->group(function () {
         Route::put('/update/{id}', [Controllers\LostItemController::class, 'update'])->name('lostItems.update');
         Route::get('/destroy/{id}', [Controllers\LostItemController::class, 'destroy'])->name('lostItems.destroy');
         Route::get('/item-found', [Controllers\HistoryController::class, 'item_found'])->name('history.itemFound');
-        Route::get('/item-found/update/{slug}', [Controllers\ItemFoundController::class, 'edit'])->name('history.itemFound.edit');
+        Route::get('/item-found/update/{slug}', [Controllers\ItemFoundController::class, 'edit'])->name('   itemFound.edit');
         Route::post('/item-found/update/{slug}', [Controllers\ItemFoundController::class, 'update'])->name('itemFound.update');
         Route::get('/item-found/destroy/{id}', [Controllers\ItemFoundController::class, 'destroy'])->name('itemFound.destroy');
     });
@@ -63,7 +64,7 @@ Route::middleware(['authCheck'])->group(function () {
 
 
 Route::prefix('administrator')->name('administrator.')->group(function () {
-    Route::get('/', Controllers\Administrator\DashboardController::class)->middleware('auth')->name('dashboard.index');
+    Route::get('/dashboard', Controllers\Administrator\DashboardController::class)->middleware('auth')->name('dashboard.index');
     Route::middleware('guest')->group(function () {
         Route::get('login', [Controllers\Administrator\LoginController::class, 'loginForm'])->name('login');
         Route::post('login', [Controllers\Administrator\LoginController::class, 'authenticate']);

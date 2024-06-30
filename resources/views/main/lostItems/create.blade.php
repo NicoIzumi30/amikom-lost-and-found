@@ -10,6 +10,7 @@
                         <textarea name="postingan" class="form-control" rows="5" id=""
                             style="border-radius:10px"></textarea>
                     </div>
+                   
                     <div class="mb-3">
                         <label for="">Barang tersebut masuk kategori apa?</label>
                         <select name="category_id" id="" class="form-control form-custom">
@@ -22,7 +23,7 @@
                     <div class="mb-3">
                         <label for="">No yang bisa dihubungi</label>
                         <input type="text" name="no_tlp" id="" placeholder="Gunakan format 62"
-                            class="form-control form-custom">
+                            class="form-control form-custom" value="{{auth()->user()->phone_number ? auth()->user()->phone_number : ''}}">
                     </div>
                     <p class="mb-0">Foto barang yang hilang (opsional)</p>
                     <div class="custom-file mb-3">

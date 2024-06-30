@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Amikom Lost and Found</title>
     <meta name="description"
-        content="Buka obrolan yang tepat dengan Dosen Anda. Template pesan & pembuat pesan profesional. Gratis!">
+        content="Cari dan temukan barangmu yang hilang">
+    <link rel="icon" href="{{ asset('images') }}/logo.png" type="image/ico" />
+
     <link rel="stylesheet" href="{{ asset('main') }}/css/style.css">
     <link rel="stylesheet" href="{{ asset('main') }}/css/sw-custom.css">
     <link rel="stylesheet"
