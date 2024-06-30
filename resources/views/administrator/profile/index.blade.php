@@ -34,6 +34,7 @@
 
                                         <input type="tel" class="form-control" value="{{$data->phone_number}}" name="phone_number" required>
                                     </div>
+                                    <!-- <input type="file" name="image" id=""> -->
                                     <div class="custom-file mb-3">
                                         <input type="file" class="custom-file-input" name="image" id="customFile">
                                         <label class="custom-file-label" for="customFile">Choose file</label>

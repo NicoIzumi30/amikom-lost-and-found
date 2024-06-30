@@ -53,7 +53,7 @@ class LoginController extends Controller
                     'google_id' => $user->getId(),
                     'name' => $user->getName(),
                     'email' => $user->getEmail(),
-                    'image' => $user->avatar
+                    'image' => null
                 ]);
                 $newuser->save();
                 $cekuser = $newuser;
@@ -63,6 +63,6 @@ class LoginController extends Controller
             return to_route('home');
         }
 
-        return to_route('login')->withErrors(['Email domain not allowed.']);
+        return to_route('login')->withErrors(['Gunakan email amikom untuk login di aplikasi ini.']);
     }
 }

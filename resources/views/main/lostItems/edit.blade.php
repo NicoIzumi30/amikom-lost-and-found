@@ -3,15 +3,6 @@
         <!-- Wallet Card -->
         <div class="section pt-1">
             <div class="container mt-3">
-                <!-- Cek apik sek tak comment po sek saiki -->
-                <!-- <div class="mb-3">
-                    <label for="">Tulis judul postingan anda</label>
-                    <input type="text" name="title" id="" class="form-control form-custom">
-                </div>
-                <div class="mb-3">
-                    <label for="">Berikan informasi tambahan</label>
-                    <textarea name="description" class="form-control" rows="5" id=""></textarea>
-                </div> -->
                 <div class="mb-3">
                     <label for="">Tulis postingan Anda</label>
                     <textarea name="postingan" class="form-control" rows="5" id="" style="border-radius:10px">Kehilangan Tumbler</textarea>

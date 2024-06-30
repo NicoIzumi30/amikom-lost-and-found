@@ -28,8 +28,10 @@ Route::get('/googlecallback', [Controllers\LoginController::class, 'handleGoogle
 
 Route::middleware(['authCheck'])->group(function () {
     Route::get('/', [Controllers\HomeController::class, 'index'])->name('home');
-
     Route::get('/profile', [Controllers\ProfileController::class, 'index'])->name('profile');
+    Route::put('/profile', [Controllers\ProfileController::class, 'update'])->name('profile.update');
+    Route::put('/change-password', [Controllers\ProfileController::class, 'change_password'])->name('changePassword');
+
     Route::get('/history', [Controllers\HistoryController::class, 'index'])->name('history');
     Route::get('/history/item-found', [Controllers\HistoryController::class, 'item_found'])->name('history.itemFound');
 

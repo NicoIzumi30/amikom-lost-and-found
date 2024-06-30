@@ -74,7 +74,7 @@
         </div>
         <div class="right">
             <div class="headerButton" data-toggle="dropdown" id="dropdownMenuLink" aria-haspopup="true">
-                <img src="{{ auth()->user()->image ? asset('storage/users/' . auth()->user()->image) : asset('image/user.png') }}"
+                <img src="{{ auth()->user()->image ? asset('storage/users/' . auth()->user()->image) : asset('images/user.png') }}"
                     alt="image" style="aspect-ratio: 1;border-radius: 50%" class="imaged w32">
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                     <a class="dropdown-item" onclick="location.href='{{ route('profile') }}'" href="#"><ion-icon
@@ -151,6 +151,12 @@
             });
         });
     </script>
+      <script type="application/javascript">
+    $('input[type="file"]').change(function(e){
+        var fileName = e.target.files[0].name;
+        $('.custom-file-label').html(fileName);
+    });
+</script>
 </body>
 
 </html>

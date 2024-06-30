@@ -28,9 +28,7 @@ class LostItemController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'category_id' => ['required'],
-            'title' => ['required', 'max:255'],
-            'description' => ['required', 'max:255'],
+            'postingan' => ['required'],
             'image' => ['nullable', 'mimes:jpg,png,jpeg,svg'],
             'no_tlp' => ['required', 'min:8', 'max:16']
         ]);
@@ -41,17 +39,21 @@ class LostItemController extends Controller
         $imageName = time() . '.' . $request->image->extension();
 
         $request->image->storeAs('lost-item', $imageName, 'public');
-
-        LostItem::create([
+        $data = [
             'user_id' => Auth::user()->id,
-            'category_id' => $request->category_id,
-            'title' => $request->title,
-            'description' => $request->description,
-            'image' => $imageName,
+                    'postingan' => $request->postingan,
             'status' => 'belum',
             'no_tlp' => $request->no_tlp
-        ]);
-
+        ];
+        if ($request->hasFile('image')) {
+            $request->validate([
+                'image' => ['mimes:jpg,jpeg,svg,png'],
+            ]);
+            $imageName = time() . '.' . $request->image->extension();
+            $request->image->storeAs('lostItem', $imageName, 'public');
+            $data['image'] = $imageName;
+        }
+        LostItem::create($data);
         return to_route('lostItems')->withSuccess('LostItem has been created');
     }
 
