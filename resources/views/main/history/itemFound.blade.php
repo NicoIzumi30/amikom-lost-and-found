@@ -17,7 +17,7 @@
                             <div class="card-body text-muted">
                                 <div class="row">
                                     <div class="col-2"><img
-                                            src="{{ $lost->user->image ? asset('storage/users/' . $lost->user->image) : asset('images/user.png') }}       " class="w-75"
+                                            src="{{ $userfound->user->image ? asset('storage/users/' . $lost->user->image) : asset('images/user.png') }}       " class="w-75"
                                             style="aspect-ratio: 1;border-radius: 50%" alt=""></div>
                                     <div class="col-10">
                                         <h3 class="mb-0" style="margin-left: -20px;margin-top:3px">{{$userfound->user->name}}</h3>
