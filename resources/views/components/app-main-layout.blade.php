@@ -102,7 +102,7 @@
                 <strong>History</strong>
             </div>
         </a>
-        <a href="{{route('profile')}}>" class="item">
+        <a href="{{route('profile')}}" class="item">
             <div class="col text-dark">
                 <i class="fas fa-user fa-2x"></i>
                 <strong>Profil</strong>
