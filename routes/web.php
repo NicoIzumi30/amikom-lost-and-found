@@ -18,35 +18,50 @@ Route::get('/welcome', function () {
     return view('welcome');
 });
 
-Route::get('/', [Controllers\HomeController::class, 'index'])->name('home');
-// Route::middleware(['authCheck'])->group(function () {
+Route::get('/login', [Controllers\LoginController::class, 'index'])->name('login');
+Route::post('/login', [Controllers\LoginController::class, 'authenticate']);
+Route::get('/googleredirect', [Controllers\LoginController::class, 'redirectToGoogle'])->name('callback');
+Route::get('/googlecallback', [Controllers\LoginController::class, 'handleGoogleCallback'])->name('redirect');
+
+
+
+
+Route::middleware(['authCheck'])->group(function () {
+    Route::get('/', [Controllers\HomeController::class, 'index'])->name('home');
+
     Route::get('/profile', [Controllers\ProfileController::class, 'index'])->name('profile');
     Route::get('/history', [Controllers\HistoryController::class, 'index'])->name('history');
     Route::get('/history/item-found', [Controllers\HistoryController::class, 'item_found'])->name('history.itemFound');
-    
+
 
     Route::prefix('lost-items')->group(function () {
         Route::get('/', [Controllers\LostItemController::class, 'index'])->name('lostItems');
-        Route::get('/create', [Controllers\LostItemController::class, 'create'])->name('lostItems.create');
         Route::get('/edit', [Controllers\LostItemController::class, 'edit'])->name('lostItems.edit');
+
+        Route::get('/create', [Controllers\LostItemController::class, 'create'])->name('lostItems.create');
         Route::post('/store', [Controllers\LostItemController::class, 'store'])->name('lostItems.store');
+
         Route::get('/update/{id}', [Controllers\LostItemController::class, 'update'])->name('lostItems.update');
         Route::get('/destroy/{id}', [Controllers\LostItemController::class, 'destroy'])->name('lostItems.destroy');
     });
     Route::prefix('item-found')->group(function () {
         Route::get('/', [Controllers\ItemFoundController::class, 'index'])->name('itemFound');
-        Route::get('/create', [Controllers\ItemFoundController::class, 'create'])->name('itemFound.create');
-        Route::get('/edit', [Controllers\ItemFoundController::class, 'edit'])->name('itemFound.edit');
         Route::get('/detail/{id}', [Controllers\ItemFoundController::class, 'detail'])->name('itemFound.detail');
+
+        Route::get('/edit', [Controllers\ItemFoundController::class, 'edit'])->name('itemFound.edit');
+
+        Route::get('/create', [Controllers\ItemFoundController::class, 'create'])->name('itemFound.create');
         Route::post('/store', [Controllers\ItemFoundController::class, 'store'])->name('itemFound.store'); // Perubahan di sini
+
+        Route::get('/detail/{id}', [Controllers\ItemFoundController::class, 'detail'])->name('itemFound.detail');
         Route::get('/update/{id}', [Controllers\ItemFoundController::class, 'update'])->name('itemFound.update');
         Route::get('/destroy/{id}', [Controllers\ItemFoundController::class, 'destroy'])->name('itemFound.destroy');
     });
 
     Route::get('/logout', Controllers\LogoutController::class)->name('logout');
-// });
+});
 
-Route::get('/login', [Controllers\LoginController::class, 'index'])->name('login');
+
 
 Route::prefix('administrator')->name('administrator.')->group(function () {
     Route::get('/', Controllers\Administrator\DashboardController::class)->middleware('auth')->name('dashboard.index');
