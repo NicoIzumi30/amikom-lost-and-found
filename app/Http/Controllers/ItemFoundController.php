@@ -4,17 +4,21 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
-use PhpOffice\PhpSpreadsheet\Writer\Xlsx\Rels;
 use App\Models\ItemFound;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class ItemFoundController extends Controller
 {
     public function index()
     {
         $data = ItemFound::latest()->get();
-        return view('main/itemFound/index', compact('data'));
+        $categories = Category::all();
+        return view('main/itemFound/index', [
+            'data' => $data,
+            'categories' => $categories,
+        ]);
     }
 
     public function detail($slug)
@@ -52,15 +56,14 @@ class ItemFoundController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'category_id' => ['required'],
-            'title' => ['required', 'max:255'],
-            'description' => ['required', 'max:255'],
+            'postingan' => ['required'],
             'location' => ['required', 'max:255'],
             'image' => ['required', 'mimes:jpg,jpeg,png,svg'],
             'no_tlp' => ['required', 'min:8', 'max:16'],
         ]);
 
         if ($validator->fails()) {
-            return redirect()->back()->withErrors('Failed to create ItemFound');
+             return redirect()->back()->withErrors('Failed to create ItemFound');
         }
         $imageName = time() . '.' . $request->image->extension();
 
@@ -68,11 +71,10 @@ class ItemFoundController extends Controller
 
         ItemFound::create([
             'user_id' => Auth::user()->id,
-            'category_id' => $request->category_id,
-            'title' => $request->title,
-            'slug'=>$request->title,
-            'description' => $request->description,
+            'postingan' => $request->postingan,
+            'category_id'=>$request->category_id,
             'location' => $request->location,
+            'slug'=>Str::of($request->postingan)->words(4, ''),
             'image' => $imageName,
             'status' => 'belum',
             'no_tlp' => $request->no_tlp
@@ -85,8 +87,8 @@ class ItemFoundController extends Controller
 
     public function edit($slug)
     {
-        $data = ItemFound::where('slug',$slug)->first();
-        return view('main/itemFound/edit',compact('data'));
+        $data = ItemFound::where('slug', $slug)->first();
+        return view('main/itemFound/edit', compact('data'));
     }
 
     public function update(Request $request, $slug)

@@ -11,40 +11,22 @@
                     </div>
                     <div class="col-10">
                         <input type="text" class="form-control createItemFound" readonly
-                            style="height: 45px;margin-top: 1px;margin-left: -20px;border-radius: 50px"
+                            style="height: 45px;margin-top: 3px;margin-left: -20px;border-radius: 50px;background-color:white !important;"
                             placeholder="Apakah Anda Menemukan Barang?">
                     </div>
                 </div>
-                <div class="row my-3" id="itemKategori">
-
+                <div class="row mt-5 mb-3" id="itemKategori">
+                    @foreach ($categories as $category)
                     <div class="col-3 mb-1">
+                        <a href="{{ route('itemFound.category', ['slug' => $category->slug]) }}">
                         <div class="card">
                             <div class="card-body" style="text-align: center;padding:8px">
-                                <h4 class="mb-0">Elekronik</h4>
+                                <h4 class="mb-0">{{ $category->category_name }}</h4>
                             </div>
                         </div>
+                        </a>
                     </div>
-                    <div class="col-3 mb-1">
-                        <div class="card">
-                            <div class="card-body" style="text-align: center;padding:8px">
-                                <h4 class="mb-0">Elekronik</h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-3 mb-1">
-                        <div class="card">
-                            <div class="card-body" style="text-align: center;padding:8px">
-                                <h4 class="mb-0">Elekronik</h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-3 mb-1">
-                        <div class="card">
-                            <div class="card-body" style="text-align: center;padding:8px">
-                                <h4 class="mb-0">Elekronik</h4>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
                 <div class="row">
                     @forelse ($data as $key => $itemfound)
@@ -56,7 +38,7 @@
                                             <img src="{{ asset('storage/item-found/'.$itemfound->image) }}" class="w-75" height="150px"
                                                 alt="...">
                                         </div>
-                                        <h5 class="card-title mt-2">{{ $itemfound->title }}</h5>
+                                        <h5 class="card-title mt-2">{{ $itemfound->postingan }}</h5>
                                         <div class="text-right">
                                             <small class="text-dark">{{ $itemfound->created_at->diffForHumans() }}</small>
                                         </div>

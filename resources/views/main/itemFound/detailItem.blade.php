@@ -11,11 +11,6 @@
                         <div class="table-responsive mt-5">
                             <table class="table">
                                 <tr>
-                                    <td width="30%">Nama Barang</td>
-                                    <td width="5%"> : </td>
-                                    <td>{{$data->title}}</td>
-                                </tr>
-                                <tr>
                                     <td width="37%">Yang Menemukan</td>
                                     <td width="5%"> : </td>
                                     <td>{{$data->user->name}}</td>
@@ -33,7 +28,7 @@
                                 <tr>
                                     <td width="30%">Deskripsi</td>
                                     <td width="5%"> : </td>
-                                    <td>{{$data->description}}</td>
+                                    <td>{{$data->postingan}}</td>
                                 </tr>
                             </table>
                         </div>
