@@ -38,6 +38,10 @@
             background-color: #fff;
             cursor: pointer;
         }
+        .card-active{
+            transform: scale(1.1);
+            border: 1px solid #4A1B9D;
+        }
     </style>
 </head>
 
@@ -138,7 +142,7 @@
     <!-- Base Js File -->
     <script src="{{ asset('main') }}/js/base.js"></script>
     <script src="{{ asset('main') }}/js/sweetalert.min.js"></script>
-    <script src="{{ asset('main') }}/js/scripta.js"></script>
+    <script src="{{ asset('build') }}/js/script.js"></script>
     <script src="{{ asset('main') }}/js/datatables/jquery.dataTables.min.js"></script>
     <script src="{{ asset('main') }}/js/datatables/dataTables.bootstrap.min.js"></script>
     <script>

@@ -13,6 +13,7 @@
         "laravel/sanctum": "^3.3",
         "laravel/socialite": "^5.15",
         "laravel/tinker": "^2.8",
+        "nesbot/carbon": "^2.72",
         "phpoffice/phpspreadsheet": "^2.1",
         "realrashid/sweet-alert": "^7.2"
     },
