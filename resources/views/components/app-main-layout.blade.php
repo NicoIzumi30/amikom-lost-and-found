@@ -38,6 +38,10 @@
             background-color: #fff;
             cursor: pointer;
         }
+        .card-active{
+            transform: scale(1.1);
+            border: 1px solid #4A1B9D;
+        }
     </style>
 </head>
 
@@ -74,7 +78,7 @@
         </div>
         <div class="right">
             <div class="headerButton" data-toggle="dropdown" id="dropdownMenuLink" aria-haspopup="true">
-                <img src="{{ auth()->user()->image ? asset('storage/users/' . auth()->user()->image) : asset('image/user.png') }}"
+                <img src="{{ auth()->user()->image ? asset('storage/users/' . auth()->user()->image) : asset('images/user.png') }}"
                     alt="image" style="aspect-ratio: 1;border-radius: 50%" class="imaged w32">
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                     <a class="dropdown-item" onclick="location.href='{{ route('profile') }}'" href="#"><ion-icon
@@ -95,36 +99,34 @@
     {{ $slot }}
 
     <div class="appBottomMenu">
-        <a href="{{ route('home') }}" class="item">
+        <a href="{{route('home')}}" class="item {{request()->routeIs('home') ? 'active' : ''}}">
             <div class="col text-dark">
                 <i class="fas fa-home fa-2x"></i>
                 <!-- <ion-icon name="home-outline"></ion-icon> -->
                 <strong>Home</strong>
             </div>
         </a>
-        <a href="{{ route('itemFound') }}" class="item">
+        <a href="{{route('itemFound')}}" class="item {{request()->routeIs('itemFound') ? 'active' : ''}}">
             <div class="col text-dark">
                 <i class="fas fa-hands-bound fa-2x"></i>
                 <!-- <ion-icon name="document-text-outline"></ion-icon> -->
                 <strong>Barang Ditemukan</strong>
             </div>
         </a>
-        <a href="{{ route('lostItems') }}" class="item">
+        <a href="{{route('lostItems')}}" class="item {{request()->routeIs('lostItems') ? 'active' : ''}}">
             <div class="col text-dark">
                 <i class="fas fa-person-circle-question fa-2x"></i>
-                <!-- <ion-icon name="chatbubbles-outline"></ion-icon> -->
                 <strong>Barang Hilang</strong>
             </div>
         </a>
-
-        <a href="{{route('history')}}" class="item">
+        <a href="{{route('history')}}" class="item {{request()->routeIs('history') ? 'active' : ''}}">
             <div class="col text-dark">
                 <i class="fas fa-rotate-right fa-2x"></i>
                 <!-- <ion-icon name="chatbubbles-outline"></ion-icon> -->
                 <strong>History</strong>
             </div>
         </a>
-        <a href="{{route('profile')}}" class="item">
+        <a href="{{route('profile')}}" class="item {{request()->routeIs('profile') ? 'active' : ''}}">
             <div class="col text-dark">
                 <i class="fas fa-user fa-2x"></i>
                 <strong>Profil</strong>
@@ -140,7 +142,7 @@
     <!-- Base Js File -->
     <script src="{{ asset('main') }}/js/base.js"></script>
     <script src="{{ asset('main') }}/js/sweetalert.min.js"></script>
-    <script src="{{ asset('main') }}/js/scripta.js"></script>
+    <script src="{{ asset('build') }}/js/script.js"></script>
     <script src="{{ asset('main') }}/js/datatables/jquery.dataTables.min.js"></script>
     <script src="{{ asset('main') }}/js/datatables/dataTables.bootstrap.min.js"></script>
     <script>
@@ -153,6 +155,12 @@
             });
         });
     </script>
+      <script type="application/javascript">
+    $('input[type="file"]').change(function(e){
+        var fileName = e.target.files[0].name;
+        $('.custom-file-label').html(fileName);
+    });
+</script>
 </body>
 
 </html>
