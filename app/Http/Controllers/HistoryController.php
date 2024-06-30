@@ -2,16 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ItemFound;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class HistoryController extends Controller
 {
     public function index(){
 
         return view("main.history.index ");
-    } 
-    public function item_found(){
+    }
+    public function item_found()
+    {
+        $finduser = Auth::user();
+        $data = $finduser->itemFounds()->get();
 
-        return view("main.history.itemFound ");
-    } 
+        return view("main.history.itemFound ",compact('data'));
+    }
 }

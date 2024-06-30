@@ -16,14 +16,6 @@ class ItemFoundController extends Controller
         $data = ItemFound::latest()->get();
         return view('main/itemFound/index', compact('data'));
     }
-    public function create()
-    {
-        return view('main/itemFound/create');
-    }
-    public function edit()
-    {
-        return view('main/itemFound/edit');
-    }
 
     public function detail($id)
     {
@@ -53,7 +45,7 @@ class ItemFoundController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('main.itemFound.create',compact('categories'));
+        return view('main.itemFound.create', compact('categories'));
     }
 
     public function store(Request $request)
@@ -63,6 +55,7 @@ class ItemFoundController extends Controller
             'title' => ['required', 'max:255'],
             'description' => ['required', 'max:255'],
             'location' => ['required', 'max:255'],
+            'slug'=>['required'],
             'image' => ['required', 'mimes:jpg,jpeg,png,svg'],
             'no_tlp' => ['required', 'min:8', 'max:16'],
         ]);
@@ -81,6 +74,7 @@ class ItemFoundController extends Controller
             'description' => $request->description,
             'location' => $request->location,
             'image' => $imageName,
+            '$slug'>"testslug",
             'status' => 'belum',
             'no_tlp' => $request->no_tlp
 
@@ -89,15 +83,16 @@ class ItemFoundController extends Controller
         return to_route('itemFound')->withSuccess('ItemFound has been created');
     }
 
+
+    public function edit($id)
+    {
+        $data = ItemFound::findOrfail($id);
+        return view('main/itemFound/edit',compact('data'));
+    }
+
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            'user_id' => ['required'],
-            'category_id' => ['required'],
-            'title' => ['required', 'max:255'],
-            'description' => ['required', 'max:255'],
-            'location' => ['required', 'max:255'],
-            'image' => ['nullable', 'mimes:jpg,jpeg,png,svg'],
             'status' => ['required'],
             'no_tlp' => ['required', 'min:8', 'max:16'],
         ]);
@@ -106,36 +101,19 @@ class ItemFoundController extends Controller
             return redirect()->back()->withErrors('Failed to update ItemFound');
         }
         $itemFound = ItemFound::findOrFail($id);
-        $itemFound->user_id = $request->user_id; //hidden input di blade
-        $itemFound->category_id = $request->category_id;
-        $itemFound->title = $request->title;
-        $itemFound->description = $request->description;
-        $itemFound->location = $request->location;
+
         $itemFound->status = $request->status;
         $itemFound->no_tlp = $request->no_tlp;
-        if ($request->hasFile('image')) {
-            $request->validate([
-                'image' => ['mimes:jpg,jpeg,svg,png'],
-            ]);
 
-            $oldImagePath = public_path('storage/item-found/' . $itemFound->image);
-            if (file_exists($oldImagePath)) {
-                unlink($oldImagePath);
-            }
-
-            $imageName = time() . '.' . $request->image->extension();
-            $request->image->storeAs('item-found', $imageName, 'public');
-            $itemFound->image = $imageName;
-        }
 
         $itemFound->save();
 
-        return to_route('')->withSuccess('ItemFound has been updated');
+        return to_route('history.itemFound')->withSuccess('ItemFound has been updated');
     }
 
     public function destroy($id)
     {
         ItemFound::findOrFail($id)->delete();
-        return to_route('')->withSuccess('ItemFound has been deleted');
+        return to_route('history.itemFound')->withSuccess('ItemFound has been deleted');
     }
 }
