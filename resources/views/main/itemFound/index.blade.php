@@ -1,7 +1,7 @@
 <x-app-main-layout>
     <div id="appCapsule">
         <!-- Wallet Card -->
-        
+
         <div class="section pt-1">
             <div class="container mt-3">
                 <div class="row mb-1">
@@ -11,11 +11,11 @@
                     </div>
                     <div class="col-10">
                         <input type="text" class="form-control createItemFound" readonly
-                            style="height: 45px;margin-top: 1px;margin-left: -20px;border-radius: 50px"
+                            style="height: 45px;margin-top: 3px;margin-left: -20px;border-radius: 50px;background-color:white !important;"
                             placeholder="Apakah Anda Menemukan Barang?">
                     </div>
                 </div>
-                <div class="row my-3" id="itemKategori">
+                <div class="row mt-5 mb-3" id="itemKategori">
                     @foreach ($categories as $category)
                     <div class="col-3 mb-1">
                         <a href="{{ route('itemFound.category', ['id' => $category->id]) }}">
@@ -40,7 +40,7 @@
                                         </div>
                                         <h5 class="card-title mt-2">{{ $itemfound->title }}</h5>
                                         <div class="text-right">
-                                            <small class="text-dark">3 Jam Yang Lalu</small>
+                                            <small class="text-dark">{{ $itemfound->created_at->diffForHumans() }}</small>
                                         </div>
                                     </div>
                                 </div>

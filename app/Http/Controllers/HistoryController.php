@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 use App\Models\LostItem;
 
+use App\Models\ItemFound;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class HistoryController extends Controller
 {
@@ -13,8 +16,10 @@ class HistoryController extends Controller
                   'lostitems' => $lostitems
         ]);
     } 
-    public function item_found(){
-
-        return view("main.history.itemFound ");
-    } 
+    public function item_found()
+    {
+        $finduser = Auth::user();
+        $data = $finduser->itemFounds()->get();
+        return view("main.history.itemFound ",compact('data'));
+    }
 }

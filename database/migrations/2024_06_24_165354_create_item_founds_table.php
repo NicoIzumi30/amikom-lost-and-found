@@ -19,7 +19,8 @@ return new class extends Migration
             $table->text("description");
             $table->string("image");
             $table->string("location");
-            $table->enum('status',['ditemukam','belum']);
+            $table->string("slug")->unique();
+            $table->enum('status',['ditemukan','belum']);
             $table->string("no_tlp");
             $table->timestamps();
         });
