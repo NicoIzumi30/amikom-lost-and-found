@@ -17,8 +17,11 @@ class ItemFoundController extends Controller
     }
     public function create()
     {
-        $data = ItemFound::all();
         return view('main/itemFound/create');
+    }
+    public function edit()
+    {
+        return view('main/itemFound/edit');
     }
 
     public function detail($id)

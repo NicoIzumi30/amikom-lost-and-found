@@ -22,10 +22,13 @@ Route::get('/', [Controllers\HomeController::class, 'index'])->name('home');
 // Route::middleware(['authCheck'])->group(function () {
     Route::get('/profile', [Controllers\ProfileController::class, 'index'])->name('profile');
     Route::get('/history', [Controllers\HistoryController::class, 'index'])->name('history');
+    Route::get('/history/item-found', [Controllers\HistoryController::class, 'item_found'])->name('history.itemFound');
+    
 
     Route::prefix('lost-items')->group(function () {
         Route::get('/', [Controllers\LostItemController::class, 'index'])->name('lostItems');
         Route::get('/create', [Controllers\LostItemController::class, 'create'])->name('lostItems.create');
+        Route::get('/edit', [Controllers\LostItemController::class, 'edit'])->name('lostItems.edit');
         Route::post('/store', [Controllers\LostItemController::class, 'store'])->name('lostItems.store');
         Route::get('/update/{id}', [Controllers\LostItemController::class, 'update'])->name('lostItems.update');
         Route::get('/destroy/{id}', [Controllers\LostItemController::class, 'destroy'])->name('lostItems.destroy');
@@ -33,6 +36,7 @@ Route::get('/', [Controllers\HomeController::class, 'index'])->name('home');
     Route::prefix('item-found')->group(function () {
         Route::get('/', [Controllers\ItemFoundController::class, 'index'])->name('itemFound');
         Route::get('/create', [Controllers\ItemFoundController::class, 'create'])->name('itemFound.create');
+        Route::get('/edit', [Controllers\ItemFoundController::class, 'edit'])->name('itemFound.edit');
         Route::get('/detail/{id}', [Controllers\ItemFoundController::class, 'detail'])->name('itemFound.detail');
         Route::post('/store', [Controllers\ItemFoundController::class, 'store'])->name('itemFound.store'); // Perubahan di sini
         Route::get('/update/{id}', [Controllers\ItemFoundController::class, 'update'])->name('itemFound.update');

@@ -29,8 +29,8 @@
 
                             <div class="text-right">
                                 <!-- <img src="{{asset('images')}}/prod-1.jpg" class="w-75" height="300px" alt=""> -->
-                                <a href="#" class="btn btn-danger py-3 m-1">Hapus</a>
-                                <a href="#" class="btn btn-info py-2 m-1">Edit</a>
+                                <a href="#" class="btn btn-red py-3 m-1">Hapus</a>
+                                <a href="{{route('lostItems.edit')}}" class="btn btn-info py-2 m-1">Edit</a>
                             </div>
 
                         </div>
@@ -55,8 +55,8 @@
                             <div class="text-right">
                                 <div class="text-right">
                                     <!-- <img src="{{asset('images')}}/prod-1.jpg" class="w-75" height="300px" alt=""> -->
-                                    <a href="#" class="btn btn-danger py-3 m-1">Hapus</a>
-                                    <a href="#" class="btn btn-info py-2 m-1">Edit</a>
+                                    <a href="#" class="btn btn-red py-3 m-1">Hapus</a>
+                                    <a href="{{route('lostItems.edit')}}" class="btn btn-info py-2 m-1">Edit</a>
                                 </div>
                             </div>
                         </div>
@@ -68,7 +68,11 @@
     <script>
         function changeValue() {
             var kategorival = document.getElementById('kategori').value;
-            alert(kategorival);
+            if(kategorival == 1){
+                window.location.href = "{{url('/history')}}";
+            }else{
+                window.location.href = "{{url('/history/item-found')}}";
+            }
         }
     </script>
 </x-app-main-layout>
