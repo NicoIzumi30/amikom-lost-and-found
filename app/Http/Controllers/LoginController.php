@@ -31,7 +31,7 @@ class LoginController extends Controller
             return redirect()->intended('/');
         }
 
-        return back()->withErrors('Email atau Password Salah ');
+        return back()->withErrors('NIK atau Password Salah ');
     }
 
     public function redirectToGoogle()

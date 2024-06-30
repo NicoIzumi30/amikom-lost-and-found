@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Route;
 | routes are loaded by the RouteServiceProvider and all of them will
 | be assigned to the "web" middleware group. Make something great!
 |
- */
+ */ 
 
 Route::get('/welcome', function () {
     return view('welcome');
@@ -38,17 +38,19 @@ Route::middleware(['authCheck'])->group(function () {
 
     Route::prefix('lost-items')->group(function () {
         Route::get('/', [Controllers\LostItemController::class, 'index'])->name('lostItems');
-        Route::get('/edit', [Controllers\LostItemController::class, 'edit'])->name('lostItems.edit');
+        Route::get('/edit/{id}', [Controllers\LostItemController::class, 'edit'])->name('lostItems.edit');
 
         Route::get('/create', [Controllers\LostItemController::class, 'create'])->name('lostItems.create');
         Route::post('/store', [Controllers\LostItemController::class, 'store'])->name('lostItems.store');
+        Route::get('/category/{id}', [Controllers\LostItemController::class, 'category'])->name('lostItems.category');
 
-        Route::get('/update/{id}', [Controllers\LostItemController::class, 'update'])->name('lostItems.update');
+        Route::put('/update/{id}', [Controllers\LostItemController::class, 'update'])->name('lostItems.update');
         Route::get('/destroy/{id}', [Controllers\LostItemController::class, 'destroy'])->name('lostItems.destroy');
     });
     Route::prefix('item-found')->group(function () {
         Route::get('/', [Controllers\ItemFoundController::class, 'index'])->name('itemFound');
         Route::get('/detail/{id}', [Controllers\ItemFoundController::class, 'detail'])->name('itemFound.detail');
+        Route::get('/category/{id}', [Controllers\ItemFoundController::class, 'category'])->name('itemFound.category');
 
         Route::get('/edit', [Controllers\ItemFoundController::class, 'edit'])->name('itemFound.edit');
 

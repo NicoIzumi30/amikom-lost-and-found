@@ -15,7 +15,7 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-12 col-md-6">
-                            <form action="{{route('profile.update')}}" method="POST" enctype="multipart/form-data" >
+                            <form action="{{route('profile.update')}}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
                                 <div class="section-title">Profil</div>
@@ -64,7 +64,7 @@
                                                 </i>
                                             </div>
                                         </div>
-                                        <div class="form-group boxed">
+                                        <div class="mb-3">
                                             <small class="mb-0 text-dark">Foto Profile</small>
                                             <div class="custom-file mb-0">
                                                 <input type="file" class="custom-file-input" name="image"

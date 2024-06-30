@@ -16,35 +16,17 @@
                     </div>
                 </div>
                 <div class="row my-3" id="itemKategori">
-
+                    @foreach ($categories as $category)
                     <div class="col-3 mb-1">
+                        <a href="{{ route('itemFound.category', ['id' => $category->id]) }}">
                         <div class="card">
                             <div class="card-body" style="text-align: center;padding:8px">
-                                <h4 class="mb-0">Elekronik</h4>
+                                <h4 class="mb-0">{{ $category->category_name }}</h4>
                             </div>
                         </div>
+                        </a>
                     </div>
-                    <div class="col-3 mb-1">
-                        <div class="card">
-                            <div class="card-body" style="text-align: center;padding:8px">
-                                <h4 class="mb-0">Elekronik</h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-3 mb-1">
-                        <div class="card">
-                            <div class="card-body" style="text-align: center;padding:8px">
-                                <h4 class="mb-0">Elekronik</h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-3 mb-1">
-                        <div class="card">
-                            <div class="card-body" style="text-align: center;padding:8px">
-                                <h4 class="mb-0">Elekronik</h4>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
                 <div class="row">
                     @forelse ($data as $key => $itemfound)
