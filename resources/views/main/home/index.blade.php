@@ -47,7 +47,7 @@
                             <strong>Profil</strong>
                         </a>
                     </div>
-                    
+
 
                 </div>
                 <!-- * Wallet Footer -->

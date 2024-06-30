@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
-use PhpOffice\PhpSpreadsheet\Writer\Xlsx\Rels;
 use App\Models\ItemFound;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
@@ -12,13 +12,10 @@ class ItemFoundController extends Controller
 {
     public function index()
     {
-        $data = ItemFound::all();
+        $data = ItemFound::latest()->get();
         return view('main/itemFound/index', compact('data'));
     }
-    public function create()
-    {
-        return view('main/itemFound/create');
-    }
+  
     public function edit()
     {
         return view('main/itemFound/edit');
@@ -46,7 +43,13 @@ class ItemFoundController extends Controller
         //     'lokasi' => 'basement gedung 5'
         // ];
         $message = "{$greeting} perkenalkan nama saya {$data['name']}. Mau bertanya kak, apakah benar kak {$data['penemu']} menemukan  {$data['barang']} di {$data['lokasi']}?";
-        return view('main/itemFound/detailItem', ['message' => $message],compact('data'));
+        return view('main/itemFound/detailItem', ['message' => $message], compact('data'));
+    }
+
+    public function create()
+    {
+        $categories = Category::all();
+        return view('main.itemFound.create',compact('categories'));
     }
 
     public function store(Request $request)
@@ -69,7 +72,7 @@ class ItemFoundController extends Controller
 
         ItemFound::create([
             'user_id' => Auth::user()->id,
-            'category_id' => $request->category,
+            'category_id' => $request->category_id,
             'title' => $request->title,
             'description' => $request->description,
             'location' => $request->location,
@@ -79,7 +82,7 @@ class ItemFoundController extends Controller
 
         ]);
 
-        return to_route('')->withSuccess('ItemFound has been created');
+        return to_route('itemFound')->withSuccess('ItemFound has been created');
     }
 
     public function update(Request $request, $id)
