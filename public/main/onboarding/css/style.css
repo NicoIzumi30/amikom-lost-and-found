@@ -91,7 +91,7 @@ p {
 }
 @media (min-width: 767px) {
   body {
-    max-width: 600px;
+    max-width: 900px;
     margin: 0 auto !important; 
 }
 .top-navbar {
@@ -217,7 +217,7 @@ input[type=number] {
 
 /************************ 3.Splashscreen-index ***************************/
 #splashscreen{
-    background-image: url(../images/splashscreen/splash-bg.png);
+    /* background-image: url(../images/splashscreen/splash-bg.png); */
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -229,7 +229,7 @@ input[type=number] {
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 700;
-    font-size: 48px;
+    font-size: 20px;
     line-height: 72px;
     text-align: center;
     color: #1E293B;
@@ -259,7 +259,7 @@ input[type=number] {
 .Backtohome a,
 .checkout-buy-now-btn a,
 .interes-done-btn a{
-    width: 345px;
+    width: 250px;
     height: 48px;
     background: #700070;
     border-radius: 8px;
@@ -290,10 +290,15 @@ input[type=number] {
     -ms-flex-pack: center;
     justify-content: center;
 }
+
+.logo_sec img {
+    width: 100px;
+}
 .splash_fullsection {
     height: 100vh;
     left: 0;
     position: relative;
+    background-color: white;
 }
 .splashscreen-overlay {
     background: -webkit-gradientlinear, left top, left bottom, fromrgba(255, 255, 255, 0.8), color-stop64.94%, rgba(255, 255, 255, 0);
@@ -311,7 +316,8 @@ input[type=number] {
  bottom: 0;
  left: 0;
  right: 0;
- margin-bottom: 50px;
+ margin-bottom: 100px;
+ 
 }
 
 /************************ 4.Onboarding 
@@ -352,7 +358,7 @@ input[type=number] {
     height: 100vh;
 }
 .slide1{
- /* background-image: url(../images/foto.jpg); */
+ /* background-image: url(../images/Onboarding-Screen-1/screen-1.png); */
  background-color: white;
 }
 .slide2{
@@ -365,7 +371,7 @@ input[type=number] {
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 600;
-    font-size: 32px;
+    font-size: 15px;
     line-height: 48px;
     color: black;
 }
@@ -374,6 +380,8 @@ input[type=number] {
 
 .amikom{
     color:#700070;
+    font-size: 23px;
+    font-weight: 600;
 }
 .skip_btn_1.skip_btn,
 .skip_btn_2.skip_btn,
@@ -452,7 +460,7 @@ input[type=number] {
     top:200px;
     left: 12px ;
     z-index: 2;
-    display: block;
+    display: none;
     padding: 0;
     margin-left:0 !important; 
     list-style: none;
