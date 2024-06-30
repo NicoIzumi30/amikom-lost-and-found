@@ -15,13 +15,7 @@
                     </div>
                 </div>
                 <div class="row my-3" id="itemKategori">
-                    <div class="col-3 mb-1">
-                        <div class="card">
-                            <div class="card-body" style="text-align: center;padding:8px">
-                                <h4 class="mb-0">Elekronik</h4>
-                            </div>
-                        </div>
-                    </div>
+
                     <div class="col-3 mb-1">
                         <div class="card">
                             <div class="card-body" style="text-align: center;padding:8px">
@@ -52,9 +46,9 @@
                     </div>
                 </div>
                 <div class="row">
-                    @foreach ($data as $key => $itemfound)
+                    @forelse ($data as $key => $itemfound)
                         <div class="col-6 mb-2">
-                            <a href="{{ route('itemFound.detail',['id'=>$itemfound->id]) }}">
+                            <a href="{{ route('itemFound.detail', ['id' => $itemfound->id]) }}">
                                 <div class="card w-100">
                                     <div class="card-body">
                                         <div class="text-center">
@@ -69,7 +63,15 @@
                                 </div>
                             </a>
                         </div>
-                    @endforeach
+                    @empty
+                        <div class="col-12 my-3 text-center">
+                            <h3>Belum ada barang yang ditemukan</h3>
+                        </div>
+                    @endforelse
+
+
+                </div>
+                @if(empty($data))
                     <div class="d-flex justify-content-center">
                         <nav aria-label="...">
                             <ul class="pagination">
@@ -87,8 +89,7 @@
                             </ul>
                         </nav>
                     </div>
-
-                </div>
+                @endif
             </div>
         </div>
 </x-app-main-layout>
