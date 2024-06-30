@@ -6,8 +6,8 @@
                 <!-- Balance -->
                 <div class="balance">
                     <div class="left">
-                        <span class="title">Selamat Siang</span>
-                        <h1 class="total">Heru Kristanto</h1>
+                        <span class="title">Selamat Datang</span>
+                        <h1 class="total">{{auth()->user()->name}}</h1>
                     </div>
                 </div>
                 <!-- * Balance -->
