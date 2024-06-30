@@ -5,11 +5,6 @@
                 <form action="" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">
-                        <label for="">Title</label>
-                        <input type="text" name="title" id="" class="form-control form-custom"
-                            value="{{ $data->title }}" disabled>
-                    </div>
-                    <div class="mb-3">
                         <label for="">Lokasi</label>
                         <input type="text" name="location" id="" class="form-control form-custom"
                             value="{{ $data->location }}" disabled>
@@ -20,8 +15,8 @@
                             value="{{ $data->category->category_name }}" disabled>
                     </div>
                     <div class="mb-3">
-                        <label for="">Detail</label>
-                        <textarea name="description" class="form-control" rows="3" id="" disabled>{{ $data->description }}</textarea>
+                        <label for="">Postingan</label>
+                        <textarea name="postingan" class="form-control" rows="3" id="" disabled>{{ $data->postingan }}</textarea>
                     </div>
 
                     <div class="mb-3">
@@ -29,7 +24,7 @@
                             <select name="status" id="" class="form-control form-custom">
                                 <option value="{{$data->status}}" selected>{{$data->status}}</option>
                                 <option value="belum">belum</option>
-                                <option value="ditemukam">ditemukan</option> {{--migration fresh database ada yang typo bagian ditemukan  --}}
+                                <option value="ditemukan">ditemukan</option>
                             </select>
                     </div>
 

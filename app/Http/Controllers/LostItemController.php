@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use App\Models\LostItem;
+use Illuminate\Support\Str;
 
 class LostItemController extends Controller
 {
@@ -19,12 +20,11 @@ class LostItemController extends Controller
             'categories' => $categories,
         ]);
     }
-    public function category($id)
+    public function category($slug)
     {
-        $lostitems = LostItem::where('category_id', $id)->get();
+        $lostitems = LostItem::where('slug', $slug)->get();
         $categories = Category::all();
         return view('main/lostItems/index', [
-            'category_id' => $id,
             'lostitems' => $lostitems,
             'categories' => $categories,
         ]);
@@ -34,15 +34,12 @@ class LostItemController extends Controller
         $categories = Category::all();
         return view('main/lostItems/create', compact('categories'));
     }
-    public function edit($id)
+    public function edit($slug)
     {
-        $lostitem = LostItem::findOrFail($id);
+        $lostitem = LostItem::where('slug', $slug)->first();
         abort_if(Auth::user()->id != $lostitem->user_id, 401);
         $categories = Category::all();
-        return view('main/lostItems/edit', [
-            'lostitem' => $lostitem,
-            'categories' => $categories,
-        ]);
+        return view('main/lostItems/edit', compact('lostitem', 'categories'));
     }
 
     public function store(Request $request)
@@ -57,13 +54,6 @@ class LostItemController extends Controller
         if ($validator->fails()) {
             return redirect()->back()->withErrors('Failed to create LostItem');
         }
-        $data = [
-            'user_id' => Auth::user()->id,
-            'category_id' => $request->category_id,
-            'postingan' => $request->postingan,
-            'status' => 'belum',
-            'no_tlp' => $request->no_tlp
-        ];
         if ($request->hasFile('image')) {
             $request->validate([
                 'image' => ['mimes:jpg,jpeg,svg,png'],
@@ -72,11 +62,21 @@ class LostItemController extends Controller
             $request->image->storeAs('lostItems', $imageName, 'public');
             $data['image'] = $imageName;
         }
+        $data = [
+            'user_id' => Auth::user()->id,
+            'category_id' => $request->category_id,
+            'slug' => Str::of($request->postingan)->words(4, ''),
+            'image' => $imageName,
+            'postingan' => $request->postingan,
+            'status' => 'belum',
+            'no_tlp' => $request->no_tlp
+        ];
+
         LostItem::create($data);
         return to_route('lostItems')->withSuccess('Postingan berhasil di upload');
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $slug)
     {
         $validator = Validator::make($request->all(), [
             'category_id' => ['required'],
@@ -90,7 +90,7 @@ class LostItemController extends Controller
             dd($validator->errors());
             // return redirect()->back()->withErrors('Data gagal di update');
         }
-        $lostItem = LostItem::findOrFail($id);
+        $lostItem = LostItem::where('slug', $slug)->first();
         $lostItem->category_id = $request->category_id;
         $lostItem->postingan = $request->postingan;
         $lostItem->status = $request->status;

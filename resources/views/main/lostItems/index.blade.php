@@ -26,7 +26,7 @@
                     </div>
                     @foreach ($categories as $category)
                         <div class="col-3 mb-1">
-                            <a href="{{ route('lostItems.category', ['id' => $category->id]) }}">
+                            <a href="{{ route('lostItems.category', ['slug' => $category->slug]) }}">
                                 <div class="card {{isset($category_id) && $category->id == $category_id ? 'card-active' : ''}}">
                                     <div class="card-body" style="text-align: center;padding:8px">
                                         <h4 class="mb-0">{{ $category->category_name  }}</h4>

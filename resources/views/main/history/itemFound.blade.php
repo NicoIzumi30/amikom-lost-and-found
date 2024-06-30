@@ -34,7 +34,7 @@
                                         class="btn btn-red tombol-hapus m-1">
                                         Hapus
                                     </a>
-                                    <a href="{{ route('history.itemFound.edit', $userfound->id) }}"
+                                    <a href="{{ route('history.itemFound.edit', $userfound->slug) }}"
                                         class="btn btn-info py-2 m-1">Edit</a>
                                 </div>
                             </div>

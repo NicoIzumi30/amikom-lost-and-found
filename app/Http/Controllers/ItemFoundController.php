@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\ItemFound;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class ItemFoundController extends Controller
 {
@@ -16,13 +17,13 @@ class ItemFoundController extends Controller
         $categories = Category::all();
         return view('main/itemFound/index', [
             'data' => $data,
-            'categories' => $categories,    
+            'categories' => $categories,
         ]);
     }
 
-    public function detail($id)
+    public function detail($slug)
     {
-        $data = ItemFound::findOrFail($id);
+        $data = ItemFound::where('slug', $slug)->first();
         $currentHour = date('G');
         $greeting = '';
 
@@ -55,17 +56,14 @@ class ItemFoundController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'category_id' => ['required'],
-            'title' => ['required', 'max:255'],
-            'description' => ['required', 'max:255'],
+            'postingan' => ['required'],
             'location' => ['required', 'max:255'],
-            // 'slug'=>['required' ],
             'image' => ['required', 'mimes:jpg,jpeg,png,svg'],
             'no_tlp' => ['required', 'min:8', 'max:16'],
         ]);
 
         if ($validator->fails()) {
-            dd($validator->errors());
-            // return redirect()->back()->withErrors('Failed to create ItemFound');
+             return redirect()->back()->withErrors('Failed to create ItemFound');
         }
         $imageName = time() . '.' . $request->image->extension();
 
@@ -73,12 +71,11 @@ class ItemFoundController extends Controller
 
         ItemFound::create([
             'user_id' => Auth::user()->id,
-            'category_id' => $request->category_id,
-            'title' => $request->title,
-            'description' => $request->description,
+            'postingan' => $request->postingan,
+            'category_id'=>$request->category_id,
             'location' => $request->location,
+            'slug'=>Str::of($request->postingan)->words(4, ''),
             'image' => $imageName,
-            // '$slug'>"testslug",
             'status' => 'belum',
             'no_tlp' => $request->no_tlp
 
@@ -88,13 +85,13 @@ class ItemFoundController extends Controller
     }
 
 
-    public function edit($id)
+    public function edit($slug)
     {
-        $data = ItemFound::findOrfail($id);
-        return view('main/itemFound/edit',compact('data'));
+        $data = ItemFound::where('slug', $slug)->first();
+        return view('main/itemFound/edit', compact('data'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $slug)
     {
         $validator = Validator::make($request->all(), [
             'status' => ['required'],
@@ -104,7 +101,7 @@ class ItemFoundController extends Controller
         if ($validator->fails()) {
             return redirect()->back()->withErrors('Failed to update ItemFound');
         }
-        $itemFound = ItemFound::findOrFail($id);
+        $itemFound = ItemFound::where('slug', $slug)->first();
 
         $itemFound->status = $request->status;
         $itemFound->no_tlp = $request->no_tlp;

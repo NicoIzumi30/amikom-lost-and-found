@@ -18,7 +18,7 @@
                 <div class="row mt-5 mb-3" id="itemKategori">
                     @foreach ($categories as $category)
                     <div class="col-3 mb-1">
-                        <a href="{{ route('itemFound.category', ['id' => $category->id]) }}">
+                        <a href="{{ route('itemFound.category', ['slug' => $category->slug]) }}">
                         <div class="card">
                             <div class="card-body" style="text-align: center;padding:8px">
                                 <h4 class="mb-0">{{ $category->category_name }}</h4>
@@ -31,14 +31,14 @@
                 <div class="row">
                     @forelse ($data as $key => $itemfound)
                         <div class="col-6 mb-2">
-                            <a href="{{ route('itemFound.detail', ['id' => $itemfound->id]) }}">
+                            <a href="{{ route('itemFound.detail', ['slug' => $itemfound->slug]) }}">
                                 <div class="card w-100">
                                     <div class="card-body">
                                         <div class="text-center">
                                             <img src="{{ asset('storage/item-found/'.$itemfound->image) }}" class="w-75" height="150px"
                                                 alt="...">
                                         </div>
-                                        <h5 class="card-title mt-2">{{ $itemfound->title }}</h5>
+                                        <h5 class="card-title mt-2">{{ $itemfound->postingan }}</h5>
                                         <div class="text-right">
                                             <small class="text-dark">{{ $itemfound->created_at->diffForHumans() }}</small>
                                         </div>

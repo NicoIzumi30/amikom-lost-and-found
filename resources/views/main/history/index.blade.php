@@ -17,25 +17,32 @@
                             <div class="card-body text-muted">
                                 <div class="row">
                                     <div class="col-2"><img
-                                            src="{{auth()->user()->image ? asset('storage/users/' . auth()->user()->image) : asset('images/user.png')}}"
-                                            class="w-75" style="aspect-ratio: 1;border-radius: 50%" alt=""></div>
+                                            src="{{ auth()->user()->image ? asset('storage/users/' . auth()->user()->image) : asset('images/user.png') }}"
+                                            class="w-75" style="aspect-ratio: 1;border-radius: 50%" alt="">
+                                    </div>
                                     <div class="col-10">
-                                        <h3 class="mb-0" style="margin-left: -20px;margin-top:3px">{{$lost->user->name}}
+                                        <h3 class="mb-0" style="margin-left: -20px;margin-top:3px">
+                                            {{ $lost->user->name }}
                                         </h3>
-                                        <small style="margin-left:-20px;">{{$lost->created_at->diffForHumans()}}</small>
+                                        <small
+                                            style="margin-left:-20px;">{{ $lost->created_at->diffForHumans() }}</small>
                                     </div>
                                 </div>
-                                <p class="mt-2">{{$lost->postingan}}</p>
-                                @if($lost->image !== null)
+                                <p class="mt-2">{{ $lost->postingan }}</p>
+                                @if ($lost->image !== null)
                                     <div class="text-center">
-                                        <img src="{{ asset('storage/lostItems/' . $lost->image) }}" class="w-75" height="300px"
-                                            alt="">
+                                        <img src="{{ asset('storage/lostItems/' . $lost->image) }}" class="w-75"
+                                            height="300px" alt="">
+                                        4
                                     </div>
                                 @endif
                                 <div class="text-right">
                                     <div class="text-right">
-                                        <a href="{{route('lostItems.destroy',['id' => $lost->id])}}" class="btn btn-red py-3 m-1 tombol-hapus2">Hapus</a>
-                                        <a href="{{route('lostItems.edit',['id' => $lost->id])}}" class="btn btn-info py-2 m-1">Edit</a>
+
+                                        <a href="{{ route('lostItems.destroy', ['id' => $lost->id]) }}"
+                                            class="btn btn-red py-3 m-1 tombol-hapus2">Hapus</a>
+                                        <a href="{{ route('lostItems.edit', ['slug' => $lost->slug]) }}"
+                                            class="btn btn-info py-2 m-1">Edit</a>
                                     </div>
                                 </div>
                             </div>
@@ -49,9 +56,9 @@
         function changeValue() {
             var kategorival = document.getElementById('kategori').value;
             if (kategorival == 1) {
-                window.location.href = "{{url('/history')}}";
-            } else {
-                window.location.href = "{{url('/history/item-found')}}";
+                window.location.href = "{{ url('/history') }}";
+            }  else {
+                window.location.href = "{{ url('/history/item-found') }}";
             }
         }
     </script>

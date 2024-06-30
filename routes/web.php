@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Route;
 | routes are loaded by the RouteServiceProvider and all of them will
 | be assigned to the "web" middleware group. Make something great!
 |
- */ 
+ */
 
 
 
@@ -32,11 +32,11 @@ Route::middleware(['authCheck'])->group(function () {
     Route::get('/profile', [Controllers\ProfileController::class, 'index'])->name('profile');
     Route::put('/profile', [Controllers\ProfileController::class, 'update'])->name('profile.update');
     Route::put('/change-password', [Controllers\ProfileController::class, 'change_password'])->name('changePassword');
- 
+
     Route::group(['prefix' => 'history'], function () {
         Route::get('/', [Controllers\HistoryController::class, 'index'])->name('history');
-        Route::get('/edit/{id}', [Controllers\LostItemController::class, 'edit'])->name('lostItems.edit');
-        Route::put('/update/{id}', [Controllers\LostItemController::class, 'update'])->name('lostItems.update');
+        Route::get('/lost-item/edit/{slug}', [Controllers\LostItemController::class, 'edit'])->name('lostItems.edit');
+        Route::put('/lost-item/update/{slug}', [Controllers\LostItemController::class, 'update'])->name('lostItems.update');
         Route::get('/destroy/{id}', [Controllers\LostItemController::class, 'destroy'])->name('lostItems.destroy');
         Route::get('/item-found', [Controllers\HistoryController::class, 'item_found'])->name('history.itemFound');
         Route::get('/item-found/update/{slug}', [Controllers\ItemFoundController::class, 'edit'])->name('   itemFound.edit');
@@ -47,13 +47,14 @@ Route::middleware(['authCheck'])->group(function () {
         Route::get('/', [Controllers\LostItemController::class, 'index'])->name('lostItems');
         Route::get('/create', [Controllers\LostItemController::class, 'create'])->name('lostItems.create');
         Route::post('/store', [Controllers\LostItemController::class, 'store'])->name('lostItems.store');
-        Route::get('/category/{id}', [Controllers\LostItemController::class, 'category'])->name('lostItems.category');
+        Route::get('/category/{slug}', [Controllers\LostItemController::class, 'category'])->name('lostItems.category');
     });
 
     Route::prefix('item-found')->group(function () {
         Route::get('/', [Controllers\ItemFoundController::class, 'index'])->name('itemFound');
-        Route::get('/detail/{id}', [Controllers\ItemFoundController::class, 'detail'])->name('itemFound.detail');
-        Route::get('/category/{id}', [Controllers\ItemFoundController::class, 'category'])->name('itemFound.category');
+
+        Route::get('/detail/{slug}', [Controllers\ItemFoundController::class, 'detail'])->name('itemFound.detail');
+        Route::get('/category/{slug}', [Controllers\ItemFoundController::class, 'category'])->name('itemFound.category');
         Route::get('/create', [Controllers\ItemFoundController::class, 'create'])->name('itemFound.create');
         Route::post('/store', [Controllers\ItemFoundController::class, 'store'])->name('itemFound.store'); // Perubahan di sini
     });
