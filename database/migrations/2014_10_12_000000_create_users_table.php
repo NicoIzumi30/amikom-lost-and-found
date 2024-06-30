@@ -17,7 +17,8 @@ return new class extends Migration
             $table->string("name");
             $table->string('email')->unique()->nullable();
             $table->string('nik')->unique()->nullable();
-            $table->string('password');
+            $table->string('password')->nullable();
+            $table->string('phone_number',16)->nullable();
             $table->enum('role',['admin','employee','student']);
             $table->string("image")->nullable();
                 $table->rememberToken();

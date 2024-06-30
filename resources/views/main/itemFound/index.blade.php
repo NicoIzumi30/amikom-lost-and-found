@@ -1,7 +1,6 @@
 <x-app-main-layout>
     <div id="appCapsule">
         <!-- Wallet Card -->
-
         <div class="section pt-1">
             <div class="container mt-3">
                 <div class="row mb-1">
@@ -16,16 +15,26 @@
                     </div>
                 </div>
                 <div class="row mt-5 mb-3" id="itemKategori">
-                    @foreach ($categories as $category)
                     <div class="col-3 mb-1">
-                        <a href="{{ route('itemFound.category', ['slug' => $category->slug]) }}">
-                        <div class="card">
-                            <div class="card-body" style="text-align: center;padding:8px">
-                                <h4 class="mb-0">{{ $category->category_name }}</h4>
+                        <a href="{{ route('itemFound') }}">
+                            <div class="card {{!isset($category_id) ? 'card-active' : ''}}">
+                                <div class="card-body" style="text-align: center;padding:8px">
+                                    <h4 class="mb-0">Semua</h4>
+                                </div>
                             </div>
-                        </div>
                         </a>
                     </div>
+                    @foreach ($categories as $category)
+                        <div class="col-3 mb-1">
+                            <a href="{{ route('itemFound.category', ['slug' => $category->slug]) }}">
+                                <div
+                                    class="card {{isset($category_id) && $category->id == $category_id ? 'card-active' : ''}}">
+                                    <div class="card-body" style="text-align: center;padding:8px">
+                                        <h4 class="mb-0">{{ $category->category_name }}</h4>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
                     @endforeach
                 </div>
                 <div class="row">
@@ -35,10 +44,10 @@
                                 <div class="card w-100">
                                     <div class="card-body">
                                         <div class="text-center">
-                                            <img src="{{ asset('storage/item-found/'.$itemfound->image) }}" class="w-75" height="150px"
-                                                alt="...">
+                                            <img src="{{ asset('storage/item-found/' . $itemfound->image) }}" class="w-75"
+                                                height="150px" alt="...">
                                         </div>
-                                        <h5 class="card-title mt-2">{{ $itemfound->postingan }}</h5>
+                                        <h5 class="card-title mt-2">{{ $itemfound->title }}</h5>
                                         <div class="text-right">
                                             <small class="text-dark">{{ $itemfound->created_at->diffForHumans() }}</small>
                                         </div>

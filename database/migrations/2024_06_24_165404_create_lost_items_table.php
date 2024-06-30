@@ -15,8 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->foreignId('category_id')->constrained()->cascadeOnDelete();
-            $table->string("title");
-            $table->text("description");
+            $table->text("postingan");
             $table->string("slug")->unique();
             $table->string("image")->nullable();
             $table->enum('status',['ditemukam','belum']);

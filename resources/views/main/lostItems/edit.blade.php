@@ -3,7 +3,7 @@
         <!-- Wallet Card -->
         <div class="section pt-1">
             <div class="container mt-3">
-                <form action="{{route('lostItems.update', $lostitem->id)}}" method="POST" enctype="multipart/form-data">
+                <form action="{{route('lostItems.update', $lostitem->slug)}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="mb-3">
@@ -27,7 +27,7 @@
                           <label for="">Status</label>
                     <select name="status" class="form-control" id="">
                         <option value="belum" @if($lostitem->status == 'belum') selected @endif>Belum ditemukan</option>
-                        <option value="sudah" @if($lostitem->status == 'sudah') selected @endif>Sudah ditemukan</option>
+                        <option value="ditemukan" @if($lostitem->status == 'ditemukan') selected @endif>Sudah ditemukan</option>
                     </select>
                 </div>
                 <div class="custom-file mb-3">

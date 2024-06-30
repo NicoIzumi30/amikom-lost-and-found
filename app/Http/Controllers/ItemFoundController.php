@@ -24,28 +24,18 @@ class ItemFoundController extends Controller
     public function detail($slug)
     {
         $data = ItemFound::where('slug', $slug)->first();
-        $currentHour = date('G');
-        $greeting = '';
-
-        if ($currentHour >= 5 && $currentHour < 12) {
-            $greeting = "Selamat pagi";
-        } elseif ($currentHour >= 12 && $currentHour < 18) {
-            $greeting = "Selamat siang";
-        } elseif ($currentHour >= 18 && $currentHour < 22) {
-            $greeting = "Selamat sore";
-        } else {
-            $greeting = "Selamat malam";
-        }
-        // $data = [
-        //     'name' => Auth::user()->name,
-        //     'penemu' => 'Heru Kristanto', // ganti data yang di ambil di database
-        //     'barang' => 'botol minum bewarna Biru',
-        //     'lokasi' => 'basement gedung 5'
-        // ];
-        $message = "{$greeting} perkenalkan nama saya {$data['name']}. Mau bertanya kak, apakah benar kak {$data['penemu']} menemukan  {$data['barang']} di {$data['lokasi']}?";
-        return view('main/itemFound/detailItem', ['message' => $message], compact('data'));
+        return view('main/itemFound/detailItem', ['data' => $data]);
     }
-
+    public function category($slug){
+        $category = Category::where('slug', $slug)->first();
+        $data = ItemFound::where('category_id', $category->id)->get();
+        $categories = Category::all();
+        return view('main/itemFound/index', [
+            'data' => $data,
+            'categories' => $categories,
+            'category_id' => $category->id
+        ]);
+    } 
     public function create()
     {
         $categories = Category::all();
@@ -56,14 +46,16 @@ class ItemFoundController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'category_id' => ['required'],
-            'postingan' => ['required'],
+            'title' => ['required', 'max:255'],
+            'description' => ['required'],
             'location' => ['required', 'max:255'],
             'image' => ['required', 'mimes:jpg,jpeg,png,svg'],
             'no_tlp' => ['required', 'min:8', 'max:16'],
         ]);
 
         if ($validator->fails()) {
-             return redirect()->back()->withErrors('Failed to create ItemFound');
+            dd($validator->errors());
+            //  return redirect()->back()->withErrors('Failed to create ItemFound');
         }
         $imageName = time() . '.' . $request->image->extension();
 
@@ -71,10 +63,11 @@ class ItemFoundController extends Controller
 
         ItemFound::create([
             'user_id' => Auth::user()->id,
-            'postingan' => $request->postingan,
+            'title' => $request->title,
+            'description' => $request->description,
             'category_id'=>$request->category_id,
             'location' => $request->location,
-            'slug'=>Str::of($request->postingan)->words(4, ''),
+            'slug'=>Str::of($request->title),
             'image' => $imageName,
             'status' => 'belum',
             'no_tlp' => $request->no_tlp
@@ -87,26 +80,47 @@ class ItemFoundController extends Controller
 
     public function edit($slug)
     {
+        $categories = Category::all();
         $data = ItemFound::where('slug', $slug)->first();
-        return view('main/itemFound/edit', compact('data'));
+        return view('main/itemFound/edit', compact('data','categories'));   
     }
 
     public function update(Request $request, $slug)
     {
         $validator = Validator::make($request->all(), [
-            'status' => ['required'],
+           'category_id' => ['required'],
+            'title' => ['required', 'max:255'],
+            'description' => ['required'],
+            'location' => ['required', 'max:255'],
+            'image' => ['nullable', 'mimes:jpg,jpeg,png,svg'],
             'no_tlp' => ['required', 'min:8', 'max:16'],
+            'status' => ['required'],
         ]);
 
         if ($validator->fails()) {
             return redirect()->back()->withErrors('Failed to update ItemFound');
         }
         $itemFound = ItemFound::where('slug', $slug)->first();
-
+        $itemFound->category_id = $request->category_id;
+        $itemFound->title = $request->title;
+        $itemFound->description = $request->description;
+        $itemFound->location = $request->location;
         $itemFound->status = $request->status;
         $itemFound->no_tlp = $request->no_tlp;
-
-
+        if ($request->hasFile('image')) {
+            $request->validate([
+                'image' => ['mimes:jpg,jpeg,svg,png'],
+            ]);
+            if ($itemFound->image !== null) {
+                $oldImagePath = public_path('storage/item-found/' . $itemFound->image);
+                if (file_exists($oldImagePath)) {
+                    unlink($oldImagePath);
+                }
+            }
+            $imageName = time() . '.' . $request->image->extension();
+            $request->image->storeAs('item-found', $imageName, 'public');
+            $itemFound->image = $imageName;
+        }
         $itemFound->save();
 
         return to_route('history.itemFound')->withSuccess('ItemFound has been updated');
