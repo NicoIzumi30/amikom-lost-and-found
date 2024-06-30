@@ -1984,11 +1984,21 @@ a.btn.disabled, fieldset:disabled a.btn {
 
 .btn-warning:not(:disabled):not(.disabled).active:focus, .btn-warning:not(:disabled):not(.disabled):active:focus, .show > .btn-warning.dropdown-toggle:focus {
   box-shadow: 0 0 0 0.2rem rgba(222, 170, 12, 0.5); }
-
+  .btn-red {
+    color: #fff;
+    background-color: red;
+    /* border-color: black;  */
+  }
+  .btn-red:hover {
+    color: #fff;
+    background-color: rgb(187, 29, 29);
+    /* border-color: black;  */
+  }
 .btn-danger {
   color: #fff;
-  background-color: #43766C;
-  border-color: #43766C; }
+  background-color: red;
+  border-color: black; 
+}
 
 .btn-danger:hover {
   color: #fff;
