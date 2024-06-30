@@ -46,6 +46,7 @@ class LostItemController extends Controller
             'user_id' => Auth::user()->id,
             'category_id' => $request->category_id,
             'title' => $request->title,
+            'slug'=>$request->title,
             'description' => $request->description,
             'image' => $imageName,
             'status' => 'belum',

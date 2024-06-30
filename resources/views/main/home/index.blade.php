@@ -66,7 +66,7 @@
                 <div class="row">
                       @foreach ($itemfound as $key => $found)
                         <div class="col-6 mb-2">
-                            <a href="{{ route('itemFound.detail',['id'=>$found->id]) }}">
+                            <a href="{{ route('itemFound.detail',['slug'=>$found->slug]) }}">
                                 <div class="card w-100">
                                     <div class="card-body">
                                         <div class="text-center">

@@ -14,7 +14,8 @@
         "laravel/socialite": "^5.15",
         "laravel/tinker": "^2.8",
         "phpoffice/phpspreadsheet": "^2.1",
-        "realrashid/sweet-alert": "^7.2"
+        "realrashid/sweet-alert": "^7.2",
+        "spatie/laravel-sluggable": "^3.6"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
