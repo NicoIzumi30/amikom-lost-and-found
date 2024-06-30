@@ -1,7 +1,8 @@
-# {Amikom Lost And Found}
+# Amikom Lost And Found
 
 ## Screenshot
 ![Screenshot](screenshot.png)
+![Screenshot](screenshot2.png)
 
 ## Tema
 Inovation
