@@ -18,7 +18,7 @@ return new class extends Migration
             $table->text("postingan");
             $table->string("slug")->unique();
             $table->string("image")->nullable();
-            $table->enum('status',['ditemukam','belum']);
+            $table->enum('status',['ditemukan','belum']);
             $table->string("no_tlp");
             $table->timestamps();
         });
