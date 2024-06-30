@@ -16,6 +16,14 @@ class ItemFoundController extends Controller
         $data = ItemFound::latest()->get();
         return view('main/itemFound/index', compact('data'));
     }
+    public function create()
+    {
+        return view('main/itemFound/create');
+    }
+    public function edit()
+    {
+        return view('main/itemFound/edit');
+    }
 
     public function detail($id)
     {

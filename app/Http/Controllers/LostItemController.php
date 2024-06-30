@@ -20,6 +20,11 @@ class LostItemController extends Controller
         $categories = Category::all();
         return view('main/lostItems/create',compact('categories'));
     }
+    public function edit()
+    {
+        return view('main/lostItems/edit');
+    }
+
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
