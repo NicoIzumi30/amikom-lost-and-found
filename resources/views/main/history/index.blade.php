@@ -17,7 +17,7 @@
                             <div class="card-body text-muted">
                                 <div class="row">
                                     <div class="col-2"><img
-                                            src="{{ auth()->user()->image ? asset('storage/users/' . auth()->user()->image) : asset('images/user.png') }}"
+                                            src="{{$lost->user->image ? asset('storage/users/' . $lost->user->image) : asset('images/user.png') }}"
                                             class="w-75" style="aspect-ratio: 1;border-radius: 50%" alt="">
                                     </div>
                                     <div class="col-10">

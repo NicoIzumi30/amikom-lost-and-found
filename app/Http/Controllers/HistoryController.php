@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 class HistoryController extends Controller
 {
     public function index(){
-        $lostitems = LostItem::latest()->get();
+        $lostitems = LostItem::where('user_id', Auth::user()->id)->get();
         return view("main.history.index ",compact('lostitems'));
     }
 

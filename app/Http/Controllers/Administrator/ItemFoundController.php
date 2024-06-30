@@ -16,6 +16,6 @@ class ItemFoundController extends Controller
     public function destroy($id)
     {
         ItemFound::findOrFail($id)->delete();
-        return to_route('')->withSuccess('ItemFound has been deleted');
+        return to_route('administrator.itemFound.index')->withSuccess('ItemFound has been deleted');
     }
 }

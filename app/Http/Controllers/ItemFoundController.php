@@ -128,7 +128,15 @@ class ItemFoundController extends Controller
 
     public function destroy($id)
     {
-        ItemFound::findOrFail($id)->delete();
+        $itemFound=ItemFound::findOrFail($id);
+        abort_if(Auth::user()->id != $itemFound->user_id, 401);
+        if($itemFound->image !== null){
+            $oldImagePath = public_path('storage/item-found/'.$itemFound->image);
+            if(file_exists($oldImagePath)){
+                unlink($oldImagePath);
+            }
+        }
+        $itemFound->delete();
         return to_route('history.itemFound')->withSuccess('ItemFound has been deleted');
     }
 }

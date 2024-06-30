@@ -7,7 +7,7 @@
         </div>
         <div class="clearfix"></div>
         @foreach ($data as $key => $itemfound)
-            <div class="modal fade" id="info" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="info{{$itemfound->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -23,7 +23,7 @@
 
                 </div>
             </div>
-            <div class="modal fade" id="image" tabindex="-1" aria-labelledby="exampleModalLabel"
+            <div class="modal fade" id="image{{$itemfound->id}}" tabindex="-1" aria-labelledby="exampleModalLabel"
                 aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -34,7 +34,7 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <img src="{{ asset('storage/item-found'.$itemfound->image) }}" class="w-100" alt="">
+                            <img src="{{ asset('storage/item-found/'.$itemfound->image) }}" class="w-100" alt="">
                         </div>
                     </div>
 
@@ -50,7 +50,6 @@
                                 <thead>
                                     <tr>
                                         <td width="4%">No</td>
-                                        <td>Name</td>
                                         <td>Title</td>
                                         <td>Location</td>
                                         <td>Status</td>
@@ -63,22 +62,21 @@
                                     @foreach ($data as $key => $itemfound)
                                         <tr>
                                             <td>{{ $key + 1 }}</td>
-                                            <td>{{ $itemfound->name }}</td>
                                             <td>{{ $itemfound->title }}</td>
                                             <td>{{ $itemfound->location }}</td>
                                             <td><span class="badge badge-danger">{{ $itemfound->status }}</span></td>
-                                            <td>{{ itemfound->update_at }}</td>
+                                            <td>{{ $itemfound->created_at }}</td>
                                             <td>{{ $itemfound->no_tlp }}</td>
                                             <td>
                                                 <a href="{{ route('administrator.itemFound.destroy', ['id' => $itemfound->id]) }}"
                                                     class="btn btn-danger tombol-hapus m-1">
                                                     <i class="fas fa-trash"></i>
                                                 </a>
-                                                <a href="#" data-toggle="modal" data-target="#info"
+                                                <a href="#" data-toggle="modal" data-target="#info{{$itemfound->id}}"
                                                     class="btn btn-info m-1">
                                                     <i class="fas fa-info"></i>
                                                 </a>
-                                                <a href="#" data-toggle="modal" data-target="#image"
+                                                <a href="#" data-toggle="modal" data-target="#image{{$itemfound->id}}"
                                                     class="btn btn-warning m-1">
                                                     <i class="fas fa-image"></i>
                                                 </a>

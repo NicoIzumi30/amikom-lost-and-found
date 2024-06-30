@@ -118,7 +118,15 @@ class LostItemController extends Controller
 
     public function destroy($id)
     {
-        LostItem::findOrFail($id)->delete();
+        $lostitem = LostItem::findOrFail($id);
+        abort_if(Auth::user()->id != $lostitem->user_id, 401);
+        if ($lostitem->image !== null) {
+            $oldImagePath = public_path('storage/lostItems/' . $lostitem->image);
+            if (file_exists($oldImagePath)) {
+                unlink($oldImagePath);
+            }
+        }
+        $lostitem->delete();
         return to_route('history')->withSuccess('Data berhasil dihapus');
     }
 }
