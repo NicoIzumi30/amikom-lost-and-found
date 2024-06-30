@@ -18,6 +18,11 @@ class LostItemController extends Controller
     {
         return view('main/lostItems/create');
     }
+    public function edit()
+    {
+        return view('main/lostItems/edit');
+    }
+
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
