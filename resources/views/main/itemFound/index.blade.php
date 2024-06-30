@@ -1,6 +1,7 @@
 <x-app-main-layout>
     <div id="appCapsule">
         <!-- Wallet Card -->
+        
         <div class="section pt-1">
             <div class="container mt-3">
                 <div class="row mb-1">

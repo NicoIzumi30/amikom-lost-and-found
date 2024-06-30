@@ -15,6 +15,6 @@ class LogoutController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return to_route('administrator.login')->with('success','Logout Berhasil');
+        return to_route('login')->with('success','Logout Berhasil');
     }
 }
