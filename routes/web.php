@@ -30,12 +30,18 @@ Route::middleware(['authCheck'])->group(function () {
     Route::get('/', [Controllers\HomeController::class, 'index'])->name('home');
 
     Route::get('/profile', [Controllers\ProfileController::class, 'index'])->name('profile');
-    Route::get('/history', [Controllers\HistoryController::class, 'index'])->name('history');
-    Route::get('/history/item-found', [Controllers\HistoryController::class, 'item_found'])->name('history.itemFound');
+    Route::group(['prefix' => 'history'], function () {
+        Route::get('/', [Controllers\HistoryController::class, 'index'])->name('history');
+        Route::get('/item-found', [Controllers\HistoryController::class, 'item_found'])->name('history.itemFound');
+        Route::get('/item-found/update/{slug}', [Controllers\ItemFoundController::class, 'edit'])->name('history.itemFound.edit');
+        Route::post('/item-found/update/{slug}', [Controllers\ItemFoundController::class, 'update'])->name('itemFound.update');
+        Route::get('/item-found/destroy/{id}', [Controllers\ItemFoundController::class, 'destroy'])->name('itemFound.destroy');
+    });
 
 
     Route::prefix('lost-items')->group(function () {
         Route::get('/', [Controllers\LostItemController::class, 'index'])->name('lostItems');
+
         Route::get('/edit', [Controllers\LostItemController::class, 'edit'])->name('lostItems.edit');
 
         Route::get('/create', [Controllers\LostItemController::class, 'create'])->name('lostItems.create');
@@ -44,18 +50,12 @@ Route::middleware(['authCheck'])->group(function () {
         Route::get('/update/{id}', [Controllers\LostItemController::class, 'update'])->name('lostItems.update');
         Route::get('/destroy/{id}', [Controllers\LostItemController::class, 'destroy'])->name('lostItems.destroy');
     });
+
     Route::prefix('item-found')->group(function () {
         Route::get('/', [Controllers\ItemFoundController::class, 'index'])->name('itemFound');
         Route::get('/detail/{id}', [Controllers\ItemFoundController::class, 'detail'])->name('itemFound.detail');
-
-        Route::get('/edit', [Controllers\ItemFoundController::class, 'edit'])->name('itemFound.edit');
-
         Route::get('/create', [Controllers\ItemFoundController::class, 'create'])->name('itemFound.create');
         Route::post('/store', [Controllers\ItemFoundController::class, 'store'])->name('itemFound.store'); // Perubahan di sini
-
-        Route::get('/detail/{id}', [Controllers\ItemFoundController::class, 'detail'])->name('itemFound.detail');
-        Route::get('/update/{id}', [Controllers\ItemFoundController::class, 'update'])->name('itemFound.update');
-        Route::get('/destroy/{id}', [Controllers\ItemFoundController::class, 'destroy'])->name('itemFound.destroy');
     });
 
     Route::get('/logout', Controllers\LogoutController::class)->name('logout');

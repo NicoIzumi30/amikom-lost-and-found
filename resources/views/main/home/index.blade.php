@@ -75,7 +75,7 @@
                                         </div>
                                         <h5 class="card-title mt-2">{{ $found->title }}</h5>
                                         <div class="text-right">
-                                            <small class="text-dark">3 Jam Yang Lalu</small>
+                                            <small class="text-dark">{{ $found->created_at->diffForHumans() }}</small>
                                         </div>
                                     </div>
                                 </div>

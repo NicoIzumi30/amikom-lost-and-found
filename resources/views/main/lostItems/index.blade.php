@@ -26,7 +26,7 @@
                                         <div class="col-10">
                                             <h3 class="mb-0" style="margin-left: -20px;margin-top:3px">{{$lost->user->name}}
                                             </h3>
-                                            <small style="margin-left:-20px;">1 Jam yang lalu</small>
+                                            <small style="margin-left:-20px;">{{ $lost->created_at->diffForHumans() }}</small>
                                         </div>
                                     </div>
                                     <p class="mt-2">{{$lost->title}}</p>

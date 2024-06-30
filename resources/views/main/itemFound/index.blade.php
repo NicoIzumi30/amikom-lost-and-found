@@ -1,7 +1,7 @@
 <x-app-main-layout>
     <div id="appCapsule">
         <!-- Wallet Card -->
-        
+
         <div class="section pt-1">
             <div class="container mt-3">
                 <div class="row mb-1">
@@ -58,7 +58,7 @@
                                         </div>
                                         <h5 class="card-title mt-2">{{ $itemfound->title }}</h5>
                                         <div class="text-right">
-                                            <small class="text-dark">3 Jam Yang Lalu</small>
+                                            <small class="text-dark">{{ $itemfound->created_at->diffForHumans() }}</small>
                                         </div>
                                     </div>
                                 </div>
