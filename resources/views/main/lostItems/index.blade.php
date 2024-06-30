@@ -5,7 +5,7 @@
             <div class="container mt-3">
                 <div class="row mb-1">
                     <div class="col-2">
-                        <img src="{{auth()->user()->image ? asset('storage/users/' . auth()->user()->image) : asset('image/user.png')}}"
+                        <img src="{{auth()->user()->image ? asset('storage/users/' . auth()->user()->image) : asset('images/user.png')}}"
                             class="w-75" style="aspect-ratio: 1;border-radius: 50%" alt="">
                     </div>
                     <div class="col-10">
