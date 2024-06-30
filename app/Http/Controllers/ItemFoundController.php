@@ -15,6 +15,11 @@ class ItemFoundController extends Controller
         $data = ItemFound::all();
         return view('main/itemFound/index', compact('data'));
     }
+    public function create()
+    {
+        $data = ItemFound::all();
+        return view('main/itemFound/create');
+    }
 
     public function detail($id)
     {

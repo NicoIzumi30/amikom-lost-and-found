@@ -95,6 +95,13 @@
                 <strong>Barang Hilang</strong>
             </div>
         </a>
+        <a href="{{route('history')}}" class="item">
+            <div class="col text-dark">
+                <i class="fas fa-rotate-right fa-2x"></i>
+                <!-- <ion-icon name="chatbubbles-outline"></ion-icon> -->
+                <strong>History</strong>
+            </div>
+        </a>
         <a href="{{route('profile')}}>" class="item">
             <div class="col text-dark">
                 <i class="fas fa-user fa-2x"></i>
