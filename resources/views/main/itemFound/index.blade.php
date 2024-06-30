@@ -58,7 +58,7 @@
                                 <div class="card w-100">
                                     <div class="card-body">
                                         <div class="text-center">
-                                            <img src="{{ asset('images') }}/prod-1.jpg" class="w-75" height="150px"
+                                            <img src="{{ asset('storage/item-found/'.$itemfound->image) }}" class="w-75" height="150px"
                                                 alt="...">
                                         </div>
                                         <h5 class="card-title mt-2">{{ $itemfound->title }}</h5>
