@@ -37,6 +37,7 @@ class LostItemController extends Controller
     public function edit($slug)
     {
         $lostitem = LostItem::where('slug', $slug)->first();
+
         abort_if(Auth::user()->id != $lostitem->user_id, 401);
         $categories = Category::all();
         return view('main/lostItems/edit', compact('lostitem', 'categories'));
