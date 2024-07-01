@@ -13,9 +13,9 @@
                             style="height: 45px;margin-top: 1px;margin-left: -20px;border-radius: 50px;background-color:white !important;"
                             placeholder="Apakah Anda Kehilangan Barang?">
                     </div>
-                </div>
+                </div>  
                 <div class="row mt-5" id="itemKategori">
-                    <div class="col-3 mb-1">
+                    <div class="col-4 mb-1">
                         <a href="{{ route('lostItems') }}">
                             <div class="card {{!isset($category_id) ? 'card-active' : ''}}">
                                 <div class="card-body" style="text-align: center;padding:8px">
@@ -25,7 +25,7 @@
                         </a>
                     </div>
                     @foreach ($categories as $category)
-                        <div class="col-3 mb-1">
+                        <div class="col-4 mb-1">
                             <a href="{{ route('lostItems.category', ['slug' => $category->slug]) }}">
                                 <div class="card {{isset($category_id) && $category->id == $category_id ? 'card-active' : ''}}">
                                     <div class="card-body" style="text-align: center;padding:8px">
@@ -42,7 +42,7 @@
                             <div class="card-body text-muted">
                                 <div class="row">
                                     <div class="col-2"><img
-                                            src="{{auth()->user()->image ? asset('storage/users/' . auth()->user()->image) : asset('images/user.png')}}"
+                                            src="{{$lost->user->image ? asset('storage/users/' . $lost->user->image) : asset('images/user.png')}}"
                                             class="w-75" style="aspect-ratio: 1;border-radius: 50%" alt=""></div>
                                     <div class="col-10">
                                         <h3 class="mb-0" style="margin-left: -20px;margin-top:3px">{{$lost->user->name}}
