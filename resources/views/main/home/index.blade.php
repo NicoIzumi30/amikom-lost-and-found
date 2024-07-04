@@ -61,18 +61,8 @@
             </div>
             <hr>
             <div class="container">
-                <h3 class="mb-2 mt-2">Barang Terbaru Ditemukan</h3>
+                <h3 class="mb-2 mt-2 text-muted">Barang Terbaru Ditemukan</h3>
                 <div class="row">
-                    {{-- <<<<<<< HEAD
-                    @foreach ($itemfound as $key => $found)
-                        <div class="col-6 mb-2">
-                            <a href="{{ route('itemFound.detail', ['slug' => $found->slug]) }}">
-                                <div class="card w-100">
-                                    <div class="card-body">
-                                        <div class="text-center">
-                                            <img src="{{ asset('storage/item-found/' . $found->image) }}"
-                                                class="w-75" height="150px" alt="...">
-======= --}}
                     @foreach ($itemfound as $key => $found)
                         <div class="col-12 mb-2">
                             <a href="{{ route('itemFound.detail', ['slug' => $found->slug]) }}">

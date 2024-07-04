@@ -12,7 +12,7 @@
                     </div>
                 </div>
                 <div class="row mt-3">
-                    @foreach ($lostitems as $lost)
+                    @forelse ($lostitems as $lost)
                         <div class="card w-100 mb-3">
                             <div class="card-body text-muted">
                                 <div class="row">
@@ -40,13 +40,17 @@
 
                                         <a href="{{ route('lostItems.destroy', ['slug' => $lost->slug]) }}"
                                             class="btn btn-red py-3 m-1 tombol-hapus2">Hapus</a>
-                                        <a href="{{ route('lostItems.edit', ['slug' => $lost->slug]) }}"
+                                        <a href="{{ route('history.lostItems.edit', ['slug' => $lost->slug]) }}"
                                             class="btn btn-info py-1"><i class="fas fa-pencil"></i></a>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    @endforeach
+                        @empty
+                        <div class="col-12 my-3 text-center">
+                            <h3 class="text-muted">Belum ada postingan yang ditemukan</h3>
+                        </div>
+                    @endforelse
                 </div>
             </div>
         </div>
