@@ -5,8 +5,13 @@
                 <form action="{{ route('itemFound.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">
+
+                        <label for="">Barang apa yang Anda temukan?</label>
+                        <input type="title" name="title" id="" class="form-control form-custom">
+                    </div>
+                    <div class="mb-3">
                         <label for="">Dimana Anda menemukan barang tersebut?</label>
-                        <input type="text" name="location" id="" class="form-control form-custom">
+                        <input type="location" name="location" id="" class="form-control form-custom">
                     </div>
                     <div class="mb-3">
                         <label for="">Barang tersebut masuk kategori apa?</label>
@@ -18,13 +23,16 @@
                         </select>
                     </div>
                     <div class="mb-3">
-                        <label for="">Tulis postingan Anda</label>
-                        <textarea name="postingan" class="form-control" rows="3" id=""></textarea>
+
+                        <label for="">Tulikan lebih detail terkait barang tersebut</label>
+                        <textarea name="description" class="form-control" rows="3" id=""></textarea>
                     </div>
                     <div class="mb-3">
                         <label for="">No yang bisa dihubungi</label>
                         <input type="text" name="no_tlp" id="" placeholder="Gunakan format 62"
-                            class="form-control form-custom">
+                            class="form-control form-custom"
+                            value="{{ auth()->user()->phone_number ? auth()->user()->phone_number : '' }}">
+
                     </div>
                     <p class="mb-0">Berikan gambar barang tersebut</p>
                     <div class="custom-file mb-3">

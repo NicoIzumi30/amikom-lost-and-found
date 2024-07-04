@@ -17,11 +17,14 @@
                             <div class="card-body text-muted">
                                 <div class="row">
                                     <div class="col-2"><img
-                                            src="{{ asset('storage/users/' . $userfound->user->image) }}" class="w-75"
-                                            style="aspect-ratio: 1;border-radius: 50%" alt=""></div>
+                                            src="{{ $userfound->user->image ? asset('storage/users/' . $userfound->user->image) : asset('images/user.png') }}       "
+                                            class="w-75" style="aspect-ratio: 1;border-radius: 50%" alt="">
+                                    </div>
                                     <div class="col-10">
-                                        <h3 class="mb-0" style="margin-left: -20px;margin-top:3px">{{$userfound->user->name}}</h3>
-                                        <small style="margin-left:-20px;">{{ $userfound->created_at->diffForHumans() }}</small>
+                                        <h3 class="mb-0" style="margin-left: -20px;margin-top:3px">
+                                            {{ $userfound->user->name }}</h3>
+                                        <small
+                                            style="margin-left:-20px;">{{ $userfound->created_at->diffForHumans() }}</small>
                                     </div>
                                 </div>
                                 <p class="mt-2">{{ $userfound->title }}</p>
@@ -30,11 +33,11 @@
                                         height="300px" alt="">
                                 </div>
                                 <div class="text-right">
-                                    <a href="{{ route('itemFound.destroy', ['id' => $userfound->id]) }}"
+                                    <a href="{{ route('itemFound.destroy', ['slug' => $userfound->slug]) }}"
                                         class="btn btn-red tombol-hapus m-1">
                                         Hapus
                                     </a>
-                                    <a href="{{ route('history.itemFound.edit', $userfound->slug) }}"
+                                    <a href="{{ route('itemFound.edit', ['slug' => $userfound->slug]) }}"
                                         class="btn btn-info py-2 m-1">Edit</a>
                                 </div>
                             </div>

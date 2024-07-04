@@ -22,11 +22,14 @@ class LostItemController extends Controller
     }
     public function category($slug)
     {
-        $lostitems = LostItem::where('slug', $slug)->get();
+        $category = Category::where('slug', $slug)->first();
+        $lostitems = LostItem::where('category_id', $category->id)->get();
         $categories = Category::all();
         return view('main/lostItems/index', [
             'lostitems' => $lostitems,
             'categories' => $categories,
+
+            'category_id' => $category->id
         ]);
     }
     public function create()
@@ -55,6 +58,15 @@ class LostItemController extends Controller
         if ($validator->fails()) {
             return redirect()->back()->withErrors('Failed to create LostItem');
         }
+
+        $data = [
+            'user_id' => Auth::user()->id,
+            'category_id' => $request->category_id,
+            'slug' => base64_encode($request->postingan),
+            'postingan' => $request->postingan,
+            'status' => 'belum',
+            'no_tlp' => $request->no_tlp
+        ];
         if ($request->hasFile('image')) {
             $request->validate([
                 'image' => ['mimes:jpg,jpeg,svg,png'],
@@ -63,16 +75,6 @@ class LostItemController extends Controller
             $request->image->storeAs('lostItems', $imageName, 'public');
             $data['image'] = $imageName;
         }
-        $data = [
-            'user_id' => Auth::user()->id,
-            'category_id' => $request->category_id,
-            'slug' => Str::of($request->postingan)->words(4, ''),
-            'image' => $imageName,
-            'postingan' => $request->postingan,
-            'status' => 'belum',
-            'no_tlp' => $request->no_tlp
-        ];
-
         LostItem::create($data);
         return to_route('lostItems')->withSuccess('Postingan berhasil di upload');
     }
@@ -88,8 +90,7 @@ class LostItemController extends Controller
         ]);
 
         if ($validator->fails()) {
-            dd($validator->errors());
-            // return redirect()->back()->withErrors('Data gagal di update');
+            return redirect()->back()->withErrors('Data gagal di update');
         }
         $lostItem = LostItem::where('slug', $slug)->first();
         $lostItem->category_id = $request->category_id;
@@ -116,9 +117,17 @@ class LostItemController extends Controller
         return to_route('history')->withSuccess('Data berhasil di update');
     }
 
-    public function destroy($id)
+    public function destroy($slug)
     {
-        LostItem::findOrFail($id)->delete();
+        $lostitem = LostItem::where('slug', $slug)->first();
+        abort_if(Auth::user()->id != $lostitem->user_id, 401);
+        if ($lostitem->image !== null) {
+            $oldImagePath = public_path('storage/lostItems/' . $lostitem->image);
+            if (file_exists($oldImagePath)) {
+                unlink($oldImagePath);
+            }
+        }
+        $lostitem->delete();
         return to_route('history')->withSuccess('Data berhasil dihapus');
     }
 }

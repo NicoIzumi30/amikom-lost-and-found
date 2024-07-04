@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Administrator;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use ParagonIE\ConstantTime\Base64;
+
 
 class CategoryController extends Controller
 {
@@ -35,7 +37,7 @@ class CategoryController extends Controller
         return to_route('administrator.category.index')->withSuccess('Category has been created');
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $slug)
     {
         $validator = Validator::make($request->all(), [
             'category_name' => 'required|string|max:255',
@@ -45,7 +47,7 @@ class CategoryController extends Controller
             return redirect()->back()->withErrors('Failed to update Category');
         }
 
-        $category = Category::findOrFail($id);
+        $category = Category::where('slug', $slug)->first();
         $category->update([
             'category_name' => $request->category_name,
         ]);
@@ -53,10 +55,11 @@ class CategoryController extends Controller
         return redirect()->route('administrator.category.index')->withSuccess('Category has been updated');
     }
 
-    public function destroy($id)
+    public function destroy($slug)
     {
-        $category = Category::findOrFail($id);
-        $category->delete();
+        $deleted = Category::where('slug', $slug)->first();
+        abort_if(Auth::user()->role != 'admin', 401);
+        $deleted->delete();
 
         return redirect()->route('administrator.category.index')->withSuccess('Category has been deleted');
     }

@@ -14,20 +14,30 @@ use Illuminate\Support\Facades\Route;
 |
  */
 
-Route::get('/welcome', function () {
-    return view('welcome');
-});
+// <<<<<<< HEAD
+// Route::get('/welcome', function () {
+//     return view('welcome');
+// });
+// =======
+
+// >>>>>>> 99957ae401dba4a81c411ef99f5ee3015345e81b
 
 Route::get('/login', [Controllers\LoginController::class, 'index'])->name('login');
 Route::post('/login', [Controllers\LoginController::class, 'authenticate']);
 Route::get('/googleredirect', [Controllers\LoginController::class, 'redirectToGoogle'])->name('callback');
 Route::get('/googlecallback', [Controllers\LoginController::class, 'handleGoogleCallback'])->name('redirect');
+Route::get('/', [Controllers\OnboardingController::class, 'index'])->name('getStarted');
+Route::get('/onboarding', [Controllers\OnboardingController::class, 'onboarding'])->name('onboarding');
 
 
 
 
 Route::middleware(['authCheck'])->group(function () {
-    Route::get('/', [Controllers\HomeController::class, 'index'])->name('home');
+// <<<<<<< HEAD
+//     Route::get('/', [Controllers\HomeController::class, 'index'])->name('home');
+// =======
+    Route::get('/home', [Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/detail-banner/{slug}', [Controllers\HomeController::class, 'detail_banner'])->name('detailBanner');
     Route::get('/profile', [Controllers\ProfileController::class, 'index'])->name('profile');
     Route::put('/profile', [Controllers\ProfileController::class, 'update'])->name('profile.update');
     Route::put('/change-password', [Controllers\ProfileController::class, 'change_password'])->name('changePassword');
@@ -36,11 +46,14 @@ Route::middleware(['authCheck'])->group(function () {
         Route::get('/', [Controllers\HistoryController::class, 'index'])->name('history');
         Route::get('/lost-item/edit/{slug}', [Controllers\LostItemController::class, 'edit'])->name('lostItems.edit');
         Route::put('/lost-item/update/{slug}', [Controllers\LostItemController::class, 'update'])->name('lostItems.update');
-        Route::get('/destroy/{id}', [Controllers\LostItemController::class, 'destroy'])->name('lostItems.destroy');
+        Route::get('/destroy/{slug}', [Controllers\LostItemController::class, 'destroy'])->name('lostItems.destroy');
         Route::get('/item-found', [Controllers\HistoryController::class, 'item_found'])->name('history.itemFound');
-        Route::get('/item-found/update/{slug}', [Controllers\ItemFoundController::class, 'edit'])->name('history.itemFound.edit');
+// <<<<<<< HEAD
+//         Route::get('/item-found/update/{slug}', [Controllers\ItemFoundController::class, 'edit'])->name('history.itemFound.edit');
+// =======
+        Route::get('/item-found/update/{slug}', [Controllers\ItemFoundController::class, 'edit'])->name('itemFound.edit');
         Route::post('/item-found/update/{slug}', [Controllers\ItemFoundController::class, 'update'])->name('itemFound.update');
-        Route::get('/item-found/destroy/{id}', [Controllers\ItemFoundController::class, 'destroy'])->name('itemFound.destroy');
+        Route::get('/item-found/destroy/{slug}', [Controllers\ItemFoundController::class, 'destroy'])->name('itemFound.destroy');
     });
     Route::prefix('lost-items')->group(function () {
         Route::get('/', [Controllers\LostItemController::class, 'index'])->name('lostItems');
@@ -63,7 +76,10 @@ Route::middleware(['authCheck'])->group(function () {
 
 
 Route::prefix('administrator')->name('administrator.')->group(function () {
-    Route::get('/', Controllers\Administrator\DashboardController::class)->middleware('auth')->name('dashboard.index');
+// <<<<<<< HEAD
+//     Route::get('/', Controllers\Administrator\DashboardController::class)->middleware('auth')->name('dashboard.index');
+// =======
+    Route::get('/dashboard', Controllers\Administrator\DashboardController::class)->middleware('auth')->name('dashboard.index');
     Route::middleware('guest')->group(function () {
         Route::get('login', [Controllers\Administrator\LoginController::class, 'loginForm'])->name('login');
         Route::post('login', [Controllers\Administrator\LoginController::class, 'authenticate']);
@@ -87,33 +103,33 @@ Route::prefix('administrator')->name('administrator.')->group(function () {
 
         Route::group(['prefix' => 'lost-item'], function () {
             Route::get('/', [Controllers\Administrator\LostItemController::class, 'index'])->name('lostItems.index');
-            Route::get('/destroy/{id}', [Controllers\Administrator\LostItemController::class, 'destroy'])->name('lostItems.destroy');
+            Route::get('/destroy/{slug}', [Controllers\Administrator\LostItemController::class, 'destroy'])->name('lostItems.destroy');
         });
 
         Route::group(['prefix' => 'item-found'], function () {
             Route::get('/', [Controllers\Administrator\ItemFoundController::class, 'index'])->name('itemFound.index');
-            Route::get('/destroy/{id}', [Controllers\Administrator\ItemFoundController::class, 'destroy'])->name('itemFound.destroy');
+            Route::get('/destroy/{slug}', [Controllers\Administrator\ItemFoundController::class, 'destroy'])->name('itemFound.destroy');
         });
 
         Route::group(['prefix' => 'category'], function () {
             Route::get('/', [Controllers\Administrator\CategoryController::class, 'index'])->name('category.index');
             Route::post('/store', [Controllers\Administrator\CategoryController::class, 'store'])->name('category.store');
-            Route::post('/update/{id}', [Controllers\Administrator\CategoryController::class, 'update'])->name('category.update');
-            Route::get('/destroy/{id}', [Controllers\Administrator\CategoryController::class, 'destroy'])->name('category.destroy');
+            Route::post('/update/{slug}', [Controllers\Administrator\CategoryController::class, 'update'])->name('category.update');
+            Route::get('/destroy/{slug}', [Controllers\Administrator\CategoryController::class, 'destroy'])->name('category.destroy');
         });
 
         Route::group(['prefix' => 'announcement'], function () {
             Route::get('/', [Controllers\Administrator\AnnouncementController::class, 'index'])->name('announcement.index');
             Route::post('/store', [Controllers\Administrator\AnnouncementController::class, 'store'])->name('announcement.store');
-            Route::post('/update/{id}', [Controllers\Administrator\AnnouncementController::class, 'update'])->name('announcement.update');
-            Route::get('/destroy/{id}', [Controllers\Administrator\AnnouncementController::class, 'destroy'])->name('announcement.destroy');
+            Route::post('/update/{slug}', [Controllers\Administrator\AnnouncementController::class, 'update'])->name('announcement.update');
+            Route::get('/destroy/{slug}', [Controllers\Administrator\AnnouncementController::class, 'destroy'])->name('announcement.destroy');
         });
 
         Route::group(['prefix' => 'get-started'], function () {
             Route::get('/', [Controllers\Administrator\GetStartedController::class, 'index'])->name('getStarted.index');
             Route::post('/store', [Controllers\Administrator\GetStartedController::class, 'store'])->name('getStarted.store');
-            Route::post('/update/{id}', [Controllers\Administrator\GetStartedController::class, 'update'])->name('getStarted.update');
-            Route::get('/destroy/{id}', [Controllers\Administrator\GetStartedController::class, 'destroy'])->name('getStarted.destroy');
+            Route::post('/update/{slug}', [Controllers\Administrator\GetStartedController::class, 'update'])->name('getStarted.update');
+            Route::get('/destroy/{slug}', [Controllers\Administrator\GetStartedController::class, 'destroy'])->name('getStarted.destroy');
         });
 
         Route::group(['prefix' => 'profile'], function () {

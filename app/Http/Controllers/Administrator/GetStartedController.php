@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Administrator;
 use App\Http\Controllers\Controller;
 use App\Models\GetStarted;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class GetStartedController extends Controller
@@ -32,13 +33,14 @@ class GetStartedController extends Controller
         GetStarted::create([
             'title' => $request->title,
             'image' => $imageName,
+            'slug'=>base64_encode($request->title),
             'description' => $request->description
         ]);
 
         return to_route('administrator.getStarted.index')->withSuccess('Get Started has been created');
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $slug)
     {
         $validator = Validator::make($request->all(), [
             'title' => ['required'],
@@ -48,7 +50,7 @@ class GetStartedController extends Controller
         if ($validator->fails()) {
             return redirect()->back()->withErrors('Failed to update Get Started');
         }
-        $getStarted = GetStarted::findOrFail($id);
+        $getStarted = GetStarted::where('slug', $slug)->first();
 
         $getStarted->title = $request->title;
         $getStarted->description = $request->description;
@@ -73,9 +75,17 @@ class GetStartedController extends Controller
         return to_route('administrator.getStarted.index')->withSuccess('Get Started has been updated');;
     }
 
-    public function destroy($id)
+    public function destroy($slug)
     {
-        GetStarted::find($id)->delete();
+        $deleted = GetStarted::where('slug', $slug)->first();
+        abort_if(Auth::user()->role != 'admin', 401);
+        if ($deleted->image !== null) {
+            $oldImagePath = public_path('storage/get-started/' . $deleted->image);
+            if (file_exists($oldImagePath)) {
+                unlink($oldImagePath);
+            }
+        }
+        $deleted->delete();
 
         return to_route('administrator.getStarted.index')->withSuccess('Get Started has been deleted');;
     }

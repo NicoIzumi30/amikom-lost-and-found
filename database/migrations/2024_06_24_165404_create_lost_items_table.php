@@ -15,11 +15,17 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->foreignId('category_id')->constrained()->cascadeOnDelete();
+            // <<<<<<< HEAD
             $table->string("title");
             $table->text("description");
+            //             $table->string("slug")->unique();
+            //             $table->string("image")->nullable();
+            //             $table->enum('status',['ditemukam','belum']);
+            // =======
+            // $table->text("postingan");
             $table->string("slug")->unique();
             $table->string("image")->nullable();
-            $table->enum('status',['ditemukam','belum']);
+            $table->enum('status', ['ditemukan', 'belum']);
             $table->string("no_tlp");
             $table->timestamps();
         });

@@ -17,7 +17,7 @@
                             <div class="card-body text-muted">
                                 <div class="row">
                                     <div class="col-2"><img
-                                            src="{{ auth()->user()->image ? asset('storage/users/' . auth()->user()->image) : asset('images/user.png') }}"
+                                            src="{{ $lost->user->image ? asset('storage/users/' . $lost->user->image) : asset('images/user.png') }}"
                                             class="w-75" style="aspect-ratio: 1;border-radius: 50%" alt="">
                                     </div>
                                     <div class="col-10">
@@ -39,7 +39,7 @@
                                 <div class="text-right">
                                     <div class="text-right">
 
-                                        <a href="{{ route('lostItems.destroy', ['id' => $lost->id]) }}"
+                                        <a href="{{ route('lostItems.destroy', ['slug' => $lost->slug]) }}"
                                             class="btn btn-red py-3 m-1 tombol-hapus2">Hapus</a>
                                         <a href="{{ route('lostItems.edit', ['slug' => $lost->slug]) }}"
                                             class="btn btn-info py-2 m-1">Edit</a>
@@ -57,7 +57,7 @@
             var kategorival = document.getElementById('kategori').value;
             if (kategorival == 1) {
                 window.location.href = "{{ url('/history') }}";
-            }  else {
+            } else {
                 window.location.href = "{{ url('/history/item-found') }}";
             }
         }

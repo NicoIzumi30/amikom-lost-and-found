@@ -6,43 +6,41 @@
                 <!-- Balance -->
                 <div class="balance">
                     <div class="left">
-                        <span class="title">{{$greeting}}</span>
-                        <h1 class="total">{{auth()->user()->name}}</h1>
+                        <span class="title">{{ $greeting }}</span>
+                        <h1 class="total">{{ auth()->user()->name }}</h1>
                     </div>
                 </div>
-                <!-- * Balance -->
-                <!-- Wallet Footer -->
                 <div class="wallet-footer">
 
                     <div class="item">
-                        <a href="{{route('itemFound')}}">
+                        <a href="{{ route('itemFound') }}">
                             <div class="icon-wrapper bg-primary">
-                            <i class="fas fa-hands-bound"></i>
+                                <i class="fas fa-hands-bound"></i>
                             </div>
                             <strong>Barang Ditemukan</strong>
                         </a>
                     </div>
 
                     <div class="item">
-                        <a href="{{route('lostItems')}}">
+                        <a href="{{ route('lostItems') }}">
                             <div class="icon-wrapper bg-success">
-                            <i class="fas fa-person-circle-question"></i>
+                                <i class="fas fa-person-circle-question"></i>
                             </div>
                             <strong>Barang Hilang</strong>
                         </a>
                     </div>
                     <div class="item">
-                        <a href="{{route('history')}}">
+                        <a href="{{ route('history') }}">
                             <div class="icon-wrapper bg-danger">
-                            <i class="fas fa-rotate-right"></i>
+                                <i class="fas fa-rotate-right"></i>
                             </div>
                             <strong>History</strong>
                         </a>
                     </div>
                     <div class="item">
-                        <a href="{{route('profile')}}">
+                        <a href="{{ route('profile') }}">
                             <div class="icon-wrapper bg-warning">
-                            <i class="fas fa-user"></i>
+                                <i class="fas fa-user"></i>
                             </div>
                             <strong>Profil</strong>
                         </a>
@@ -54,24 +52,25 @@
             </div>
             <div class="mt-3 text-center">
                 <swiper-container>
-                    <swiper-slide><img src="{{asset('images')}}/cropper.jpg" class="image-banner" alt=""></swiper-slide>
-                    <swiper-slide><img src="{{asset('images')}}/cropper.jpg" class="image-banner" alt=""></swiper-slide>
-                    <swiper-slide><img src="{{asset('images')}}/cropper.jpg" class="image-banner" alt=""></swiper-slide>
-                    <swiper-slide><img src="{{asset('images')}}/cropper.jpg" class="image-banner" alt=""></swiper-slide>
+                    @foreach ($banners as $banner)
+                        <swiper-slide><a href="{{ route('detailBanner', ['slug' => $banner->slug]) }}"><img
+                                    src="{{ asset('storage/announcement') }}/{{ $banner->image }}" class="image-banner"
+                                    alt=""></a></swiper-slide>
+                    @endforeach
                 </swiper-container>
             </div>
 
             <div class="container mt-3">
                 <h2>Barang Ditemukan</h2>
                 <div class="row">
-                      @foreach ($itemfound as $key => $found)
+                    @foreach ($itemfound as $key => $found)
                         <div class="col-6 mb-2">
-                            <a href="{{ route('itemFound.detail',['slug'=>$found->slug]) }}">
+                            <a href="{{ route('itemFound.detail', ['slug' => $found->slug]) }}">
                                 <div class="card w-100">
                                     <div class="card-body">
                                         <div class="text-center">
-                                            <img src="{{ asset('storage/item-found/' . $found->image) }}" class="w-75"
-                                                height="150px" alt="...">
+                                            <img src="{{ asset('storage/item-found/' . $found->image) }}"
+                                                class="w-75" height="150px" alt="...">
                                         </div>
                                         <h5 class="card-title mt-2">{{ $found->title }}</h5>
                                         <div class="text-right">

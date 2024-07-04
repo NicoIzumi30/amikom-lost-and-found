@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Administrator;
 use App\Http\Controllers\Controller;
 use App\Models\Banner;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class AnnouncementController extends Controller
@@ -32,13 +33,14 @@ class AnnouncementController extends Controller
         Banner::create([
             'title' => $request->title,
             'image' => $imageName,
+            'slug'=>base64_encode($request->title),
             'description' => $request->description
         ]);
 
         return to_route('administrator.announcement.index')->withSuccess('Announcement has been created');
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $slug)
     {
         $validator = Validator::make($request->all(), [
             'title' => ['required'],
@@ -48,7 +50,7 @@ class AnnouncementController extends Controller
         if ($validator->fails()) {
             return redirect()->back()->withErrors('Failed to update Announcement');
         }
-        $banner = Banner::findOrFail($id);
+        $banner = Banner::where('slug', $slug)->first();
 
         $banner->title = $request->title;
         $banner->description = $request->description;
@@ -73,9 +75,17 @@ class AnnouncementController extends Controller
         return to_route('administrator.announcement.index')->withSuccess('Announcement has been updated');;
     }
 
-    public function destroy($id)
+    public function destroy($slug)
     {
-        Banner::find($id)->delete();
+        $deleted = Banner::where('slug', $slug)->first();
+        abort_if(Auth::user()->role != 'admin', 401);
+        if ($deleted->image !== null) {
+            $oldImagePath = public_path('storage/announcement/' . $deleted->image);
+            if (file_exists($oldImagePath)) {
+                unlink($oldImagePath);
+            }
+        }
+        $deleted->delete();
         return to_route('administrator.announcement.index')->withSuccess('Announcement has been deleted');;
     }
 }

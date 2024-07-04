@@ -2,7 +2,7 @@
     <div class="right_col" role="main">
         <div class="page-title">
             <div class="title_left">
-                <h3>Item Found</h3>
+                <h3>Category</h3>
             </div>
         </div>
         <div class="clearfix"></div>
@@ -47,13 +47,13 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <form action="{{ route('administrator.category.update', ['id' => $category->id]) }}"
+                        <form action="{{ route('administrator.category.update', ['slug' => $category->slug]) }}"
                             method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="modal-body">
                                 <div class="mb-3">
                                     <label for="content" class="form-label">Name</label>
-                                    <input name="category_name" class="form-control">{{ $category->category_name }}</input>
+                                    <input name="category_name" class="form-control" value="{{ $category->category_name }}"></input>
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -89,7 +89,7 @@
                                             <td>{{ $category->category_name }}</td>
 
                                             <td>
-                                                <a href="{{ route('administrator.category.destroy', ['id' => $category->id]) }}"
+                                                <a href="{{ route('administrator.category.destroy', ['slug' => $category->slug]) }}"
                                                     class="btn btn-danger tombol-hapus m-1">
                                                     <i class="fas fa-trash"></i>
                                                 </a>

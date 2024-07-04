@@ -5,8 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Amikom Lost and Found</title>
-    <meta name="description"
-        content="Buka obrolan yang tepat dengan Dosen Anda. Template pesan & pembuat pesan profesional. Gratis!">
+    <meta name="description" content="Cari dan temukan barangmu yang hilang">
+    <link rel="icon" href="{{ asset('images') }}/logo.png" type="image/ico" />
+
     <link rel="stylesheet" href="{{ asset('main') }}/css/style.css">
     <link rel="stylesheet" href="{{ asset('main') }}/css/sw-custom.css">
     <link rel="stylesheet"
@@ -38,7 +39,8 @@
             background-color: #fff;
             cursor: pointer;
         }
-        .card-active{
+
+        .card-active {
             transform: scale(1.1);
             border: 1px solid #4A1B9D;
         }
@@ -99,34 +101,34 @@
     {{ $slot }}
 
     <div class="appBottomMenu">
-        <a href="{{route('home')}}" class="item {{request()->routeIs('home') ? 'active' : ''}}">
+        <a href="{{ route('home') }}" class="item {{ request()->routeIs('home') ? 'active' : '' }}">
             <div class="col text-dark">
                 <i class="fas fa-home fa-2x"></i>
                 <!-- <ion-icon name="home-outline"></ion-icon> -->
                 <strong>Home</strong>
             </div>
         </a>
-        <a href="{{route('itemFound')}}" class="item {{request()->routeIs('itemFound') ? 'active' : ''}}">
+        <a href="{{ route('itemFound') }}" class="item {{ request()->routeIs('itemFound') ? 'active' : '' }}">
             <div class="col text-dark">
                 <i class="fas fa-hands-bound fa-2x"></i>
                 <!-- <ion-icon name="document-text-outline"></ion-icon> -->
                 <strong>Barang Ditemukan</strong>
             </div>
         </a>
-        <a href="{{route('lostItems')}}" class="item {{request()->routeIs('lostItems') ? 'active' : ''}}">
+        <a href="{{ route('lostItems') }}" class="item {{ request()->routeIs('lostItems') ? 'active' : '' }}">
             <div class="col text-dark">
                 <i class="fas fa-person-circle-question fa-2x"></i>
                 <strong>Barang Hilang</strong>
             </div>
         </a>
-        <a href="{{route('history')}}" class="item {{request()->routeIs('history') ? 'active' : ''}}">
+        <a href="{{ route('history') }}" class="item {{ request()->routeIs('history') ? 'active' : '' }}">
             <div class="col text-dark">
                 <i class="fas fa-rotate-right fa-2x"></i>
                 <!-- <ion-icon name="chatbubbles-outline"></ion-icon> -->
                 <strong>History</strong>
             </div>
         </a>
-        <a href="{{route('profile')}}" class="item {{request()->routeIs('profile') ? 'active' : ''}}">
+        <a href="{{ route('profile') }}" class="item {{ request()->routeIs('profile') ? 'active' : '' }}">
             <div class="col text-dark">
                 <i class="fas fa-user fa-2x"></i>
                 <strong>Profil</strong>
@@ -155,7 +157,7 @@
             });
         });
     </script>
-      <script type="application/javascript">
+    <script type="application/javascript">
     $('input[type="file"]').change(function(e){
         var fileName = e.target.files[0].name;
         $('.custom-file-label').html(fileName);

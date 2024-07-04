@@ -29,7 +29,7 @@
                 <div class="card rounded bg-success text-white">
                     <div class="card-body tile_stats_count text-center">
                         <h3 class="count_top"><i class="fa fa-user"></i> Total Items Taken</h3>
-                        <h3 class="count">300</h3>
+                        <h3 class="count">{{ $takencount }}</h3>
                     </div>
                 </div>
             </div>
@@ -37,7 +37,7 @@
         <!-- top tiles -->
 
         <div class="row my-3">
-            <div class="col-md-6 mb-3">
+            <div class="col-md-12 mb-3">
                 <div class="card">
                     <div class="card-header">
                         <h5>Last Log Login User</h5>
@@ -49,6 +49,8 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Email/NIK</th>
+
+                                        <th>Device</th>
                                         <th>Time</th>
                                         <th>Ip Address</th>
                                     </tr>
@@ -56,63 +58,17 @@
                                 <tbody>
                                     @foreach ($datalog as $key => $log)
                                         <tr>
-                                            <td>{{$key +1}}</td>
-                                            <td>{{$log->user->email ?? $log->user->nik}}</td>
-                                            <td>{{$log->created_at}}</td>
-                                            <td>{{$log->ip_address}}</td>
+                                            <td>{{ $key + 1 }}</td>
+                                            <td>{{ $log->user->email ?? $log->user->nik }}</td>
+
+                                            <td>{{ $log->device }}</td>
+                                            <td>{{ $log->created_at }}</td>
+                                            <td>{{ $log->ip_address }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>
                             </table>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 mb-3">
-                <div class="x_panel">
-                    <div class="x_title">
-                        <h2>Visitors</h2>
-                        <ul class="nav navbar-right panel_toolbox">
-
-                        </ul>
-                        <div class="clearfix"></div>
-                    </div>
-                    <div class="x_content">
-                        <canvas id="visitors"></canvas>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- /top tiles -->
-
-        <div class="row">
-
-            <div class="col-md-6 mb-3 ">
-                <div class="x_panel">
-                    <div class="x_title">
-                        <h2>Lost Items</h2>
-                        <ul class="nav navbar-right panel_toolbox">
-
-                        </ul>
-                        <div class="clearfix"></div>
-                    </div>
-                    <div class="x_content">
-                        <canvas id="lostItems"></canvas>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-6 mb-3 ">
-                <div class="x_panel">
-                    <div class="x_title">
-                        <h2>Item Found</h2>
-                        <ul class="nav navbar-right panel_toolbox">
-                        </ul>
-                        <div class="clearfix"></div>
-                    </div>
-                    <div class="x_content">
-                        <canvas id="foundItem"></canvas>
                     </div>
                 </div>
             </div>

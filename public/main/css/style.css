@@ -347,7 +347,10 @@ hr {
 @media screen and (max-width: 768px) {
   .image-banner{
     width: 100%;
+/* <<<<<<< HEAD
     max-height: 300px;
+======= */
+    max-height: 250px;
   }
 }
 .list-unstyled {
@@ -1997,7 +2000,7 @@ a.btn.disabled, fieldset:disabled a.btn {
 .btn-danger {
   color: #fff;
   background-color: red;
-  border-color: black; 
+  border-color: black;
 }
 
 .btn-danger:hover {

@@ -50,9 +50,16 @@
             /* Use the Roboto font that is loaded in the <head> */
             font-family: 'Roboto', sans-serif;
         }
+/* <<<<<<< HEAD
         .btn-primary {
             background-color: #4A1B9D;
         }
+======= */
+
+        .btn-primary {
+            background-color: #4A1B9D;
+        }
+
         .btn-primary:hover {
             background-color: #4A1B9D;
         }
@@ -71,6 +78,7 @@
                             <p class="account-subtitle">Amikom Lost and Found</p>
                             @if ($errors->any())
                                 <div class="alert alert-danger" role="alert">
+{{-- <<<<<<< HEAD
                                 {{ $errors->first() }}
                                 </div>
                             @endif
@@ -78,6 +86,14 @@
                             <div class="alert alert-success" role="alert">
                                 {{ session('success') }}
                             </div>
+======= --}}
+                                    {{ $errors->first() }}
+                                </div>
+                            @endif
+                            @if (session('success'))
+                                <div class="alert alert-success" role="alert">
+                                    {{ session('success') }}
+                                </div>
                             @endif
                             <form action="{{route('login')}}" method="post">
                                 @csrf
@@ -118,6 +134,14 @@
     <script src="{{asset('main')}}/auth/feather.min.js"></script>
 
     <script src="{{asset('main')}}/auth/script.js"></script>
+{{-- <<<<<<< HEAD
+</body>
+
+</html>
+======= --}}
+    <script>
+        localStorage.setItem('onboarding', true);
+    </script>
 </body>
 
 </html>

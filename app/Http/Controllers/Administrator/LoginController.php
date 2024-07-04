@@ -26,7 +26,7 @@ class LoginController extends Controller
                 return back()->withErrors('You do not have admin access.');
             }
 
-            return redirect()->intended('/');
+            return redirect()->intended('/administrator/dashboard');
         }
 
         return back()->withErrors('Email atau Password Salah ');

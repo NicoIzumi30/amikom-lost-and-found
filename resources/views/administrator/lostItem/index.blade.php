@@ -34,7 +34,7 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <img src="{{ asset('storage/lost-item'.$lostitem->image) }}" class="w-100" alt="">
+                            <img src="{{ asset('storage/lost-item' . $lostitem->image) }}" class="w-100" alt="">
                         </div>
                     </div>
 
@@ -50,8 +50,7 @@
                                 <thead>
                                     <tr>
                                         <td width="4%">No</td>
-                                        <td>Name</td>
-                                        <td>Title</td>
+                                        <td width="30%">Postingan</td>
                                         <td>Status</td>
                                         <td>Date</td>
                                         <td>No Telp</td>
@@ -62,13 +61,12 @@
                                     @foreach ($data as $key => $lostitem)
                                         <tr>
                                             <td>{{ $key + 1 }}</td>
-                                            <td>{{ $lostitem->name }}</td>
-                                            <td>{{ $lostitem->title }}</td>
+                                            <td>{{ $lostitem->postingan }}</td>
                                             <td><span class="badge badge-danger">{{ $lostitem->status }}</span></td>
-                                            <td>{{ $lostitem->update_at }}</td>
                                             <td>{{ $lostitem->no_tlp }}</td>
+                                            <td>{{ $lostitem->created_at }}</td>
                                             <td>
-                                                <a href="{{ route('administrator.lostItems.destroy', ['id' => $lostitem->id]) }}"
+                                                <a href="{{ route('administrator.lostItems.destroy', ['slug' => $lostitem->slug]) }}"
                                                     class="btn btn-danger tombol-hapus m-1">
                                                     <i class="fas fa-trash"></i>
                                                 </a>

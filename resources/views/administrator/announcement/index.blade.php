@@ -55,7 +55,7 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <form action="{{ route('administrator.announcement.update', ['id' => $banner->id]) }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('administrator.announcement.update', ['slug' => $banner->slug]) }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="modal-body">
                                 <div class="mb-3">
@@ -113,7 +113,7 @@
                                                     alt="" width="60">
                                             </td>
                                             <td>
-                                                <a href="{{route('administrator.announcement.destroy',['id' => $banner->id])}}" class="btn tombol-hapus btn-danger m-1">
+                                                <a href="{{route('administrator.announcement.destroy',['slug' => $banner->slug])}}" class="btn tombol-hapus btn-danger m-1">
                                                     <i class="fas fa-trash"></i>
                                                 </a>
                                                 <a href="#" data-toggle="modal" data-target="#editData{{ $banner->id }}"

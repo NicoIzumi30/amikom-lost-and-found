@@ -28,7 +28,7 @@ class LoginController extends Controller
                 return back()->withErrors('You do not have access.');
             }
 
-            return redirect()->intended('/');
+            return redirect()->intended('/home');
         }
 
         return back()->withErrors('NIK atau Password Salah ');
@@ -53,7 +53,8 @@ class LoginController extends Controller
                     'google_id' => $user->getId(),
                     'name' => $user->getName(),
                     'email' => $user->getEmail(),
-                    'image' => null
+                    'image' => null,
+                    'role' => 'student'
                 ]);
                 $newuser->save();
                 $cekuser = $newuser;
