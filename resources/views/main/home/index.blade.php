@@ -59,10 +59,11 @@
                     @endforeach
                 </swiper-container>
             </div>
-
-            <div class="container mt-3">
-                <h2>Barang Ditemukan</h2>
+            <hr>
+            <div class="container">
+                <h3 class="mb-2 mt-2">Barang Terbaru Ditemukan</h3>
                 <div class="row">
+                    {{-- <<<<<<< HEAD
                     @foreach ($itemfound as $key => $found)
                         <div class="col-6 mb-2">
                             <a href="{{ route('itemFound.detail', ['slug' => $found->slug]) }}">
@@ -71,10 +72,35 @@
                                         <div class="text-center">
                                             <img src="{{ asset('storage/item-found/' . $found->image) }}"
                                                 class="w-75" height="150px" alt="...">
+======= --}}
+                    @foreach ($itemfound as $key => $found)
+                        <div class="col-12 mb-2">
+                            <a href="{{ route('itemFound.detail', ['slug' => $found->slug]) }}">
+                                <div class="card w-100" style="box-shadow: 0px 4px 14px 2px rgba(0,0,0,0.50);">
+                                    <div class="card-header">
+                                        <div class="row">
+                                            <div class="col-2"><img
+                                                    src="{{ $found->user->image ? asset('storage/users/' . $found->user->image) : asset('images/user.png') }}"
+                                                    class="w-100"
+                                                    style="aspect-ratio: 1;border-radius: 50%;margin-top:5px"
+                                                    alt=""></div>
+                                            <div class="col-10">
+                                                <h4 class="mb-0">{{ $found->user->name }}</h4>
+                                                <small>{{ $found->created_at->diffForHumans() }}</small>
+                                            </div>
                                         </div>
-                                        <h5 class="card-title mt-2">{{ $found->title }}</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="text-center">
+                                            <img src="{{ asset('storage/item-found/' . $found->image) }}"
+                                                class="w-100" style="max-height:180px" alt="...">
+                                        </div>
+                                    </div>
+                                    <div class="card-footer">
+                                        <h6 class="card-title mb-0">{{ $found->title }}</h6>
+                                        <small class="card-description">{{ $found->description }}</small>
                                         <div class="text-right">
-                                            <small class="text-dark">{{ $found->created_at->diffForHumans() }}</small>
+                                            <small class="text-muted">{{ $found->created_at->diffForHumans() }}</small>
                                         </div>
                                     </div>
                                 </div>

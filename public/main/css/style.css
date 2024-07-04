@@ -348,9 +348,12 @@ hr {
   .image-banner{
     width: 100%;
 /* <<<<<<< HEAD
+/* <<<<<<< HEAD
     max-height: 300px;
 ======= */
-    max-height: 250px;
+    /* max-height: 250px;
+=======} */
+    max-height: 200px;
   }
 }
 .list-unstyled {

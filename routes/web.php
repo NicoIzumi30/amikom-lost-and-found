@@ -14,13 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
  */
 
-// <<<<<<< HEAD
-// Route::get('/welcome', function () {
-//     return view('welcome');
-// });
-// =======
-
-// >>>>>>> 99957ae401dba4a81c411ef99f5ee3015345e81b
+Route::get('/welcome', function () {
+    return view('welcome');
+});
 
 Route::get('/login', [Controllers\LoginController::class, 'index'])->name('login');
 Route::post('/login', [Controllers\LoginController::class, 'authenticate']);
@@ -33,9 +29,6 @@ Route::get('/onboarding', [Controllers\OnboardingController::class, 'onboarding'
 
 
 Route::middleware(['authCheck'])->group(function () {
-// <<<<<<< HEAD
-//     Route::get('/', [Controllers\HomeController::class, 'index'])->name('home');
-// =======
     Route::get('/home', [Controllers\HomeController::class, 'index'])->name('home');
     Route::get('/detail-banner/{slug}', [Controllers\HomeController::class, 'detail_banner'])->name('detailBanner');
     Route::get('/profile', [Controllers\ProfileController::class, 'index'])->name('profile');
@@ -48,9 +41,6 @@ Route::middleware(['authCheck'])->group(function () {
         Route::put('/lost-item/update/{slug}', [Controllers\LostItemController::class, 'update'])->name('lostItems.update');
         Route::get('/destroy/{slug}', [Controllers\LostItemController::class, 'destroy'])->name('lostItems.destroy');
         Route::get('/item-found', [Controllers\HistoryController::class, 'item_found'])->name('history.itemFound');
-// <<<<<<< HEAD
-//         Route::get('/item-found/update/{slug}', [Controllers\ItemFoundController::class, 'edit'])->name('history.itemFound.edit');
-// =======
         Route::get('/item-found/update/{slug}', [Controllers\ItemFoundController::class, 'edit'])->name('itemFound.edit');
         Route::post('/item-found/update/{slug}', [Controllers\ItemFoundController::class, 'update'])->name('itemFound.update');
         Route::get('/item-found/destroy/{slug}', [Controllers\ItemFoundController::class, 'destroy'])->name('itemFound.destroy');
@@ -76,9 +66,6 @@ Route::middleware(['authCheck'])->group(function () {
 
 
 Route::prefix('administrator')->name('administrator.')->group(function () {
-// <<<<<<< HEAD
-//     Route::get('/', Controllers\Administrator\DashboardController::class)->middleware('auth')->name('dashboard.index');
-// =======
     Route::get('/dashboard', Controllers\Administrator\DashboardController::class)->middleware('auth')->name('dashboard.index');
     Route::middleware('guest')->group(function () {
         Route::get('login', [Controllers\Administrator\LoginController::class, 'loginForm'])->name('login');

@@ -6,7 +6,7 @@
                 <h2>{{$banner->title }}</h2>
             </div>
             <div class="text-center">
-            <img src="{{asset('storage/announcement')}}/{{$banner->image}}" class="w-75 my-3" alt="">
+            <img src="{{asset('storage/announcement')}}/{{$banner->image}}" class="w-75 my-3 rounded-lg" alt="">
             </div>
             <div class="text-justify mt-3">
                 <p>{{$banner->description }}</p>

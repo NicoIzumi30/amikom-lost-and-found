@@ -11,29 +11,28 @@
                         </select>
                     </div>
                 </div>
-                <div class="row mt-5">
+                <div class="row mt-3">
                     @foreach ($lostitems as $lost)
                         <div class="card w-100 mb-3">
                             <div class="card-body text-muted">
                                 <div class="row">
                                     <div class="col-2"><img
                                             src="{{ $lost->user->image ? asset('storage/users/' . $lost->user->image) : asset('images/user.png') }}"
-                                            class="w-75" style="aspect-ratio: 1;border-radius: 50%" alt="">
+                                            class="w-100" style="aspect-ratio: 1;border-radius: 50%;margin-top:5px"
+                                            alt="">
                                     </div>
                                     <div class="col-10">
-                                        <h3 class="mb-0" style="margin-left: -20px;margin-top:3px">
+                                        <h3 class="mb-0">
                                             {{ $lost->user->name }}
                                         </h3>
-                                        <small
-                                            style="margin-left:-20px;">{{ $lost->created_at->diffForHumans() }}</small>
+                                        <small>{{ $lost->created_at->diffForHumans() }}</small>
                                     </div>
                                 </div>
-                                <p class="mt-2">{{ $lost->postingan }}</p>
+                                <p class="mt-1">{{ $lost->postingan }}</p>
                                 @if ($lost->image !== null)
-                                    <div class="text-center">
-                                        <img src="{{ asset('storage/lostItems/' . $lost->image) }}" class="w-75"
-                                            height="300px" alt="">
-                                        4
+                                    <div class="text-center px-3">
+                                        <img src="{{ asset('storage/lostItems/' . $lost->image) }}"
+                                            class="w-100 rounded-lg" style="max-height:200px" alt="">
                                     </div>
                                 @endif
                                 <div class="text-right">
@@ -42,7 +41,7 @@
                                         <a href="{{ route('lostItems.destroy', ['slug' => $lost->slug]) }}"
                                             class="btn btn-red py-3 m-1 tombol-hapus2">Hapus</a>
                                         <a href="{{ route('lostItems.edit', ['slug' => $lost->slug]) }}"
-                                            class="btn btn-info py-2 m-1">Edit</a>
+                                            class="btn btn-info py-1"><i class="fas fa-pencil"></i></a>
                                     </div>
                                 </div>
                             </div>

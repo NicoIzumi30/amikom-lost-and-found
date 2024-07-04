@@ -13,13 +13,16 @@ class ProfileController extends Controller
     public function index() {
         return view('main.profile.index');
     }
+    public function test_upload(Request $request){
+        dd($request->file('image'));
+    } 
     public function update(Request $request)
     {
         $id = auth()->user()->id;
         $validator = Validator::make($request->all(), [
             'name' => ['required', 'string', 'max:255'],
             'phone_number' => ['required', 'string', 'max:16'],
-            'image' => ['nullable', 'mimes:jpg,jpeg,svg,png']
+            'image' => ['nullable', 'mimes:jpg,jpeg,png,svg'],
             // 'image' => ['nullable'],
         ]);
         if ($validator->fails()) {
