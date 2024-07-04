@@ -61,7 +61,11 @@
             </div>
             <hr>
             <div class="container">
-                <h3 class="mb-2 mt-2 text-muted">Barang Terbaru Ditemukan</h3>
+                @if ($itemfound->isEmpty())
+                    <h3 class="text-muted">Belum ada barang yang ditemukan</h3>
+                @else
+                    <h3 class="mb-2 mt-2 text-muted">Barang Terbaru Ditemukan</h3>
+                @endif
                 <div class="row">
                     @foreach ($itemfound as $key => $found)
                         <div class="col-12 mb-2">
