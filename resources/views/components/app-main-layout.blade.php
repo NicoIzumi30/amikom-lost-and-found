@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="{{ asset('main') }}/css/sw-custom.css">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
     <script src="{{ asset('main') }}/js/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
     <style>
@@ -26,7 +26,18 @@
             max-height: 3em;
             /* 2 baris, 1.5em per baris */
         }
+        .card-description{
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-height: 4em;
+            text-align: justify;
+            line-height: 1.5em;
+            margin-top: 2px;
 
+        }
         #itemKategori .card:hover {
             transform: scale(1.05);
         }
@@ -41,8 +52,23 @@
             cursor: pointer;
         }
         .card-active{
-            transform: scale(1.1);
             border: 1px solid #4A1B9D;
+        }
+        .title-header{
+            font-family: Plus Jakarta Sans,sans-serif;
+            font-weight:800;
+            color:#dbdada;
+            font-size:0.9em;
+            margin-right: 10px;
+        }
+        label{
+            line-height: 1.5em;
+        }
+        .table-detail{
+            font-size: 14px;
+        }
+        .table-detail td{
+            padding: 10px !important;
         }
     </style>
 </head>
@@ -74,9 +100,9 @@
     <div id="loader">
         <img src="{{ asset('main') }}/image/logo-icon.png" alt="icon" class="loading-icon">
     </div>
-    <div class="appHeader bg-danger text-light">
+    <div class="appHeader bg-danger text-light pb-1">
         <div class="pageTitle">
-            <h2 style="font-family: Black Ops One;color:#dbdada" class="mt-2">Amikom Lost and Found</h2>
+            <h2 class="mt-2 title-header">Amikom Lost and Found</h2>
         </div>
         <div class="right">
             <div class="headerButton" data-toggle="dropdown" id="dropdownMenuLink" aria-haspopup="true">
