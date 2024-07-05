@@ -4,12 +4,11 @@
                 <div class="avatar-section">
                     <a href="#">
                         <img src="{{auth()->user()->image ? asset('storage/users/' . auth()->user()->image) : asset('images/user.png')}}"
-                            alt="image" class="imaged rounded" style="width:150px;aspect-ratio: 1/1;">
+                            alt="image" class="imaged rounded" style="width:140px;aspect-ratio: 1/1;">
 
                     </a>
                 </div>
-            </div>z
-
+            </div>
             <div class="section mt-2 mb-2">
                 <div class="container-fluid">
                     <div class="row">

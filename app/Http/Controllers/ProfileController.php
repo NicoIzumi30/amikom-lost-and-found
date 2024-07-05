@@ -68,4 +68,5 @@ class ProfileController extends Controller
 
         return redirect()->route('profile')->with('success', 'Password berhasil di update');
     }
+
 }

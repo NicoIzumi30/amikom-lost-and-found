@@ -19,7 +19,7 @@ class EmployeeSeeder extends Seeder
             'email' => null,
             'nik' => '1234567890',
             'password' => bcrypt('finalproject'),
-            'image'=> public_path('/images/user.png'),
+            'image'=> null,
             'role' => 'employee'
         ]);
     }

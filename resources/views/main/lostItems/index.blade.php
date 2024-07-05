@@ -39,7 +39,7 @@
                     @endforeach
                 </div>
                 <div class="row mt-2">
-                    @foreach ($lostitems as $lost)
+                    @forelse ($lostitems as $lost)
                         <div class="card w-100 mb-3 " style="box-shadow: 0px 4px 14px 2px rgba(0,0,0,0.50);">
                             <div class="card-body text-muted">
                                 <div class="row">
@@ -68,7 +68,11 @@
                                 </div>
                             </div>
                         </div>
-                    @endforeach
+                        @empty
+                        <div class="col-12 my-3 text-center">
+                            <h3>Belum ada barang yang hilang.</h3>
+                        </div>
+                    @endforelse
 
                 </div>
             </div>

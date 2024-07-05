@@ -50,11 +50,6 @@
             background-color: #fff;
             cursor: pointer;
         }
-/* <<<<<<< HEAD
-
-        .card-active {
-            transform: scale(1.1);
-======= */
         .card-active{
             border: 1px solid #4A1B9D;
         }
@@ -70,6 +65,12 @@
         }
         .table-detail{
             font-size: 14px;
+        }
+        .description-found{
+            font-size: 14px;
+        }
+        .description-found p{
+            margin-bottom: 0px;
         }
         .table-detail td{
             padding: 10px !important;

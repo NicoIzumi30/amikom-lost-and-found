@@ -38,7 +38,7 @@
                         </div>
                     @endforeach
                 </div>
-                <div class="row mb-4">
+                <div class="row mb-3" id="item-container">
                     @forelse ($data as $key => $itemfound)
                         <div class="col-12 mb-2">
                             <a href="{{ route('itemFound.detail', ['slug' => $itemfound->slug]) }}">
@@ -47,8 +47,7 @@
                                         <div class="row">
                                             <div class="col-2"><img
                                                     src="{{ $itemfound->user->image ? asset('storage/users/' . $itemfound->user->image) : asset('images/user.png') }}"
-                                                    class="w-100"
-                                                    style="aspect-ratio: 1;border-radius: 50%;margin-top:5px"
+                                                    class="w-100" style="aspect-ratio: 1;border-radius: 50%;margin-top:5px"
                                                     alt=""></div>
                                             <div class="col-10">
                                                 <h4 class="mb-0">{{ $itemfound->user->name }}</h4>
@@ -58,8 +57,8 @@
                                     </div>
                                     <div class="card-body">
                                         <div class="text-center">
-                                            <img src="{{ asset('storage/item-found/' . $itemfound->image) }}"
-                                                class="w-100" style="max-height:180px" alt="...">
+                                            <img src="{{ asset('storage/item-found/' . $itemfound->image) }}" class="w-100"
+                                                style="max-height:180px" alt="...">
                                         </div>
                                     </div>
                                     <div class="card-footer">
@@ -74,29 +73,64 @@
                             <h3>Belum ada barang yang ditemukan</h3>
                         </div>
                     @endforelse
-
-
                 </div>
-                @if (empty($data))
-                    <div class="d-flex justify-content-center">
-                        <nav aria-label="...">
-                            <ul class="pagination">
-                                <li class="page-item disabled">
-                                    <a class="page-link">Previous</a>
-                                </li>
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item active" aria-current="page">
-                                    <a class="page-link" href="#">2</a>
-                                </li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">Next</a>
-                                </li>
-                            </ul>
-                        </nav>
+
+                @if (count($data) >= 10)
+                    <div class="text-center mb-3">
+                        <button id="load-more" class="btn btn-primary">Show More</button>
                     </div>
                 @endif
             </div>
         </div>
     </div>
+    <script>
+        $(document).ready(function () {
+            var skip = 10;
+
+            $('#load-more').click(function () {
+                $.ajax({
+                    url: '{{ route('itemFound.loadMore') }}',
+                    method: 'GET',
+                    data: {
+                        skip: skip
+                    },
+                    success: function (response) {
+                        skip += 10;
+                        response.forEach(function (found) {
+                            $('#item-container').append(
+                                `<div class="col-12 mb-2">
+                                    <a href="/item-found/detail/${found.slug}">
+                                        <div class="card w-100" style="box-shadow: 0px 4px 14px 2px rgba(0,0,0,0.50);">
+                                            <div class="card-header">
+                                                <div class="row">
+                                                    <div class="col-2"><img
+                                                        src="${found.user_image}"
+                                                        class="w-100" style="aspect-ratio: 1;border-radius: 50%;margin-top:5px"
+                                                        alt=""></div>
+                                                    <div class="col-10">
+                                                        <h4 class="mb-0">${found.name}</h4>
+                                                        <small>${found.created_at}</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="text-center">
+                                                    <img src="${found.image}" class="w-100"
+                                                        style="max-height:180px" alt="...">
+                                                </div>
+                                            </div>
+                                            <div class="card-footer">
+                                                <h6 class="card-title mb-0">${found.title}</h6>
+                                                <small class="card-description mb-1">${found.description}</small>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>`
+                            );
+                        });
+                    }
+                });
+            });
+        });
+    </script>
 </x-app-main-layout>
