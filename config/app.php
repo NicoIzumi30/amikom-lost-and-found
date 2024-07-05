@@ -84,7 +84,7 @@ return [
     |
     */
 
-    'locale' => 'id',
+    'locale' => 'id         ',
 
     /*
     |--------------------------------------------------------------------------
@@ -167,9 +167,11 @@ return [
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
-        App\Providers\EventServiceProvider::class,
+        App\Providers\EventServiceProvider::class,          
         App\Providers\RouteServiceProvider::class,
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
+        Ladumor\LaravelPwa\PWAServiceProvider::class,
+
     ])->toArray(),
 
     /*
@@ -182,9 +184,11 @@ return [
     | the aliases are "lazy" loaded so they don't hinder performance.
     |
     */
-
+   
     'aliases' => Facade::defaultAliases()->merge([
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
+        'LaravelPwa' => \Ladumor\LaravelPwa\LaravelPwa::class,
+
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 
