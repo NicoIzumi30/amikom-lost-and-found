@@ -25,12 +25,12 @@ class LostItemController extends Controller
         $category = Category::where('slug', $slug)->first();
         $lostitems = LostItem::where('category_id', $category->id)->get();
         $categories = Category::all();
-        return view('main/lostItems/index', [
-            'lostitems' => $lostitems,
-            'categories' => $categories,
-
-            'category_id' => $category->id
-        ]);
+        $category_id = $category->id;
+        return view('main/lostItems/index', compact(
+            'lostitems',
+            'categories',
+            'category_id'
+        ));
     }
     public function create()
     {

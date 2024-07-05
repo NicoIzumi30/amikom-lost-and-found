@@ -37,11 +37,11 @@ Route::middleware(['authCheck'])->group(function () {
 
     Route::group(['prefix' => 'history'], function () {
         Route::get('/', [Controllers\HistoryController::class, 'index'])->name('history');
-        Route::get('/lost-item/edit/{slug}', [Controllers\LostItemController::class, 'edit'])->name('lostItems.edit');
+        Route::get('/lost-item/edit/{slug}', [Controllers\LostItemController::class, 'edit'])->name('history.lostItems.edit');
         Route::put('/lost-item/update/{slug}', [Controllers\LostItemController::class, 'update'])->name('lostItems.update');
         Route::get('/destroy/{slug}', [Controllers\LostItemController::class, 'destroy'])->name('lostItems.destroy');
         Route::get('/item-found', [Controllers\HistoryController::class, 'item_found'])->name('history.itemFound');
-        Route::get('/item-found/update/{slug}', [Controllers\ItemFoundController::class, 'edit'])->name('itemFound.edit');
+        Route::get('/item-found/update/{slug}', [Controllers\ItemFoundController::class, 'edit'])->name('history.itemFound.edit');
         Route::post('/item-found/update/{slug}', [Controllers\ItemFoundController::class, 'update'])->name('itemFound.update');
         Route::get('/item-found/destroy/{slug}', [Controllers\ItemFoundController::class, 'destroy'])->name('itemFound.destroy');
     });

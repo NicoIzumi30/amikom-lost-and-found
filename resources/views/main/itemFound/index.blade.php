@@ -70,7 +70,7 @@
                         </div>
                     @empty
                         <div class="col-12 my-3 text-center">
-                            <h3>Belum ada barang yang ditemukan</h3>
+                            <h3 class="text-muted">Belum ada barang yang ditemukan</h3>
                         </div>
                     @endforelse
                 </div>

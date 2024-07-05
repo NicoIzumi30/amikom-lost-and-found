@@ -61,11 +61,9 @@ class ItemFoundController extends Controller
         $category = Category::where('slug', $slug)->first();
         $data = ItemFound::where('category_id', $category->id)->get();
         $categories = Category::all();
-        return view('main/itemFound/index', [
-            'data' => $data,
-            'categories' => $categories,
-            'category_id' => $category->id
-        ]);
+        $category_id = $category->id;
+
+        return view('main/itemFound/index', compact('data', 'categories', 'category_id'));
     }
     public function create()
     {
