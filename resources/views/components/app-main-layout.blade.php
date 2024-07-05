@@ -9,7 +9,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Amikom Lost and Found</title>
-    <meta name="description" content="Cari dan temukan barangmu yang hilang">
+    <meta name="description" content="Temukan Barangmu Yang Hilang dan Laporkan Barang Yang Kamu Temukan">
     <link rel="icon" href="{{ asset('images') }}/logo.png" type="image/ico" />
 
     <link rel="stylesheet" href="{{ asset('main') }}/css/style.css">
