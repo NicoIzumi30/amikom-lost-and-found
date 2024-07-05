@@ -40,7 +40,7 @@
 
                                         <a href="{{ route('lostItems.destroy', ['slug' => $lost->slug]) }}"
                                             class="btn btn-red py-3 m-1 tombol-hapus2">Hapus</a>
-                                        <a href="{{ route('history.lostItems.edit', ['slug' => $lost->slug]) }}"
+                                        <a href="{{ route('lostItems.edit', ['slug' => $lost->slug]) }}"
                                             class="btn btn-info py-1"><i class="fas fa-pencil"></i></a>
                                     </div>
                                 </div>

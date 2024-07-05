@@ -2,10 +2,14 @@
 <html lang="en">
 
 <head>
+    <!-- PWA  -->
+    <meta name="theme-color" content="#6777ef"/>
+    <link rel="apple-touch-icon" href="{{ asset('logo.png') }}">
+    <link rel="manifest" href="{{ asset('/manifest.json') }}">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Amikom Lost and Found</title>
-    <meta name="description" content="Cari dan temukan barangmu yang hilang">
+    <meta name="description" content="Temukan Barangmu Yang Hilang dan Laporkan Barang Yang Kamu Temukan">
     <link rel="icon" href="{{ asset('images') }}/logo.png" type="image/ico" />
 
     <link rel="stylesheet" href="{{ asset('main') }}/css/style.css">
@@ -53,13 +57,7 @@
             background-color: #fff;
             cursor: pointer;
         }
-
-        /* <<<<<<< HEAD
-
-        .card-active {
-            transform: scale(1.1);
-======= */
-        .card-active {
+        .card-active{
             border: 1px solid #4A1B9D;
         }
 
@@ -78,10 +76,16 @@
         .table-detail {
             font-size: 14px;
         }
-
-        .table-detail td {
+        .description-found{
+            font-size: 14px;
+        }
+        .description-found p{
+            margin-bottom: 0px;
+        }
+        .table-detail td{
             padding: 10px !important;
         }
+        
     </style>
 </head>
 
@@ -200,6 +204,21 @@
         var fileName = e.target.files[0].name;
         $('.custom-file-label').html(fileName);
     });
+</script>
+<script src="{{ asset('/sw.js') }}"></script>
+<script>
+   if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("/sw.js").then(
+      (registration) => {
+         console.log("Service worker registration succeeded:", registration);
+      },
+      (error) => {
+         console.error(`Service worker registration failed: ${error}`);
+      },
+    );
+  } else {
+     console.error("Service workers are not supported.");
+  }
 </script>
 </body>
 

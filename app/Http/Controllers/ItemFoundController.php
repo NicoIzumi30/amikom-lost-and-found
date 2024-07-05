@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\ItemFound;
 use Illuminate\Support\Facades\Validator;
@@ -13,13 +14,42 @@ class ItemFoundController extends Controller
 {
     public function index()
     {
-        $data = ItemFound::latest()->get();
+        $data = ItemFound::orderBy('created_at', 'desc')->take(10)->get();
         $categories = Category::all();
         return view('main/itemFound/index', [
             'data' => $data,
             'categories' => $categories,
         ]);
     }
+    public function load_more(Request $request)
+{
+    $skip = $request->input('skip');
+    $found = ItemFound::orderBy('created_at', 'desc')->skip($skip)->take(10)->get();
+    $data = [];
+
+    foreach ($found as $value) {
+        $user = $value->user; // Menggunakan relationship Eloquent
+        $name = $user->name;
+        $image = $user->image;
+        $filename = $image ? '/storage/users/' . $image : '/images/user.png';
+
+        $data[] = [
+            'id' => $value->id,
+            'category_id' => $value->category_id,
+            'title' => $value->title,
+            'description' => $value->description,
+            'location' => $value->location,
+            'image' => asset('/storage/item-found/'.$value->image),
+            'no_tlp' => $value->no_tlp,
+            'slug' => $value->slug,
+            'name' => $name,
+            'user_image'=> asset($filename),
+            'created_at' => $value->created_at->diffForHumans(),
+        ];
+    }
+
+    return response()->json($data);
+}
 
     public function detail($slug)
     {

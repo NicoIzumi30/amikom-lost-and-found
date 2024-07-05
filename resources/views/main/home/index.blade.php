@@ -6,8 +6,8 @@
                 <!-- Balance -->
                 <div class="balance">
                     <div class="left">
-                        <span class="title">{{ $greeting }}</span>
-                        <h1 class="total">{{ auth()->user()->name }}</h1>
+                        <span class="title mb-0">{{ $greeting }}</span>
+                        <h2>{{ auth()->user()->name }}</h2>
                     </div>
                 </div>
                 <div class="wallet-footer">

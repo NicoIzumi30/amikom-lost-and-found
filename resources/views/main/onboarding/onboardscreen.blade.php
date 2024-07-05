@@ -5,7 +5,8 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Amikom Lost and Found</title>
-	<link rel="icon" href="{{ asset('images') }}/logo.png" type="image/ico" />
+	<meta name="description" content="Temukan Barangmu Yang Hilang dan Laporkan Barang Yang Kamu Temukan">
+	<link rel="icon" href="{{ asset('icon512_maskable.png') }}" type="image/ico" /> 
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="{{'main/onboarding'}}/css/all.min.css">

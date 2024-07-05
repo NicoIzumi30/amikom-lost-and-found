@@ -54,6 +54,7 @@ Route::middleware(['authCheck'])->group(function () {
 
     Route::prefix('item-found')->group(function () {
         Route::get('/', [Controllers\ItemFoundController::class, 'index'])->name('itemFound');
+        Route::get('/load-more', [Controllers\ItemFoundController::class, 'load_more'])->name('itemFound.loadMore');
         Route::get('/detail/{slug}', [Controllers\ItemFoundController::class, 'detail'])->name('itemFound.detail');
         Route::get('/category/{slug}', [Controllers\ItemFoundController::class, 'category'])->name('itemFound.category');
         Route::get('/create', [Controllers\ItemFoundController::class, 'create'])->name('itemFound.create');

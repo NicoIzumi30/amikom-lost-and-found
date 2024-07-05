@@ -68,9 +68,9 @@
                                 </div>
                             </div>
                         </div>
-                    @empty
-                        <div class="col-12 my-3 text-center ">
-                            <h3 class="text-muted">Belum ada barang yang ditemukan</h3>
+                        @empty
+                        <div class="col-12 my-3 text-center">
+                            <h3>Belum ada barang yang hilang.</h3>
                         </div>
                     @endforelse
 
