@@ -3,7 +3,7 @@
 
 <head>
     <!-- PWA  -->
-    <meta name="theme-color" content="#6777ef"/>
+    <meta name="theme-color" content="#6777ef" />
     <link rel="apple-touch-icon" href="{{ asset('logo.png') }}">
     <link rel="manifest" href="{{ asset('/manifest.json') }}">
     <meta charset="UTF-8">
@@ -57,7 +57,8 @@
             background-color: #fff;
             cursor: pointer;
         }
-        .card-active{
+
+        .card-active {
             border: 1px solid #4A1B9D;
         }
 
@@ -76,16 +77,18 @@
         .table-detail {
             font-size: 14px;
         }
-        .description-found{
+
+        .description-found {
             font-size: 14px;
         }
-        .description-found p{
+
+        .description-found p {
             margin-bottom: 0px;
         }
-        .table-detail td{
+
+        .table-detail td {
             padding: 10px !important;
         }
-        
     </style>
 </head>
 
@@ -205,21 +208,21 @@
         $('.custom-file-label').html(fileName);
     });
 </script>
-<script src="{{ asset('/sw.js') }}"></script>
-<script>
-   if ("serviceWorker" in navigator) {
-      navigator.serviceWorker.register("/sw.js").then(
-      (registration) => {
-         console.log("Service worker registration succeeded:", registration);
-      },
-      (error) => {
-         console.error(`Service worker registration failed: ${error}`);
-      },
-    );
-  } else {
-     console.error("Service workers are not supported.");
-  }
-</script>
+    <script src="{{ asset('/sw.js') }}"></script>
+    <script>
+        if ("serviceWorker" in navigator) {
+            navigator.serviceWorker.register("/sw.js").then(
+                (registration) => {
+                    console.log("Service worker registration succeeded:", registration);
+                },
+                (error) => {
+                    console.error(`Service worker registration failed: ${error}`);
+                },
+            );
+        } else {
+            console.error("Service workers are not supported.");
+        }
+    </script>
 </body>
 
 </html>

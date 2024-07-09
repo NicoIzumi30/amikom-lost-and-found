@@ -2,36 +2,35 @@
     <div id="appCapsule">
         <!-- Wallet Card -->
         <div class="section pt-1">
-            <div class="container mt-3">
+            {{-- <div class="container-fluid mt-3"> --}}
                 <div class="row mb-1">
-                    <div class="col-2">
+                    <div class="col-lg-1 col-md-2 col-sm-3 col-2">
                         <img src="{{ auth()->user()->image ? asset('storage/users/' . auth()->user()->image) : asset('images/user.png') }}"
-                            class="w-100" style="aspect-ratio: 1;border-radius: 50%;border:1px solid rgba(0,0,0,0.50);"
-                            alt="">
+                            class="img-fluid rounded-circle border border-dark"  alt="Profile Image">
                     </div>
-                    <div class="col-10">
-                        <input type="text" class="form-control createItemFound" readonly
+                    <div class="col-lg-11 col-md-10 col-sm-9 col-10 d-flex align-items-center">
+                            <input type="text" class="form-control createItemFound" readonly
                             style="height: 35px;margin-left: -10px;border-radius: 50px;background-color:white !important;font-size:12px;"
                             placeholder="Apakah Anda Menemukan Barang?">
                     </div>
                 </div>
-                <div class="row mt-3 mb-2" id="itemKategori">
-                    <div class="col-4 mb-1">
+                <div class="row mt-3" id="itemKategori">
+                    <div class="col-lg-2 col-md-8 col-sm-12 col-4 mb-2">
                         <a href="{{ route('itemFound') }}">
                             <div class="card {{ !isset($category_id) ? 'card-active' : '' }}">
                                 <div class="card-body" style="text-align: center;padding:8px">
-                                    <h6 class="mb-0">Semua</h6>
+                                    <h5 class="mb-0">Semua</h5>
                                 </div>
                             </div>
                         </a>
                     </div>
                     @foreach ($categories as $category)
-                        <div class="col-4 mb-1">
+                        <div class="col-lg-2 col-md-8 col-sm-12 col-4 mb-2">
                             <a href="{{ route('itemFound.category', ['slug' => $category->slug]) }}">
                                 <div
                                     class="card {{ isset($category_id) && $category->id == $category_id ? 'card-active' : '' }}">
                                     <div class="card-body" style="text-align: center;padding:8px">
-                                        <h6 class="mb-0">{{ $category->category_name }}</h6>
+                                        <h5 class="mb-0">{{ $category->category_name }}</h5>
                                     </div>
                                 </div>
                             </a>
@@ -40,16 +39,17 @@
                 </div>
                 <div class="row mb-3" id="item-container">
                     @forelse ($data as $key => $itemfound)
-                        <div class="col-12 mb-2">
+                        <div class="col-lg-3 col-md-6 col-sm-12 mb-3">
                             <a href="{{ route('itemFound.detail', ['slug' => $itemfound->slug]) }}">
                                 <div class="card w-100" style="box-shadow: 0px 4px 14px 2px rgba(0,0,0,0.50);">
                                     <div class="card-header">
                                         <div class="row">
                                             <div class="col-2"><img
                                                     src="{{ $itemfound->user->image ? asset('storage/users/' . $itemfound->user->image) : asset('images/user.png') }}"
-                                                    class="w-100" style="aspect-ratio: 1;border-radius: 50%;margin-top:5px"
+                                                    class="w-100"
+                                                    style="aspect-ratio: 1;border-radius: 50%;margin-top:5px"
                                                     alt=""></div>
-                                            <div class="col-10">
+                                            <div class="col-10 mt-1">
                                                 <h4 class="mb-0">{{ $itemfound->user->name }}</h4>
                                                 <small>{{ $itemfound->created_at->diffForHumans() }}</small>
                                             </div>
@@ -57,8 +57,8 @@
                                     </div>
                                     <div class="card-body">
                                         <div class="text-center">
-                                            <img src="{{ asset('storage/item-found/' . $itemfound->image) }}" class="w-100"
-                                                style="max-height:180px" alt="...">
+                                            <img src="{{ asset('storage/item-found/' . $itemfound->image) }}"
+                                                class="w-100" style="max-height:180px" alt="...">
                                         </div>
                                     </div>
                                     <div class="card-footer">
@@ -80,23 +80,23 @@
                         <button id="load-more" class="btn btn-primary">Show More</button>
                     </div>
                 @endif
-            </div>
+            {{-- </div> --}}
         </div>
     </div>
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             var skip = 10;
 
-            $('#load-more').click(function () {
+            $('#load-more').click(function() {
                 $.ajax({
                     url: '{{ route('itemFound.loadMore') }}',
                     method: 'GET',
                     data: {
                         skip: skip
                     },
-                    success: function (response) {
+                    success: function(response) {
                         skip += 10;
-                        response.forEach(function (found) {
+                        response.forEach(function(found) {
                             $('#item-container').append(
                                 `<div class="col-12 mb-2">
                                     <a href="/item-found/detail/${found.slug}">

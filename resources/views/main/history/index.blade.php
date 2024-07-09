@@ -2,18 +2,19 @@
     <div id="appCapsule">
         <!-- Wallet Card -->
         <div class="section pt-1">
-            <div class="container mt-3">
+            {{-- <div class="container mt-3"> --}}
                 <div class="row">
-                    <div class="col-12">
+                    <div class="col-12 mt-3">
                         <select name="" class="form-control form-custom" onchange="changeValue()" id="kategori">
                             <option value="1">Kehilangan Barang</option>
                             <option value="2">Menemukan Barang</option>
                         </select>
                     </div>
                 </div>
-                <div class="row mt-3">
+                <div class="row mt-4">
                     @forelse ($lostitems as $lost)
-                        <div class="card w-100 mb-3">
+                    <div class="col-lg-3 col-md-6 col-sm-12 mb-3">
+                        <div class="card w-100" style="box-shadow: 0px 4px 14px 2px rgba(0,0,0,0.50);">
                             <div class="card-body text-muted">
                                 <div class="row">
                                     <div class="col-2"><img
@@ -21,7 +22,7 @@
                                             class="w-100" style="aspect-ratio: 1;border-radius: 50%;margin-top:5px"
                                             alt="">
                                     </div>
-                                    <div class="col-10">
+                                    <div class="col-10 mt-1">
                                         <h3 class="mb-0">
                                             {{ $lost->user->name }}
                                         </h3>
@@ -32,7 +33,7 @@
                                 @if ($lost->image !== null)
                                     <div class="text-center px-3">
                                         <img src="{{ asset('storage/lostItems/' . $lost->image) }}"
-                                            class="w-100 rounded-lg" style="max-height:200px" alt="">
+                                            class="w-100 rounded-lg" style="max-height:180px" alt="">
                                     </div>
                                 @endif
                                 <div class="text-right">
@@ -40,19 +41,20 @@
 
                                         <a href="{{ route('lostItems.destroy', ['slug' => $lost->slug]) }}"
                                             class="btn btn-red py-3 m-1 tombol-hapus2">Hapus</a>
-                                        <a href="{{ route('lostItems.edit', ['slug' => $lost->slug]) }}"
+                                        <a href="{{ route('history.lostItems.edit', ['slug' => $lost->slug]) }}"
                                             class="btn btn-info py-1"><i class="fas fa-pencil"></i></a>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
                         @empty
                         <div class="col-12 my-3 text-center">
                             <h3 class="text-muted">Belum ada postingan yang ditemukan</h3>
                         </div>
                     @endforelse
                 </div>
-            </div>
+            {{-- </div> --}}
         </div>
     </div>
     <script>
