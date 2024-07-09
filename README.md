@@ -1,15 +1,8 @@
-<<<<<<< HEAD
-# {Amikom Lost And Found}
-
-## Screenshot
-![Screenshot](screenshot.png)
-=======
 # Amikom Lost And Found
 
 ## Screenshot
 ![Screenshot](screenshot.png)
 ![Screenshot](screenshot2.png)
->>>>>>> 99957ae401dba4a81c411ef99f5ee3015345e81b
 
 ## Tema
 Inovation
