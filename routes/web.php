@@ -32,6 +32,7 @@ Route::middleware(['authCheck'])->group(function () {
     Route::get('/home', [Controllers\HomeController::class, 'index'])->name('home');
     Route::get('/detail-banner/{slug}', [Controllers\HomeController::class, 'detail_banner'])->name('detailBanner');
     Route::get('/profile', [Controllers\ProfileController::class, 'index'])->name('profile');
+    Route::get('/chats', [Controllers\ChatController::class, 'index'])->name('chats');
     Route::put('/profile', [Controllers\ProfileController::class, 'update'])->name('profile.update');
     Route::put('/change-password', [Controllers\ProfileController::class, 'change_password'])->name('changePassword');
 

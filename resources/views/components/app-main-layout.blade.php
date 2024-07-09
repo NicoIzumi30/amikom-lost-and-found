@@ -173,10 +173,10 @@
                 <strong>History</strong>
             </div>
         </a>
-        <a href="{{ route('profile') }}" class="item {{ request()->routeIs('profile') ? 'active' : '' }}">
+        <a href="{{ route('chats') }}" class="item {{ request()->routeIs('chats') ? 'active' : '' }}">
             <div class="col text-dark">
-                <i class="fas fa-user fa-2x"></i>
-                <strong>Profil</strong>
+                <i class="fas fa-comments fa-2x"></i>
+                <strong>Pesan</strong>
             </div>
         </a>
     </div>
