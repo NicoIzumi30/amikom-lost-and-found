@@ -40,6 +40,7 @@ Amikom Lost and Found juga menggunakan Bootstrap4 karena banyak menyidiakan comp
   ### Frontend : 
 - Bootstrap 4
 - Sweatalert 2
+- PWA
 
 ### Backend : 
 - Laravel 11
