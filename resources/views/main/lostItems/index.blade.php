@@ -37,7 +37,7 @@
                     </div>
                 @endforeach
             </div>
-            <div class="row mt-2">
+            <div class="row">
                 @forelse ($lostitems as $lost)
                     <div class="col-lg-3 col-md-6 col-sm-12 mb-3">
                         <div class="card w-100 " style="box-shadow: 0px 4px 14px 2px rgba(0,0,0,0.50);">

@@ -3,19 +3,19 @@
         <!-- Wallet Card -->
         <div class="section pt-1">
             {{-- <div class="container mt-3"> --}}
-                <div class="row">
-                    <div class="col mt-3">
-                        <select name="" class="form-control form-custom" onchange="changeValue()" id="kategori" >
-                            <option value="1">Kehilangan Barang</option>
-                            <option value="2" selected>Menemukan Barang</option>
-                        </select>
-                    </div>
+            <div class="row">
+                <div class="col mt-3">
+                    <select name="" class="form-control form-custom" onchange="changeValue()" id="kategori">
+                        <option value="1">Kehilangan Barang</option>
+                        <option value="2" selected>Menemukan Barang</option>
+                    </select>
                 </div>
-                <div class="row mt-4">
-                    @forelse ($data as $userfound)
-                     <div class="col-lg-3 col-md-6 col-sm-12 mb-3">
+            </div>
+            <div class="row mt-4">
+                @forelse ($data as $userfound)
+                    <div class="col-lg-3 col-md-6 col-sm-12 mb-3">
                         <div class="card w-100  " style="box-shadow: 0px 4px 14px 2px rgba(0,0,0,0.50);">
-                            <div class="card-body text-muted">
+                            <div class="card-header">
                                 <div class="row">
                                     <div class="col-2"><img
                                             src="{{ $userfound->user->image ? asset('storage/users/' . $userfound->user->image) : asset('images/user.png') }}"
@@ -26,7 +26,10 @@
                                         <small>{{ $userfound->created_at->diffForHumans() }}</small>
                                     </div>
                                 </div>
-                                <p class="mt-2">{{ $userfound->title }}</p>
+                            </div>
+                            <div class="card-body text-muted">
+
+                                <p class="mt-1">{{ $userfound->title }}</p>
                                 <div class="text-center px-2">
                                     <img src="{{ asset('storage/item-found/' . $userfound->image) }}"
                                         class="w-100 rounded-lg" style="max-height:180px" alt="">
@@ -41,13 +44,13 @@
                                 </div>
                             </div>
                         </div>
-                     </div>
-                    @empty
-                        <div class="col-12 my-3 text-center">
-                            <h3 class="text-muted">Belum ada postingan yang ditemukan</h3>
-                        </div>
-                    @endforelse
-                </div>
+                    </div>
+                @empty
+                    <div class="col-12 my-3 text-center">
+                        <h3 class="text-muted">Belum ada postingan yang ditemukan</h3>
+                    </div>
+                @endforelse
+            </div>
             {{-- </div> --}}
         </div>
     </div>
