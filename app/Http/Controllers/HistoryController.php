@@ -10,14 +10,14 @@ use Illuminate\Support\Facades\Auth;
 class HistoryController extends Controller
 {
     public function index(){
-        $lostitems = LostItem::where('user_id', Auth::user()->id)->get();
+        $lostitems = LostItem::where('user_id', Auth::user()->id)->latest()->get();
         return view("main.history.index ",compact('lostitems'));
     }
 
     public function item_found()
     {
         $finduser = Auth::user();
-        $data = $finduser->itemFounds()->get();
+        $data = $finduser->itemFounds()->latest()->get();
         return view("main.history.itemFound ",compact('data'));
     }
 }

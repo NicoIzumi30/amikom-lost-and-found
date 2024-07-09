@@ -2,25 +2,26 @@
     <div id="appCapsule">
         <!-- Wallet Card -->
         <div class="section pt-1">
-            <div class="container mt-3">
+            {{-- <div class="container mt-3"> --}}
                 <div class="row">
-                    <div class="col-12">
-                        <select name="" class="form-control form-custom" onchange="changeValue()" id="kategori">
+                    <div class="col mt-3">
+                        <select name="" class="form-control form-custom" onchange="changeValue()" id="kategori" >
                             <option value="1">Kehilangan Barang</option>
                             <option value="2" selected>Menemukan Barang</option>
                         </select>
                     </div>
                 </div>
-                <div class="row mt-3">
+                <div class="row mt-4">
                     @forelse ($data as $userfound)
-                        <div class="card w-100 mb-3">
+                     <div class="col-lg-3 col-md-6 col-sm-12 mb-3">
+                        <div class="card w-100  " style="box-shadow: 0px 4px 14px 2px rgba(0,0,0,0.50);">
                             <div class="card-body text-muted">
                                 <div class="row">
                                     <div class="col-2"><img
                                             src="{{ $userfound->user->image ? asset('storage/users/' . $userfound->user->image) : asset('images/user.png') }}"
                                             class="w-100" style="aspect-ratio: 1;border-radius: 50%;margin-top:3px;"
                                             alt=""></div>
-                                    <div class="col-10">
+                                    <div class="col-10 mt-1">
                                         <h4 class="mb-0">{{ $userfound->user->name }}</h4>
                                         <small>{{ $userfound->created_at->diffForHumans() }}</small>
                                     </div>
@@ -28,7 +29,7 @@
                                 <p class="mt-2">{{ $userfound->title }}</p>
                                 <div class="text-center px-2">
                                     <img src="{{ asset('storage/item-found/' . $userfound->image) }}"
-                                        class="w-100 rounded-lg" style="max-height:200px" alt="">
+                                        class="w-100 rounded-lg" style="max-height:180px" alt="">
                                 </div>
                                 <div class="text-right">
                                     <a href="{{ route('itemFound.destroy', ['slug' => $userfound->slug]) }}"
@@ -40,13 +41,14 @@
                                 </div>
                             </div>
                         </div>
+                     </div>
                     @empty
                         <div class="col-12 my-3 text-center">
                             <h3 class="text-muted">Belum ada postingan yang ditemukan</h3>
                         </div>
                     @endforelse
                 </div>
-            </div>
+            {{-- </div> --}}
         </div>
     </div>
     <script>
