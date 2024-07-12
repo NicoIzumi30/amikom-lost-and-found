@@ -3,19 +3,19 @@
         <!-- Wallet Card -->
         <div class="section pt-1">
             {{-- <div class="container mt-3"> --}}
-                <div class="row">
-                    <div class="col-12 mt-3">
-                        <select name="" class="form-control form-custom" onchange="changeValue()" id="kategori">
-                            <option value="1">Kehilangan Barang</option>
-                            <option value="2">Menemukan Barang</option>
-                        </select>
-                    </div>
+            <div class="row">
+                <div class="col-12 mt-3">
+                    <select name="" class="form-control form-custom" onchange="changeValue()" id="kategori">
+                        <option value="1">Kehilangan Barang</option>
+                        <option value="2">Menemukan Barang</option>
+                    </select>
                 </div>
-                <div class="row mt-4">
-                    @forelse ($lostitems as $lost)
+            </div>
+            <div class="row mt-4">
+                @forelse ($lostitems as $lost)
                     <div class="col-lg-3 col-md-6 col-sm-12 mb-3">
                         <div class="card w-100" style="box-shadow: 0px 4px 14px 2px rgba(0,0,0,0.50);">
-                            <div class="card-body text-muted">
+                            <div class="card-header">
                                 <div class="row">
                                     <div class="col-2"><img
                                             src="{{ $lost->user->image ? asset('storage/users/' . $lost->user->image) : asset('images/user.png') }}"
@@ -29,6 +29,9 @@
                                         <small>{{ $lost->created_at->diffForHumans() }}</small>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="card-body text-muted">
+
                                 <p class="mt-1">{{ $lost->postingan }}</p>
                                 @if ($lost->image !== null)
                                     <div class="text-center px-3">
@@ -48,12 +51,12 @@
                             </div>
                         </div>
                     </div>
-                        @empty
-                        <div class="col-12 my-3 text-center">
-                            <h3 class="text-muted">Belum ada postingan yang ditemukan</h3>
-                        </div>
-                    @endforelse
-                </div>
+                @empty
+                    <div class="col-12 my-3 text-center">
+                        <h3 class="text-muted">Belum ada postingan yang ditemukan</h3>
+                    </div>
+                @endforelse
+            </div>
             {{-- </div> --}}
         </div>
     </div>

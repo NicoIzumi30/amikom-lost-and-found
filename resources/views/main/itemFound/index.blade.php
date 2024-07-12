@@ -37,7 +37,7 @@
                         </div>
                     @endforeach
                 </div>
-                <div class="row mb-3" id="item-container">
+                <div class="row " id="item-container">
                     @forelse ($data as $key => $itemfound)
                         <div class="col-lg-3 col-md-6 col-sm-12 mb-3">
                             <a href="{{ route('itemFound.detail', ['slug' => $itemfound->slug]) }}">
