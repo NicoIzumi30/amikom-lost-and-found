@@ -5,8 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Spatie\Sluggable\SlugOptions;
-use Spatie\Sluggable\HasSlug;
+use Illuminate\Support\Str;
 
 class ItemFound extends Model
 {
@@ -24,17 +23,17 @@ class ItemFound extends Model
         return $this->belongsTo(Category::class);
     }
 
-    // public function getSlugOptions(): SlugOptions
-    // {
+    public static function createUniqueSlug($title, $id = 0)
+    {
+        $slug = Str::slug($title);
+        $originalSlug = $slug;
+        $counter = 1;
 
-    //     return ItemFound::create()
-    //         ->generateSlugsFrom('title')
-    //         ->saveSlugsTo('slug');
+        while (self::where('slug', $slug)->where('id', '<>', $id)->exists()) {
+            $slug = $originalSlug . '-' . $counter;
+            $counter++;
+        }
 
-    // }
-
-    // public function getRouteKeyName()
-    // {
-    //     return 'slug';
-    // }
+        return $slug;
+    }
 }

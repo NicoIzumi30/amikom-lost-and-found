@@ -9,6 +9,8 @@ use App\Models\ItemFound;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+
 
 class ItemFoundController extends Controller
 {
@@ -21,39 +23,44 @@ class ItemFoundController extends Controller
             'categories' => $categories,
         ]);
     }
+
     public function load_more(Request $request)
-{
-    $skip = $request->input('skip');
-    $found = ItemFound::orderBy('created_at', 'desc')->skip($skip)->take(10)->get();
-    $data = [];
+    {
+        $skip = $request->input('skip');
+        $found = ItemFound::orderBy('created_at', 'desc')->skip($skip)->take(10)->get();
+        $data = [];
 
-    foreach ($found as $value) {
-        $user = $value->user; // Menggunakan relationship Eloquent
-        $name = $user->name;
-        $image = $user->image;
-        $filename = $image ? '/storage/users/' . $image : '/images/user.png';
+        foreach ($found as $value) {
+            $user = $value->user; // Menggunakan relationship Eloquent
+            $name = $user->name;
+            $image = $user->image;
+            $filename = $image ? '/storage/users/' . $image : '/images/user.png';
 
-        $data[] = [
-            'id' => $value->id,
-            'category_id' => $value->category_id,
-            'title' => $value->title,
-            'description' => $value->description,
-            'location' => $value->location,
-            'image' => asset('/storage/item-found/'.$value->image),
-            'no_tlp' => $value->no_tlp,
-            'slug' => $value->slug,
-            'name' => $name,
-            'user_image'=> asset($filename),
-            'created_at' => $value->created_at->diffForHumans(),
-        ];
+            $data[] = [
+                'id' => $value->id,
+                'category_id' => $value->category_id,
+                'title' => $value->title,
+                'description' => $value->description,
+                'location' => $value->location,
+                'image' => asset('/storage/item-found/' . $value->image),
+                'no_tlp' => $value->no_tlp,
+                'slug' => $value->slug,
+                'name' => $name,
+                'user_image' => asset($filename),
+                'created_at' => $value->created_at->diffForHumans(),
+            ];
+        }
+
+        return response()->json($data);
     }
-
-    return response()->json($data);
-}
 
     public function detail($slug)
     {
-        $data = ItemFound::where('slug', $slug)->first();
+        try {
+            $data = ItemFound::where('slug', $slug)->firstOrFail();
+        } catch (ModelNotFoundException $e) {
+            abort(404);
+        }
         return view('main/itemFound/detailItem', ['data' => $data]);
     }
     public function category($slug)
@@ -87,7 +94,7 @@ class ItemFoundController extends Controller
             return redirect()->back()->withErrors('Failed to create ItemFound');
         }
         $imageName = time() . '.' . $request->image->extension();
-
+        $slug = ItemFound::createUniqueSlug($request->title);
         $request->image->storeAs('item-found', $imageName, 'public');
 
         ItemFound::create([
@@ -96,7 +103,7 @@ class ItemFoundController extends Controller
             'description' => $request->description,
             'category_id' => $request->category_id,
             'location' => $request->location,
-            'slug' => base64_encode($request->title),
+            'slug' => $slug,
             'image' => $imageName,
             'status' => 'belum',
             'no_tlp' => $request->no_tlp
@@ -110,7 +117,13 @@ class ItemFoundController extends Controller
     public function edit($slug)
     {
         $categories = Category::all();
-        $data = ItemFound::where('slug', $slug)->first();
+        try {
+            $data = ItemFound::where('slug', $slug)->firstOrFail();
+            abort_if(Auth::user()->id != $data->user_id, 401);
+        } catch (ModelNotFoundException $e) {
+            abort(404);
+        }
+        
         return view('main/itemFound/edit', compact('data', 'categories'));
     }
 
@@ -129,9 +142,13 @@ class ItemFoundController extends Controller
         if ($validator->fails()) {
             return redirect()->back()->withErrors('Failed to update ItemFound');
         }
-        $itemFound = ItemFound::where('slug', $slug)->first();
+        $itemFound = ItemFound::where('slug', $slug)->firstOrFail();
+        abort_if(Auth::user()->id != $itemFound->user_id, 401);
+        $id = $itemFound->id;
+        $slug = ItemFound::createUniqueSlug($request->title, $id);
         $itemFound->category_id = $request->category_id;
         $itemFound->title = $request->title;
+        $itemFound->slug = $slug;
         $itemFound->description = $request->description;
         $itemFound->location = $request->location;
         $itemFound->status = $request->status;
@@ -157,7 +174,7 @@ class ItemFoundController extends Controller
 
     public function destroy($slug)
     {
-        $itemFound = ItemFound::where('slug', $slug)->first();
+        $itemFound = ItemFound::where('slug', $slug)->firstOrFail();
         abort_if(Auth::user()->id != $itemFound->user_id, 401);
         if ($itemFound->image !== null) {
             $oldImagePath = public_path('storage/item-found/' . $itemFound->image);
