@@ -70,15 +70,15 @@
             <div class="col-md-3 left_col">
                 <div class="left_col scroll-view">
                     <div class="navbar nav_title" style="border: 0;">
-                        <a href="#" class="site_title"><img src="{{ asset('images') }}/logo.png" width="50"
-                                alt=""> <span>Lost and
+                        <a href="#" class="site_title"><img src="{{ asset('images') }}/logo.png" width="50" alt="">
+                            <span>Lost and
                                 Found</span></a>
                     </div>
                     <div class="clearfix"></div>
                     <!-- menu profile quick info -->
                     <div class="profile clearfix my-2">
                         <div class="profile_pic">
-                             <img src="{{ auth()->user()->image ? asset('storage/users/' . auth()->user()->image) : asset('images/user.png') }}"
+                            <img src="{{ auth()->user()->image ? asset('storage/users/' . auth()->user()->image) : asset('images/user.png') }}"
                                 alt="..." class="img-circle profile_img" style="aspect-ratio: 1">
                         </div>
                         <div class="profile_info">
@@ -121,9 +121,10 @@
                                 <li><a href="{{ route('administrator.getStarted.index') }}"><i
                                             class="fa fa-circle-play"></i>
                                         Get started</a></li>
-                                <li><a href="{{ route('administrator.profile.index') }}"><i
-                                            class="fa fa-user-edit"></i>
+                                <li><a href="{{ route('administrator.profile.index') }}"><i class="fa fa-user-edit"></i>
                                         Profile</a></li>
+                                <li><a href="{{ route('administrator.setting.index') }}"><i class="fa fa-gear"></i>
+                                Setting</a></li>
                                 <li><a href="{{ route('administrator.logout') }}"><i class="fa fa-power-off"></i>
                                         Logout</a></li>
                             </ul>
@@ -319,11 +320,11 @@
         }
     </script>
     <script type="application/javascript">
-    $('input[type="file"]').change(function(e){
-        var fileName = e.target.files[0].name;
-        $('.custom-file-label').html(fileName);
-    });
-</script>
+        $('input[type="file"]').change(function (e) {
+            var fileName = e.target.files[0].name;
+            $('.custom-file-label').html(fileName);
+        });
+    </script>
 </body>
 
 </html>

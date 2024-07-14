@@ -171,7 +171,7 @@
                 <i class="fas fa-rotate-right fa-2x"></i>
                 <!-- <ion-icon name="chatbubbles-outline"></ion-icon> -->
                 <strong>History</strong>
-            </div>
+            </div>  
         </a>
         <a href="{{ route('chats') }}" class="item {{ request()->routeIs('chats') ? 'active' : '' }}">
             <div class="col text-dark">

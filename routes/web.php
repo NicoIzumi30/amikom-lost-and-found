@@ -126,7 +126,10 @@ Route::prefix('administrator')->name('administrator.')->group(function () {
             Route::put('/update', [Controllers\Administrator\ProfileController::class, 'update'])->name('profile.update');
             Route::put('/change-password', [Controllers\Administrator\ProfileController::class, 'change_password'])->name('profile.changePassword');
         });
-
+        Route::group(['prefix' => 'setting'], function () {
+            Route::get('/', [Controllers\Administrator\SettingController::class, 'index'])->name('setting.index');
+            Route::put('/update', [Controllers\Administrator\SettingController::class, 'update'])->name('setting.update');
+        });
         Route::get('/download-template', [Controllers\Administrator\FileController::class, 'downloadTemplate'])->name('download.template');
         Route::get('logout', Controllers\Administrator\LogoutController::class)->name('logout');
     });
