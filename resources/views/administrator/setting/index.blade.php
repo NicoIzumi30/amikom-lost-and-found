@@ -39,7 +39,7 @@
                                 <div class="col-md-6 mb-3">
                                     <p>Company Logo</p>
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" name="logo " id="customFile">
+                                        <input type="file" class="custom-file-input" name="logo" id="customFile">
                                         <label class="custom-file-label" for="customFile">Choose file</label>
                                     </div>
                                     <img src="{{ $setting->company_logo ? asset('storage/logo/' . $setting->company_logo) : asset('icon512_rounded.png')}}" class="img-fluid mt-3" width="150px" alt="">

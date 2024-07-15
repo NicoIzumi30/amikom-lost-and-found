@@ -4,9 +4,9 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Amikom Lost and Found</title>
-	<meta name="description" content="Temukan Barangmu Yang Hilang dan Laporkan Barang Yang Kamu Temukan">
-	<link rel="icon" href="{{ asset('icon512_maskable.png') }}" type="image/ico" /> 				
+	<title>{{$settings['application_name'] ?? 'Amikom Lost and Found'}}</title>
+    <meta name="description" content="{{$settings['application_description'] ?? 'Temukan Barangmu Yang Hilang dan Laporkan Barang Yang Kamu Temukan'}}">
+    <link rel="icon" href="{{ $settings['company_logo'] ? asset('storage/logo/' . $settings['company_logo']) : asset('logo.png') }}" type="image/ico" />		
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="{{'main/onboarding'}}/css/all.min.css">
@@ -34,7 +34,7 @@
 									<button><a href="javascript:void(0)">Skip</a></button>
 								</div>
 								<div class="screen-1-content">
-									<h1>Selamat Datang Di <div class="amikom">AMIKOM LOST AND FOUND</div></h1>
+									<h1>Selamat datang di <div class="amikom">{{$settings['application_name']}}</div></h1>
 									<p>Cari dan temukan barangmu yang hilang.</p>	
 								</div>
 							</div>
@@ -51,7 +51,7 @@
 									<a href="javascript:void(0)">Skip</a>
 								</div>
 								<div class="screen-1-content">
-									<h1>Apa itu <div class="amikom">AMIKOM LOST AND FOUND?</div> </h1>
+									<h1>Apa itu <div class="amikom">{{$settings['application_name']}}?</div> </h1>
 									<p>Website ini merupakan tempat untuk kalian </p>	
 								</div>
 							</div>
@@ -68,7 +68,7 @@
 									<a href="{{route('login')}}" id="setLocalStorage">Skip</a>
 								</div>
 								<div class="screen-1-content">
-									<h1>Create Real Inspiration</h1>
+									<h1><div class="amikom">{{$settings['application_name']}}	</div></h1>
 									<p>Posting barang yang kamu temukan dan bantu mereka yang kehilangan.</p>	
 								</div>
 							</div>

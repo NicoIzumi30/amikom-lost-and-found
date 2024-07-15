@@ -372,7 +372,7 @@ input[type=number] {
     font-style: normal;
     font-weight: 600;
     font-size: 15px;
-    line-height: 48px;
+    line-height: 40px;
     color: black;
 }
 
@@ -380,8 +380,8 @@ input[type=number] {
 
 .amikom{
     color:#700070;
-    font-size: 23px;
-    font-weight: 600;
+    font-size: 25px;
+    font-weight: bold;
 }
 .skip_btn_1.skip_btn,
 .skip_btn_2.skip_btn,

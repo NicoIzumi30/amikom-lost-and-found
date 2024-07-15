@@ -7,9 +7,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="{{ asset('images') }}/logo.png" type="image/ico" />
+    <link rel="icon" href="{{ $settings['company_logo'] ? asset('storage/logo/' . $settings['company_logo']) : asset('logo.png') }}" type="image/ico" />
 
-    <title>Amikom Lost and Found</title>
+    <title>{{$settings['application_name'] ?? 'Amikom Lost and Found'}}</title>
     <!-- Bootstrap -->
     <link href="{{ asset('vendors') }}/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
@@ -70,9 +70,8 @@
             <div class="col-md-3 left_col">
                 <div class="left_col scroll-view">
                     <div class="navbar nav_title" style="border: 0;">
-                        <a href="#" class="site_title"><img src="{{ asset('images') }}/logo.png" width="50" alt="">
-                            <span>Lost and
-                                Found</span></a>
+                        <a href="#" class="site_title"><img src="{{ $settings['company_logo'] ? asset('storage/logo/' . $settings['company_logo']) : asset('logo.png') }}" width="50" alt="">
+                            <span>{{$settings['application_name'] ?? 'Amikom Lost and Found'}}</span></a>
                     </div>
                     <div class="clearfix"></div>
                     <!-- menu profile quick info -->
@@ -118,9 +117,6 @@
                                 <li><a href="{{ route('administrator.announcement.index') }}"><i
                                             class="fa fa-bullhorn"></i>
                                         Announcement</a></li>
-                                <li><a href="{{ route('administrator.getStarted.index') }}"><i
-                                            class="fa fa-circle-play"></i>
-                                        Get started</a></li>
                                 <li><a href="{{ route('administrator.profile.index') }}"><i class="fa fa-user-edit"></i>
                                         Profile</a></li>
                                 <li><a href="{{ route('administrator.setting.index') }}"><i class="fa fa-gear"></i>

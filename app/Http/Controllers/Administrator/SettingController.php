@@ -38,7 +38,7 @@ class SettingController extends Controller
                 }
             }
             $imageName = time() . '.' . $request->logo->extension();
-            $request->logo->storeAs('logo', $imageName, 'public');
+            $request->logo  ->storeAs('logo', $imageName, 'public');
             $setting->company_logo = $imageName;
         }
         $setting->save();

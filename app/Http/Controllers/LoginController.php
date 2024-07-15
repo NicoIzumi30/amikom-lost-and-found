@@ -9,7 +9,7 @@ use Laravel\Socialite\Facades\Socialite;
 
 class LoginController extends Controller
 {
-    public function index()
+    public function index(  )
     {
         return view("main/login/index");
     }
@@ -38,13 +38,22 @@ class LoginController extends Controller
     {
         return Socialite::driver('google')->redirect();
     }
-
-    public function handleGoogleCallback()
+    private function splitAndTrim($string)
+    {
+        $parts = explode(',', $string);
+        $trimmedParts = array_map('trim', $parts);
+        
+        return $trimmedParts;
+    }
+    public function handleGoogleCallback(Request $request)
     {
         $user = Socialite::driver('google')->user();
 
         $emailDomain = substr(strrchr($user->getEmail(), "@"), 1);
-        if ($emailDomain == 'students.amikom.ac.id' || $emailDomain == 'amikom.ac.id') {
+        $settings = $request->attributes->get('settings');
+        $validEmails = $settings['permitted_email'];
+        $validDomains = $this->splitAndTrim($validEmails);
+        if (in_array($emailDomain, $validDomains)) {
 
             $cekuser = User::where('email', $user->email)->first();
 

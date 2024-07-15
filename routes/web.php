@@ -114,13 +114,6 @@ Route::prefix('administrator')->name('administrator.')->group(function () {
             Route::get('/destroy/{slug}', [Controllers\Administrator\AnnouncementController::class, 'destroy'])->name('announcement.destroy');
         });
 
-        Route::group(['prefix' => 'get-started'], function () {
-            Route::get('/', [Controllers\Administrator\GetStartedController::class, 'index'])->name('getStarted.index');
-            Route::post('/store', [Controllers\Administrator\GetStartedController::class, 'store'])->name('getStarted.store');
-            Route::post('/update/{slug}', [Controllers\Administrator\GetStartedController::class, 'update'])->name('getStarted.update');
-            Route::get('/destroy/{slug}', [Controllers\Administrator\GetStartedController::class, 'destroy'])->name('getStarted.destroy');
-        });
-
         Route::group(['prefix' => 'profile'], function () {
             Route::get('/', [Controllers\Administrator\ProfileController::class, 'index'])->name('profile.index');
             Route::put('/update', [Controllers\Administrator\ProfileController::class, 'update'])->name('profile.update');

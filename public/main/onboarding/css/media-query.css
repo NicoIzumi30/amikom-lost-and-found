@@ -99,7 +99,8 @@
 		width: 160px;
 	}
 	.screen-1-content h1{
-		font-size: 34px;
+		font-weight: bold;
+		font-size: 25px;
 	}
 	.custom-slider-btn{
 		top: 275px;

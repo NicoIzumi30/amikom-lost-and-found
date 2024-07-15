@@ -1,67 +1,39 @@
+
 <!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="title" content="InfyBonus">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-1752YPLP7H"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
-    <style>
-        .error_body {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            height: 100vh;
-            width: 100%;
-            background: #f9f9f9;
-        }
+      gtag("config", "G-1752YPLP7H");
+    </script>
 
-        .error_container .error_heading {
-            color: transparent;
-            font-size: 160px;
-            margin: 0;
-            font-weight: 900;
-            letter-spacing: 20px;
-            background-size: 100% 100%;
-            background: linear-gradient(90deg, #6b719b 38%, #9da3cc 53%, #979dce 65%);
-            -webkit-background-clip: text;
-            -moz-background-clip: text;
-            -ms-background-clip: text;
-        }
+    <title>Offline Mode</title>
+    <link type="text/css" rel="stylesheet" href="offline.css" />
+  </head>
 
-        @media (max-width: 540px) {
-            .error_container .error_heading {
-                font-size: 120px;
-                letter-spacing: 10px;
-            }
-        }
-
-        .error_container .error_btn {
-            background-color: #6e749e !important;
-            border: none;
-            outline: none;
-        }
-
-        .error_container .error_btn:focus {
-            box-shadow: none !important;
-        }
-
-        .error_container .error_message,
-        .error_container .error_paragraph {
-            color: #787878;
-        }
-    </style>
-</head>
-<body>
-<div class="error_body">
-    <div
-        class="container error_container d-flex justify-content-center align-items-center flex-column w-100 h-100 p-5 text-center">
-        <h2 class="error_message text-center mb-3">Boo! You don't have an internet connection</h2>
-        <p class="error_paragraph text-center mb-5">
-            Please check your network connection and try again.
-        </p>
-        <a href="/" class="btn btn-primary error_btn">Back to Home Page</a>
+  <body class="permission_denied">
+    <div id="tsparticles"></div>
+    <div class="denied__wrapper">
+      <h1>404</h1>
+      <h3>
+        LOST IN <span>SPACE</span> App-Name? Hmm, looks like that page doesn't
+        exist.          
+      </h3>
+      <img id="astronaut" src="https://tsparticles.github.io/404-templates/space/images/astronaut.svg" />
+      <img id="planet" src="https://tsparticles.github.io/404-templates/space/images/planet.svg" />
+      <a href="#"><button class="denied__link">Go Home</button></a>
     </div>
-</div>
-</body>
+
+    <script type="text/javascript" src="offline.js"></script>
+  </body>
 </html>
