@@ -36,7 +36,8 @@
                                 @if ($lost->image !== null)
                                     <div class="text-center px-3">
                                         <img src="{{ asset('storage/lostItems/' . $lost->image) }}"
-                                            class="w-100 rounded-lg" style="max-height:180px" alt="">
+                                            class="img-fluid"
+                                            style="max-height: 180px; max-width: 100%;" alt="...">
                                     </div>
                                 @endif
                                 <div class="text-right">

@@ -28,7 +28,7 @@ Route::get('/onboarding', [Controllers\OnboardingController::class, 'onboarding'
 
 
 
-Route::middleware(['authCheck'])->group(function () {
+Route::middleware(['auth'])->group(function () {
     Route::get('/home', [Controllers\HomeController::class, 'index'])->name('home');
     Route::get('/detail-banner/{slug}', [Controllers\HomeController::class, 'detail_banner'])->name('detailBanner');
     Route::get('/profile', [Controllers\ProfileController::class, 'index'])->name('profile');
@@ -74,7 +74,7 @@ Route::prefix('administrator')->name('administrator.')->group(function () {
         Route::post('login', [Controllers\Administrator\LoginController::class, 'authenticate']);
     });
 
-    Route::middleware(['auth', 'admin'])->group(function () {
+    Route::middleware(['authCheck', 'admin'])->group(function () {
         Route::group(['prefix' => 'employees'], function () {
             Route::get('/', [Controllers\Administrator\EmployeeController::class, 'index'])->name('employees.index');
             Route::post('/store', [Controllers\Administrator\EmployeeController::class, 'store'])->name('employees.store');

@@ -7,9 +7,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="{{ $settings['company_logo'] ? asset('storage/logo/' . $settings['company_logo']) : asset('logo.png') }}" type="image/ico" />
+    <link rel="icon"
+        href="{{ $settings['company_logo'] ? asset('storage/logo/' . $settings['company_logo']) : asset('logo.png') }}"
+        type="image/ico" />
 
-    <title>{{$settings['application_name'] ?? 'Amikom Lost and Found'}}</title>
+    <title>{{ $settings['application_name'] ?? 'Amikom Lost and Found' }}</title>
     <!-- Bootstrap -->
     <link href="{{ asset('vendors') }}/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
@@ -70,8 +72,10 @@
             <div class="col-md-3 left_col">
                 <div class="left_col scroll-view">
                     <div class="navbar nav_title" style="border: 0;">
-                        <a href="#" class="site_title"><img src="{{ $settings['company_logo'] ? asset('storage/logo/' . $settings['company_logo']) : asset('logo.png') }}" width="50" alt="">
-                            <span>{{$settings['application_name'] ?? 'Amikom Lost and Found'}}</span></a>
+                        <a href="#" class="site_title"><img
+                                src="{{ $settings['company_logo'] ? asset('storage/logo/' . $settings['company_logo']) : asset('logo.png') }}"
+                                width="50" alt="">
+                            <span>{{ $settings['application_name'] ?? 'Amikom Lost and Found' }}</span></a>
                     </div>
                     <div class="clearfix"></div>
                     <!-- menu profile quick info -->
@@ -97,32 +101,60 @@
                         <div class="menu_section">
                             <h3>Main</h3>
                             <ul class="nav side-menu">
-                                <li><a href="{{ route('administrator.dashboard.index') }}"><i class="fa fa-home"></i>
-                                        Dashboard</a></li>
-                                <li><a href="{{ route('administrator.employees.index') }}"><i class="fa fa-users"></i>
-                                        Employees</a></li>
-                                <li><a href="{{ route('administrator.students.index') }}"><i
-                                            class="fa fa-user-graduate"></i>
-                                        Students</a></li>
-                                <li><a href="{{ route('administrator.category.index') }}"><i
-                                            class="fa fa-layer-group"></i> Category</a>
+                                <li>
+                                    <a href="{{ route('administrator.dashboard.index') }}">
+                                        <i class="fa fa-home"></i>
+                                        Dashboard</a>
                                 </li>
-                                <li><a href="{{ route('administrator.lostItems.index') }}"><i
+                                <li>
+                                    <a href="{{ route('administrator.employees.index') }}">
+                                        <i class="fa fa-users"></i>
+                                        Employees</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('administrator.students.index') }}"><i
+                                            class="fa fa-user-graduate"></i>
+                                        Students</a>
+                                </li>
+                                <li>
+                                    <a href="{{ '/Chat/' }}">
+                                        <i class="fa fa-comments"></i>
+                                        Chats</a>
+                                </li>
+                                <li><a href="{{ route('administrator.category.index') }}"><i
+                                            class="fa fa-layer-group"></i>
+                                        Category</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('administrator.lostItems.index') }}"><i
                                             class="fa fa-person-circle-question"></i>
-                                        Lost
-                                        Items</a></li>
-                                <li><a href="{{ route('administrator.itemFound.index') }}"><i class="fa fa-joget"></i>
-                                        Item
-                                        Found</a></li>
-                                <li><a href="{{ route('administrator.announcement.index') }}"><i
+                                        LostItems</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('administrator.itemFound.index') }}">
+                                        <i class="fa fa-joget"></i>
+                                        ItemFound</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('administrator.announcement.index') }}"><i
                                             class="fa fa-bullhorn"></i>
-                                        Announcement</a></li>
-                                <li><a href="{{ route('administrator.profile.index') }}"><i class="fa fa-user-edit"></i>
-                                        Profile</a></li>
-                                <li><a href="{{ route('administrator.setting.index') }}"><i class="fa fa-gear"></i>
-                                Setting</a></li>
-                                <li><a href="{{ route('administrator.logout') }}"><i class="fa fa-power-off"></i>
-                                        Logout</a></li>
+                                        Announcement</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('administrator.profile.index') }}"><i
+                                            class="fa fa-user-edit"></i>
+                                        Profile</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('administrator.setting.index') }}">
+                                        <i class="fa fa-gear"></i>
+                                        Setting</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('administrator.logout') }}">
+                                        <i class="fa fa-power-off"></i>
+                                        Logout</a>
+                                </li>
                             </ul>
                         </div>
                     </div>

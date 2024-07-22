@@ -10,7 +10,7 @@
                 </div>
                 <div class="col-lg-11 col-md-10 col-sm-9 col-10 d-flex align-items-center">
                     <input type="text" class="form-control createLostItems" readonly
-                        style="height: 35px;margin-left: -10px;border-radius: 50px;background-color:white !important;font-size:12px;"
+                        style="height: 40px;margin-left: -10px;border-radius: 50px;background-color:white !important;font-size:12px;"
                         placeholder="Apakah Anda Kehilangan Barang?">
                 </div>
             </div>
@@ -60,7 +60,8 @@
                                 @if ($lost->image !== null)
                                     <div class="text-center">
                                         <img src="{{ asset('storage/lostItems/' . $lost->image) }}"
-                                            class="w-100 rounded-lg" style="max-height:180px" alt="">
+                                            class="img-fluid"
+                                            style="max-height: 180px; max-width: 100%;" alt="...">
                                     </div>
                                 @endif
                                 <div class="text-right">

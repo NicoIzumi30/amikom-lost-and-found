@@ -32,7 +32,8 @@
                                 <p class="mt-1">{{ $userfound->title }}</p>
                                 <div class="text-center px-2">
                                     <img src="{{ asset('storage/item-found/' . $userfound->image) }}"
-                                        class="w-100 rounded-lg" style="max-height:180px" alt="">
+                                        class="img-fluid"
+                                            style="max-height: 180px; max-width: 100%;" alt="...">
                                 </div>
                                 <div class="text-right">
                                     <a href="{{ route('itemFound.destroy', ['slug' => $userfound->slug]) }}"
