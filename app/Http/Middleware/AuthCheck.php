@@ -20,6 +20,6 @@ class AuthCheck
         if (Auth::check()) {
             return $next($request);
         }
-        return to_route('login')->withErrors('Silahkan login terlebih dahulu.');
+        return to_route('administrator.login')->withErrors('Silahkan login terlebih dahulu.');
     }
 }
