@@ -10,7 +10,7 @@
                     </div>
                     <div class="col-lg-11 col-md-10 col-sm-9 col-10 d-flex align-items-center">
                             <input type="text" class="form-control createItemFound" readonly
-                            style="height: 35px;margin-left: -10px;border-radius: 50px;background-color:white !important;font-size:12px;"
+                            style="height: 40px;margin-left: -10px;border-radius: 50px;background-color:white !important;font-size:12px;"
                             placeholder="Apakah Anda Menemukan Barang?">
                     </div>
                 </div>
