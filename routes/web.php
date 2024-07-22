@@ -114,19 +114,15 @@ Route::prefix('administrator')->name('administrator.')->group(function () {
             Route::get('/destroy/{slug}', [Controllers\Administrator\AnnouncementController::class, 'destroy'])->name('announcement.destroy');
         });
 
-        Route::group(['prefix' => 'get-started'], function () {
-            Route::get('/', [Controllers\Administrator\GetStartedController::class, 'index'])->name('getStarted.index');
-            Route::post('/store', [Controllers\Administrator\GetStartedController::class, 'store'])->name('getStarted.store');
-            Route::post('/update/{slug}', [Controllers\Administrator\GetStartedController::class, 'update'])->name('getStarted.update');
-            Route::get('/destroy/{slug}', [Controllers\Administrator\GetStartedController::class, 'destroy'])->name('getStarted.destroy');
-        });
-
         Route::group(['prefix' => 'profile'], function () {
             Route::get('/', [Controllers\Administrator\ProfileController::class, 'index'])->name('profile.index');
             Route::put('/update', [Controllers\Administrator\ProfileController::class, 'update'])->name('profile.update');
             Route::put('/change-password', [Controllers\Administrator\ProfileController::class, 'change_password'])->name('profile.changePassword');
         });
-
+        Route::group(['prefix' => 'setting'], function () {
+            Route::get('/', [Controllers\Administrator\SettingController::class, 'index'])->name('setting.index');
+            Route::put('/update', [Controllers\Administrator\SettingController::class, 'update'])->name('setting.update');
+        });
         Route::get('/download-template', [Controllers\Administrator\FileController::class, 'downloadTemplate'])->name('download.template');
         Route::get('logout', Controllers\Administrator\LogoutController::class)->name('logout');
     });

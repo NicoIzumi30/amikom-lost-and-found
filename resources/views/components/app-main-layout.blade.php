@@ -3,14 +3,14 @@
 
 <head>
     <!-- PWA  -->
-    <meta name="theme-color" content="#6777ef" />
-    <link rel="apple-touch-icon" href="{{ asset('logo.png') }}">
+    <meta name="theme-color" content="{{$settings['application_theme' ?? '#6777ef']}}" />
+    <link rel="apple-touch-icon" href="{{ $settings['company_logo'] ? asset('storage/logo/' . $settings['company_logo']) : asset('logo.png') }}">
     <link rel="manifest" href="{{ asset('/manifest.json') }}">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Amikom Lost and Found</title>
-    <meta name="description" content="Temukan Barangmu Yang Hilang dan Laporkan Barang Yang Kamu Temukan">
-    <link rel="icon" href="{{ asset('images') }}/logo.png" type="image/ico" />
+    <title>{{$settings['application_name'] ?? 'Amikom Lost and Found'}}</title>
+    <meta name="description" content="{{$settings['application_description'] ?? 'Temukan Barangmu Yang Hilang dan Laporkan Barang Yang Kamu Temukan'}}">
+    <link rel="icon" href="{{ $settings['company_logo'] ? asset('storage/logo/' . $settings['company_logo']) : asset('logo.png') }}" type="image/ico" />
 
     <link rel="stylesheet" href="{{ asset('main') }}/css/style.css">
     <link rel="stylesheet" href="{{ asset('main') }}/css/sw-custom.css">
@@ -121,7 +121,7 @@
     </div>
     <div class="appHeader bg-danger text-light pb-1">
         <div class="pageTitle">
-            <h2 class="mt-2 title-header">Amikom Lost and Found</h2>
+            <h2 class="mt-2 title-header">{{$settings['application_name'] ?? 'Amikom Lost and Found'}}</h2>
         </div>
         <div class="right">
             <div class="headerButton" data-toggle="dropdown" id="dropdownMenuLink" aria-haspopup="true">
@@ -171,7 +171,7 @@
                 <i class="fas fa-rotate-right fa-2x"></i>
                 <!-- <ion-icon name="chatbubbles-outline"></ion-icon> -->
                 <strong>History</strong>
-            </div>
+            </div>  
         </a>
         <a href="{{ route('chats') }}" class="item {{ request()->routeIs('chats') ? 'active' : '' }}">
             <div class="col text-dark">

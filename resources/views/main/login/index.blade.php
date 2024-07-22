@@ -75,19 +75,10 @@
                     <div class="login-right">
                         <div class="login-right-wrap">
                             <h1>Login</h1>
-                            <p class="account-subtitle">Amikom Lost and Found</p>
+                            <p class="account-subtitle">{{ $settings['application_name'] ?? 'Amikom Lost and Found' }}</p>
                             @if ($errors->any())
                                 <div class="alert alert-danger" role="alert">
-{{-- <<<<<<< HEAD
-                                {{ $errors->first() }}
-                                </div>
-                            @endif
-                            @if (session('success'))
-                            <div class="alert alert-success" role="alert">
-                                {{ session('success') }}
-                            </div>
-======= --}}
-                                    {{ $errors->first() }}
+                                    {{ $errors->first()}}
                                 </div>
                             @endif
                             @if (session('success'))

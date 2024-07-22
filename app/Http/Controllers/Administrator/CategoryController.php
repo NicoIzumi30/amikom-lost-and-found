@@ -29,9 +29,10 @@ class CategoryController extends Controller
             return redirect()->back()->withErrors('Failed to create Category');
         }
 
+        $slug = Category::createUniqueSlug($request->category_name);
         Category::create([
             'category_name' => $request->category_name,
-            'slug' => base64_encode($request->category_name)
+            'slug' => $slug
         ]);
 
         return to_route('administrator.category.index')->withSuccess('Category has been created');
@@ -48,8 +49,11 @@ class CategoryController extends Controller
         }
 
         $category = Category::where('slug', $slug)->first();
+        $id = $category->id;
+        $slug = Category::createUniqueSlug($request->category_name, $id);
         $category->update([
             'category_name' => $request->category_name,
+            'slug' => $slug
         ]);
 
         return redirect()->route('administrator.category.index')->withSuccess('Category has been updated');

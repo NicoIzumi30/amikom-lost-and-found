@@ -5,9 +5,9 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Amikom Lost and Found</title>
-	<meta name="description" content="Temukan Barangmu Yang Hilang dan Laporkan Barang Yang Kamu Temukan">
-	<link rel="icon" href="{{ asset('icon512_maskable.png') }}" type="image/ico" /> 
+	<title>{{$settings['application_name'] ?? 'Amikom Lost and Found'}}</title>
+    <meta name="description" content="{{$settings['application_description'] ?? 'Temukan Barangmu Yang Hilang dan Laporkan Barang Yang Kamu Temukan'}}">
+    <link rel="icon" href="{{ $settings['company_logo'] ? asset('storage/logo/' . $settings['company_logo']) : asset('logo.png') }}" type="image/ico" />
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&amp;display=swap"
 		rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap"
@@ -43,12 +43,12 @@
 						<div class="splash_top">
 							<div class="logo_sec">
 								<a href="javascript:void(0)">
-									<img src="{{'main/onboarding'}}/images/logo_amikom_full_color.png" alt="logo">
+									<img src="{{ $settings['company_logo'] ? asset('storage/logo/' . $settings['company_logo']) : asset('logo.png') }}" alt="logo" style="width:180px">
 								</a>
 							</div>
 							<div class="logo_details">
-								<h1>AMIKOM LOST AND FOUND</h1>
-								<p>Temukan Barangmu Yang Hilang dan <br />Laporkan Barang Yang Kamu Temukan</p>
+								<h1 style="line-height:20px" class="mt-5">{{$settings['application_name'] ?? 'Amikom Lost and Found'}}</h1>
+								<p class="mx-2 text-center">{{$settings['application_description'] ?? 'Temukan Barangmu Yang Hilang dan Laporkan Barang Yang Kamu Temukan'}}</p>
 							</div>
 						</div>
 						<div class="splash_bottom">
